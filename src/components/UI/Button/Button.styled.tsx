@@ -41,8 +41,6 @@ export const StyledButton = styled.button<TButtonProps>`
   })}
 `
 export const AddButton = styled.button`
-  display: flex;
-  gap: 20px;
   border-radius: 30px;
   border: 1px solid #EB5A1E;
   background-color: #fff;

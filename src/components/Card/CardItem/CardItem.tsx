@@ -41,7 +41,7 @@ const CardItem: FC<TRootObjectProductPizzas> = (props) => {
 
     return (
         <Flex flexDirection={'column'} alignItems={'center'}
-              justifyContent={'center'} gap={20} position={'relative'}>
+              justifyContent={'center'} gap={20}>
             <img width={260} src={imageUrl} alt={title}/>
             <Text marginBottom={22} fontSize={remCalc(20)}
                   fontWeight={800}>{title}</Text>
@@ -63,17 +63,17 @@ const CardItem: FC<TRootObjectProductPizzas> = (props) => {
                         fontWeight={700}>{item}см. </Text></Button>
                 ))}
             </div>
-            <Flex gap={30} alignItems={'center'}>
+            <Flex gap={30} alignItems={'center'} position={'relative'}>
                 <Text fontSize={remCalc(20)}
                       fontWeight={800}>{formatCurrency(price)}</Text>
                 <AddButton onClick={onClickAdd}><Text fontWeight={700}>+
                     Добавить</Text></AddButton>
+                {pizzaCount > 0 && (
+                    <Flex position={'absolute'} top={-10} right={-5} background={'#EB5A1E'} color={'#FFF'} borderRadius={'50%'} paddingX={2}>
+                        <Text>{pizzaCount}</Text>
+                    </Flex>
+                )}
             </Flex>
-            {pizzaCount > 0 && (
-                <Flex position={'absolute'} top={10} right={20} background={'#EB5A1E'} color={'#FFF'} borderRadius={'50%'} paddingX={2}>
-                    <Text>{pizzaCount}</Text>
-                </Flex>
-            )}
         </Flex>
     );
 };
