@@ -48,7 +48,7 @@ const Cart = () => {
                 </Flex>
             </Flex>
             {cartItem.length > 0 ? (
-                <Flex maxWidth={500} flexDirection={'column'} marginX={'auto'} gap={20}>
+                <Flex maxWidth={750} flexDirection={'column'} marginX={'auto'} gap={20}>
                     <Flex alignItems={'center'} marginBottom={60}
                           justifyContent={'space-between'}>
                         <Flex alignItems={'center'} gap={10}>
@@ -63,12 +63,17 @@ const Cart = () => {
                         </Flex>
                     </Flex>
                     {cartItem.map((item) => <CartItem key={item.id} {...item}/>)}
-                    <Flex alignItems={'center'} justifyContent={'space-between'}>
+                    <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={40}>
                 <span style={{
                     fontSize: remCalc(22),
                 }}>Всего пицц: <Text fontSize={remCalc(22)} fontWeight={700}>{cartTotalQuantity}</Text></span>
                         <span>Сумма заказа: <Text color='#FE5F1E' fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(cartTotalAmount)}</Text></span>
                     </Flex>
+                    <Link to='/'>
+                        <Button $variant={'header'}>
+                            Вернуться назад
+                        </Button>
+                    </Link>
                 </Flex>
             ) : (
                 emptyPage()

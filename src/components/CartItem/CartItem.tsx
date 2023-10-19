@@ -5,7 +5,7 @@ import remCalc from "../../utils/remCalc.ts";
 import Button from "../UI/Button/Button.tsx";
 import {
     decreaseQuantity,
-    increaseQuantity
+    increaseQuantity, removeItem
 } from "../../redux/reducers/cart/slice.ts";
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
 import {useAppDispatch} from "../../hooks/useStore.ts";
@@ -18,7 +18,7 @@ const CartItem: FC<TCartItem> = (props) => {
 
     return (
         <>
-            <Flex key={id} justifyContent={'space-between'}>
+            <Flex key={id} justifyContent={'space-between'} marginBottom={40}>
                 <Flex alignItems={'center'} gap={10}>
                     <img width={80} height={80} src={imageUrl}
                          alt={title}/>
@@ -29,7 +29,7 @@ const CartItem: FC<TCartItem> = (props) => {
                               fontSize={remCalc(18)}>{type} {size}см.</Text>
                     </Flex>
                 </Flex>
-                <Flex alignItems={'center'} gap={5}>
+                <Flex alignItems={'center'} gap={15}>
                     <Button
                         onClick={() => dispatch(decreaseQuantity({...props}))}>
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,10 @@ const CartItem: FC<TCartItem> = (props) => {
                                 fill="#EB5A1E"/>
                         </svg>
                     </Button>
-                    <Text>{formatCurrency(price)}</Text>
+                    <Text fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(price)}</Text>
+                    <Button onClick={() => dispatch(removeItem({...props}))}>
+                        <img src="src/assets/trash.svg" alt="trash"/>
+                    </Button>
                 </Flex>
             </Flex>
 
