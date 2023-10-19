@@ -27,7 +27,7 @@ const textProps = compose(
 const Text = styled.span.withConfig({
     shouldForwardProp: (prop) => shouldForwardProp(prop)
 })<TTextProps>(textProps, css({
-    display: "block"
+    display: 'inline-block'
 }));
 
 export default Text;

@@ -15,7 +15,6 @@ const Header = () => {
             <Flex display={'inline-block'} flex={1}>
                 <Text fontSize={remCalc(24)} fontWeight={800}
                       textTransform={'uppercase'}>Pasta Project</Text>
-                <Text color={'#7B7B7B'}>best pizzas in the world!</Text>
             </Flex>
 
             <Link to='/cart'>

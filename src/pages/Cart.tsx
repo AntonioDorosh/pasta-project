@@ -8,11 +8,12 @@ import Button from "../components/UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import {clearCart} from "../redux/reducers/cart/slice.ts";
 import CartItem from "../components/CartItem/CartItem.tsx";
+import {formatCurrency} from "../utils/formatCurrency.ts";
 
 
 const Cart = () => {
     const dispatch = useAppDispatch();
-    const {cartItem,} = useAppSelector(state => state.cart);
+    const {cartItem, cartTotalAmount, cartTotalQuantity} = useAppSelector(state => state.cart);
 
     const onClickClear = () => {
         if (window.confirm('are you sure to delete all products?')) {
@@ -44,7 +45,6 @@ const Cart = () => {
                 <Flex display={'inline-block'} flex={1}>
                     <Text fontSize={remCalc(24)} fontWeight={800}
                           textTransform={'uppercase'}>Pasta Project</Text>
-                    <Text color={'#7B7B7B'}>best pizzas in the world!</Text>
                 </Flex>
             </Flex>
             {cartItem.length > 0 ? (
@@ -63,6 +63,12 @@ const Cart = () => {
                         </Flex>
                     </Flex>
                     {cartItem.map((item) => <CartItem key={item.id} {...item}/>)}
+                    <Flex alignItems={'center'} justifyContent={'space-between'}>
+                <span style={{
+                    fontSize: remCalc(22),
+                }}>Всего пицц: <Text fontSize={remCalc(22)} fontWeight={700}>{cartTotalQuantity}</Text></span>
+                        <span>Сумма заказа: <Text color='#FE5F1E' fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(cartTotalAmount)}</Text></span>
+                    </Flex>
                 </Flex>
             ) : (
                 emptyPage()
