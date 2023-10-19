@@ -4,6 +4,7 @@ import Button from "../UI/Button/Button.tsx";
 import productCategories from "../../utils/productCategories.ts";
 import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
+import SearchBar from "../SearchBar/SearchBar.tsx";
 
 const Categories = () => {
 
@@ -21,8 +22,12 @@ const Categories = () => {
                     </li>
                 ))}
             </Flex>
-            <Text fontSize={remCalc(32)} fontWeight={700}
-                  marginBottom={35}>{activeTab}</Text>
+            <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={35}>
+                <Text fontSize={remCalc(32)} fontWeight={700}
+                >{activeTab}</Text>
+                <SearchBar/>
+            </Flex>
+
         </>
     );
 };

@@ -8,7 +8,8 @@ import {API_URL} from "../../../utils";
 const initialState: TRootObjectProductState = {
     product: [],
     status: EStatus.LOADING,
-    error: null
+    error: null,
+    productFilter: []
 };
 
 export const fetchProductData = createAsyncThunk(
@@ -27,7 +28,11 @@ export const fetchProductData = createAsyncThunk(
 const productSlice = createSlice({
     name: 'product',
     initialState,
-    reducers: {},
+    reducers: {
+        filterByName: (state, action) => {
+            state.product = state.productFilter.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()))
+        }
+    },
     extraReducers: builder => {
         builder.addCase(fetchProductData.pending, (state) => {
             state.status = EStatus.LOADING
@@ -36,6 +41,7 @@ const productSlice = createSlice({
         builder.addCase(fetchProductData.fulfilled, (state, action) => {
             state.status = EStatus.SUCCESS
             state.product = action.payload
+            state.productFilter = action.payload
         })
         builder.addCase(fetchProductData.rejected, (state) => {
             state.status = EStatus.ERROR
@@ -44,5 +50,7 @@ const productSlice = createSlice({
     }
 })
 
+
+export const {filterByName} = productSlice.actions;
 
 export const product = productSlice.reducer;

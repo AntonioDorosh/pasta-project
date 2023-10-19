@@ -18,4 +18,5 @@ export type TRootObjectProductState = {
     product: TRootObjectProductPizzas[];
     status: EStatus;
     error: string | null;
+	productFilter: TRootObjectProductPizzas[];
 }

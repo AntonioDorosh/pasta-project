@@ -54,6 +54,7 @@ export const cartSlice = createSlice({
             }
             state.cartTotalAmount = state.cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
             state.cartTotalQuantity = state.cartItem.reduce((acc, item) => acc + item.quantity, 0);
+            localStorage.removeItem('cartItems');
         },
         removeItem: (state, action: PayloadAction<TCartItem>) => {
             state.cartItem = state.cartItem.filter((obj) =>

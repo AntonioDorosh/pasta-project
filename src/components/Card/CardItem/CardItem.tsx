@@ -19,7 +19,7 @@ const CardItem: FC<TRootObjectProductPizzas> = (props) => {
     const dispatch = useAppDispatch();
 
     const onClickAdd = () => {
-        const item: TCartItem = {
+        const productItem: TCartItem = {
             imageUrl,
             id,
             price,
@@ -28,7 +28,7 @@ const CardItem: FC<TRootObjectProductPizzas> = (props) => {
             type: pizzaTypes[activeTypes],
             quantity: 0
         };
-        dispatch(addToCart(item))
+        dispatch(addToCart(productItem))
     };
 
     const pizzaCount = useAppSelector((state) => {
