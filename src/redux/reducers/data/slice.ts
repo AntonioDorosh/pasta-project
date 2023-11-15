@@ -17,7 +17,6 @@ export const fetchProductData = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await fetch(API_URL);
-
             return await response.json()
         } catch (error) {
             return thunkAPI.rejectWithValue('Oops, something went wrong...')
