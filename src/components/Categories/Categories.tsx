@@ -6,6 +6,7 @@ import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
 import SearchBar from "../SearchBar/SearchBar.tsx";
 
+
 const Categories = () => {
 
     const [activeTab, setActiveTab] = useState(productCategories[0]);

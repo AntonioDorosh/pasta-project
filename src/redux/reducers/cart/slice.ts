@@ -1,5 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TCartItem, TCartStateSlice} from "./types.ts";
+import {countPrice, countSumQuantity} from "../../../utils";
+import {RootState} from "../../store";
 
 const initialState: TCartStateSlice = {
     cartItem: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') as string) : [],
@@ -7,7 +9,7 @@ const initialState: TCartStateSlice = {
     cartTotalQuantity: 0
 };
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
@@ -29,8 +31,8 @@ export const cartSlice = createSlice({
                 state.cartItem[itemIndex].quantity += 1;
             }
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
-            state.cartTotalAmount = state.cartItem.reduce((acc, product) => acc + product.price * product.quantity, 0);
-            state.cartTotalQuantity = state.cartItem.reduce((acc, product) => acc + product.quantity, 0);
+            state.cartTotalAmount = countPrice(state.cartItem);
+            state.cartTotalQuantity = countSumQuantity(state.cartItem);
         },
         increaseQuantity(state, action: PayloadAction<TCartItem>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
@@ -45,10 +47,10 @@ export const cartSlice = createSlice({
                     quantity: 1
                 })
             }
-            state.cartTotalAmount = state.cartItem.reduce((acc, product) => acc + product.price * product.quantity, 0);
-            state.cartTotalQuantity = state.cartItem.reduce((acc, product) => acc + product.quantity, 0);
+            state.cartTotalAmount = countPrice(state.cartItem);
+            state.cartTotalQuantity = countSumQuantity(state.cartItem);
         },
-        decreaseQuantity(state, action: PayloadAction<TCartItem>) {
+        decreaseQuantity(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
                 id === action.payload.id
                 && size === action.payload.size
@@ -59,21 +61,21 @@ export const cartSlice = createSlice({
             } else {
                 state.cartItem.splice(findIndex, 1);
             }
-            state.cartTotalAmount = state.cartItem.reduce((acc, product) => acc + product.price * product.quantity, 0);
-            state.cartTotalQuantity = state.cartItem.reduce((acc, product) => acc + product.quantity, 0);
+            state.cartTotalAmount = countPrice(state.cartItem);
+            state.cartTotalQuantity = countSumQuantity(state.cartItem);
             localStorage.removeItem('cartItems');
         },
-        removeItem(state, action: PayloadAction<TCartItem>) {
+        removeItem(state, action: PayloadAction<number>) {
             // state.cartItem = state.cartItem.filter(({id}) => id !== action.payload.id)
-            const findItem = state.cartItem.findIndex(({id}) => id === action.payload.id);
+            const findItem = state.cartItem.findIndex(({id}) => id === action.payload);
 
-            if (findItem !== -1) {
+            if (~findItem) {
                 state.cartItem.splice(findItem, 1);
             }
 
             localStorage.removeItem('cartItems');
-            state.cartTotalAmount = state.cartItem.reduce((acc, product) => acc + product.price * product.quantity, 0);
-            state.cartTotalQuantity = state.cartItem.reduce((acc, product) => acc + product.quantity, 0);
+            state.cartTotalAmount = countPrice(state.cartItem);
+            state.cartTotalQuantity = countSumQuantity(state.cartItem);
         },
         clearCart(state) {
             state.cartItem = [];
@@ -83,7 +85,6 @@ export const cartSlice = createSlice({
     }
 });
 
-
 export const {
     addToCart,
     removeItem,
@@ -91,4 +92,10 @@ export const {
     increaseQuantity,
     decreaseQuantity
 } = cartSlice.actions;
-export default cartSlice.reducer;
+
+export const cartSelector = {
+    cartItem: (state: RootState) => state.cart.cartItem,
+    cartTotalAmount: (state: RootState) => state.cart.cartTotalAmount,
+    cartTotalQuantity: (state: RootState) => state.cart.cartTotalQuantity
+}
+export default cartSlice;

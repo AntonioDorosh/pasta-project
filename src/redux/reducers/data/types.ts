@@ -8,15 +8,18 @@ export type TRootObjectProductPizzas = {
 	quantity?: number;
 };
 
+export type TPizzaParams = {
+	searchValue: string;
+}
+
 export enum EStatus {
     LOADING = 'LOADING',
     SUCCESS = 'SUCCESS',
     ERROR = 'ERROR',
 }
 
-export type TRootObjectProductState = {
-    product: TRootObjectProductPizzas[];
-    status: EStatus;
-    error: string | null;
-	productFilter: TRootObjectProductPizzas[];
-}
+export type TProductState = {
+	product: TRootObjectProductPizzas[];
+	status: EStatus;
+	error: string;
+};

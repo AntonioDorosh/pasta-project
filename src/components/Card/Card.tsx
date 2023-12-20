@@ -8,10 +8,11 @@ import Flex from "../../styles/Flex/Flex.ts";
 const Card = () => {
     const {product} = useAppSelector(state => state.product);
     const dispatch = useAppDispatch();
+    const searchValue = useAppSelector(state => state.filter.searchValue);
 
     useEffect(() => {
-        dispatch(fetchProductData())
-    }, [dispatch]);
+        dispatch(fetchProductData({searchValue}))
+    }, [dispatch, searchValue]);
 
     console.log(product)
 

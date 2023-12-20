@@ -6,12 +6,11 @@ import Button from "../UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
+import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 
 const Header = () => {
-    const {
-        cartTotalQuantity,
-        cartTotalAmount
-    } = useAppSelector(state => state.cart);
+    const cartTotalAmount = useAppSelector(cartSelector.cartTotalAmount);
+    const cartTotalQuantity = useAppSelector(cartSelector.cartTotalQuantity);
 
     return (
         <Flex as={'header'} gap={20} marginBottom={80} alignItems={'center'}>

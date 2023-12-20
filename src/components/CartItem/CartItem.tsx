@@ -58,8 +58,9 @@ const CartItem: FC<TCartItem> = (props) => {
                                 fill="#EB5A1E"/>
                         </svg>
                     </Button>
-                    <Text fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(price)}</Text>
-                    <Button onClick={() => dispatch(removeItem({...props}))}>
+                    <Text fontSize={remCalc(22)}
+                          fontWeight={700}>{formatCurrency(price)}</Text>
+                    <Button onClick={() => dispatch(removeItem(id))}>
                         <img src="src/assets/trash.svg" alt="trash"/>
                     </Button>
                 </Flex>

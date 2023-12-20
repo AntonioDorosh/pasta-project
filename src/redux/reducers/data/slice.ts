@@ -1,25 +1,28 @@
 import {
     EStatus,
-    TRootObjectProductState
+    TPizzaParams,
+    TProductState,
+    TRootObjectProductPizzas
 } from "./types.ts";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {API_URL} from "../../../utils";
 
-const initialState: TRootObjectProductState = {
+const initialState: TProductState = {
     product: [],
     status: EStatus.LOADING,
-    error: null,
-    productFilter: []
+    error: '',
 };
 
-export const fetchProductData = createAsyncThunk(
+export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPizzaParams>(
     'product/fetchProductData',
-    async (_, thunkAPI) => {
+    async(params) => {
+        const {searchValue} = params;
         try {
-            const response = await fetch(API_URL);
-            return await response.json()
-        } catch (error) {
-            return thunkAPI.rejectWithValue('Oops, something went wrong...')
+          const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}`);
+          return response.json()
+        } catch (e) {
+            console.log(e);
+            return [];
         }
     }
 );
@@ -28,28 +31,26 @@ const productSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        filterByName: (state, action) => {
-            state.product = state.productFilter.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()))
-        }
+        setItems: (state, action) => {
+            state.product = action.payload;
+            state.status = EStatus.SUCCESS;
+        },
     },
-    extraReducers: builder => {
+    extraReducers:(builder) => {
         builder.addCase(fetchProductData.pending, (state) => {
-            state.status = EStatus.LOADING
-            state.product = [];
+            state.status = EStatus.LOADING;
         })
         builder.addCase(fetchProductData.fulfilled, (state, action) => {
-            state.status = EStatus.SUCCESS
-            state.product = action.payload
-            state.productFilter = action.payload
+            state.product = action.payload;
+            state.status = EStatus.SUCCESS;
         })
-        builder.addCase(fetchProductData.rejected, (state) => {
-            state.status = EStatus.ERROR
-            state.product = [];
+        builder.addCase(fetchProductData.rejected, (state, action) => {
+            state.status = EStatus.ERROR;
+            state.error = action.error.message || '';
         })
     }
-})
+});
 
+export const {setItems} = productSlice.actions;
 
-export const {filterByName} = productSlice.actions;
-
-export const product = productSlice.reducer;
+export const product = productSlice.reducer

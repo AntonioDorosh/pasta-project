@@ -1,31 +1,46 @@
-import React, {useRef} from 'react';
-import {useAppDispatch} from "../../hooks/useStore.ts";
-import {filterByName} from "../../redux/reducers/data/slice.ts";
+import React, {useCallback, useRef, useState} from 'react';
 import {InputStyled} from "./SearchBar.styled.tsx";
 import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
+import {useAppDispatch} from "../../hooks/useStore.ts";
+import {setSearchValue} from "../../redux/reducers/filter/slice.ts";
 
 const SearchBar = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const dispatch = useAppDispatch();
-    const filterInput = () => {
-        const debounce = setTimeout(() => {
-            const value = inputRef.current?.value;
-            dispatch(filterByName(value))
-        }, 1000);
+    const [value, setValue] = useState('');
 
-        return () => clearTimeout(debounce);
+    const debounce = (param: (value: string) => void, number: number) => {
+        let timeout: number;
+        return function (value: string) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => param(value), number);
+        };
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const updateSearchValue = useCallback(
+        debounce((value: string) => {
+            dispatch(setSearchValue(value));
+        }, 500),
+        []
+    );
+
+    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+        updateSearchValue(e.target.value);
     };
 
     const clearValue = () => {
+        dispatch(setSearchValue(''));
         inputRef.current!.value = '';
-        dispatch(filterByName(''))
+        dispatch(setSearchValue(''))
     };
 
 
     return (
         <Flex>
-            <InputStyled ref={inputRef} onChange={filterInput}/>
+            <InputStyled ref={inputRef} value={value} onChange={onChangeInput}/>
             <Button onClick={clearValue}>
                 <img src="src/assets/trash.svg" alt="trash"/>
             </Button>
