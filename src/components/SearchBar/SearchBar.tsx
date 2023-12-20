@@ -12,7 +12,7 @@ const SearchBar = () => {
 
     const debounce = (param: (value: string) => void, number: number) => {
         let timeout: number;
-        return function (value: string) {
+        return (value: string) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => param(value), number);
         };
