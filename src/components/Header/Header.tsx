@@ -4,7 +4,7 @@ import remCalc from "../../utils/remCalc.ts";
 import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../hooks/useStore.ts";
+import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 import SearchBar from "../UI/SearchBar/SearchBar.tsx";

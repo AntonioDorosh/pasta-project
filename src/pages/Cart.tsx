@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../hooks/useStore.ts";
+import {useAppDispatch, useAppSelector} from "../redux/hooks/useStore.ts";
 import Layout from "../components/Layout/Layout.tsx";
 import Flex from "../styles/Flex/Flex.ts";
 import Text from "../styles/Text/Text.ts";

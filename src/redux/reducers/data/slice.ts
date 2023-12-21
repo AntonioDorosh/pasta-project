@@ -15,14 +15,13 @@ const initialState: TProductState = {
 
 export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPizzaParams>(
     'product/fetchProductData',
-    async (params) => {
+    async (params, thunkAPI) => {
         const {searchValue, itemsPerPage, activeCategory, currentPage} = params;
         try {
-            const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}${itemsPerPage !== 0 ? "&_limit=" + itemsPerPage : ""} ${activeCategory !== 0 ? "&category=" + activeCategory : ""} ${currentPage !== 0 ? "&_page=" + currentPage : ""}`);
+            const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}${itemsPerPage !== 0 ? "&_limit=" + itemsPerPage : ""} ${activeCategory !== 0 ? "&category=" + activeCategory : ""}${currentPage !== 0 ? "&_page=" + currentPage : ""}`);
             return response.json()
         } catch (e) {
-            console.log(e);
-            return [];
+            return thunkAPI.rejectWithValue({error: e.message}) || []
         }
     }
 );
@@ -30,12 +29,7 @@ export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPi
 const productSlice = createSlice({
     name: 'product',
     initialState,
-    reducers: {
-        setItems: (state, action) => {
-            state.product = action.payload;
-            state.status = EStatus.SUCCESS;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchProductData.pending, (state) => {
             state.status = EStatus.LOADING;
@@ -51,6 +45,5 @@ const productSlice = createSlice({
     }
 });
 
-export const {setItems} = productSlice.actions;
 
 export const product = productSlice.reducer

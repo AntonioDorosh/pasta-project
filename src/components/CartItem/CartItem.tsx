@@ -8,7 +8,7 @@ import {
     increaseQuantity, removeItem
 } from "../../redux/reducers/cart/slice.ts";
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
-import {useAppDispatch} from "../../hooks/useStore.ts";
+import {useAppDispatch} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 
 const CartItem: FC<TCartItem> = (props) => {

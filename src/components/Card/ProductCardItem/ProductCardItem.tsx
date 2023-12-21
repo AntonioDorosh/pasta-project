@@ -4,7 +4,7 @@ import Text from "../../../styles/Text/Text.ts";
 import remCalc from "../../../utils/remCalc.ts";
 import Flex from "../../../styles/Flex/Flex.ts";
 import {formatCurrency} from "../../../utils/formatCurrency.ts";
-import {useAppDispatch, useAppSelector} from "../../../hooks/useStore.ts";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks/useStore.ts";
 import {TCartItem} from "../../../redux/reducers/cart/types.ts";
 import {addToCart} from "../../../redux/reducers/cart/slice.ts";
 import Button from "../../UI/Button/Button.tsx";

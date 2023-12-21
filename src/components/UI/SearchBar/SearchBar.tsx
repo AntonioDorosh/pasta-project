@@ -2,7 +2,7 @@ import React, {useCallback, useRef, useState} from 'react';
 import {InputStyled} from "./SearchBar.styled.tsx";
 import Flex from "../../../styles/Flex/Flex.ts";
 import Button from "../Button/Button.tsx";
-import {useAppDispatch} from "../../../hooks/useStore.ts";
+import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {setSearchValue} from "../../../redux/reducers/filter/slice.ts";
 import {debounce} from "../../../utils";
 
