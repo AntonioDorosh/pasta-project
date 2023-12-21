@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
 import productCategories from "../../utils/productCategories.ts";
 import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
-import SearchBar from "../SearchBar/SearchBar.tsx";
 
+type CategoriesProps = {
+    onClickCategory: (id: number) => void
+    activeCategory: number
+}
 
-const Categories = () => {
-
-    const [activeTab, setActiveTab] = useState(productCategories[0]);
-
+const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
     return (
         <>
             <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}
@@ -18,17 +18,16 @@ const Categories = () => {
                 {productCategories.map((item, index) => (
                     <li key={index}>
                         <Button $variant={'category'}
-                                $isActive={activeTab === item}
-                                onClick={() => setActiveTab(item)}><Text fontWeight={700}>{item}</Text></Button>
+                                $isActive={activeCategory === index}
+                                onClick={() => {
+                                    onClickCategory(index);
+                                }}>
+                            <Text fontSize={remCalc(14)}
+                                  fontWeight={700}>{item}</Text>
+                        </Button>
                     </li>
                 ))}
             </Flex>
-            <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={35}>
-                <Text fontSize={remCalc(32)} fontWeight={700}
-                >{activeTab}</Text>
-                <SearchBar/>
-            </Flex>
-
         </>
     );
 };

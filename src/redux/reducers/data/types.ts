@@ -10,6 +10,8 @@ export type TRootObjectProductPizzas = {
 
 export type TPizzaParams = {
 	searchValue: string;
+	itemsPerPage: number;
+	activeCategory: number;
 }
 
 export enum EStatus {

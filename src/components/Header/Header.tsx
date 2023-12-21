@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
+import SearchBar from "../SearchBar/SearchBar.tsx";
 
 const Header = () => {
     const cartTotalAmount = useAppSelector(cartSelector.cartTotalAmount);
@@ -19,6 +20,7 @@ const Header = () => {
                 <Text fontSize={remCalc(24)} fontWeight={800}
                       textTransform={'uppercase'}>Pasta Project</Text>
             </Flex>
+            <SearchBar/>
             <Link to='/cart'>
                 <Button $variant={'header'}>
                     {formatCurrency(cartTotalAmount)}

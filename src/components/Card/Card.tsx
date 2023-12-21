@@ -1,21 +1,13 @@
-import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks/useStore.ts";
-import {fetchProductData} from "../../redux/reducers/data/slice.ts";
+import React from 'react';
 import CardItem from "./CardItem/CardItem.tsx";
 import Flex from "../../styles/Flex/Flex.ts";
+import {TRootObjectProductPizzas} from "../../redux/reducers/data/types.ts";
 
+type TCardProps = {
+    product: TRootObjectProductPizzas[]
+}
 
-const Card = () => {
-    const {product} = useAppSelector(state => state.product);
-    const dispatch = useAppDispatch();
-    const searchValue = useAppSelector(state => state.filter.searchValue);
-
-    useEffect(() => {
-        dispatch(fetchProductData({searchValue}))
-    }, [dispatch, searchValue]);
-
-    console.log(product)
-
+const Card = ({product}: TCardProps) => {
     return (
         <Flex flexWrap={'wrap'} gap={55}>
             {product.map((item) => <CardItem key={item.id} {...item}/>)}

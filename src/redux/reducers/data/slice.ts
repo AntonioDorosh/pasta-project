@@ -15,11 +15,11 @@ const initialState: TProductState = {
 
 export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPizzaParams>(
     'product/fetchProductData',
-    async(params) => {
-        const {searchValue} = params;
+    async (params) => {
+        const {searchValue, itemsPerPage, activeCategory} = params;
         try {
-          const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}`);
-          return response.json()
+            const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}${itemsPerPage !== 0 ? "&_limit=" + itemsPerPage : ""} ${activeCategory !== 0 ? "&category=" + activeCategory : ""}`);
+            return response.json()
         } catch (e) {
             console.log(e);
             return [];
@@ -36,7 +36,7 @@ const productSlice = createSlice({
             state.status = EStatus.SUCCESS;
         },
     },
-    extraReducers:(builder) => {
+    extraReducers: (builder) => {
         builder.addCase(fetchProductData.pending, (state) => {
             state.status = EStatus.LOADING;
         })
