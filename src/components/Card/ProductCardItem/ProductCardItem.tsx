@@ -5,18 +5,19 @@ import remCalc from "../../../utils/remCalc.ts";
 import Flex from "../../../styles/Flex/Flex.ts";
 import {formatCurrency} from "../../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useStore.ts";
-import {pizzaTypes} from "../../../utils";
 import {TCartItem} from "../../../redux/reducers/cart/types.ts";
 import {addToCart} from "../../../redux/reducers/cart/slice.ts";
 import Button from "../../UI/Button/Button.tsx";
 import {AddButton} from "../../UI/Button/Button.styled.tsx";
 
-const CardItem: FC<TRootObjectProductPizzas> = (props) => {
+const ProductCardItem: FC<TRootObjectProductPizzas> = (props) => {
     const {id, price, imageUrl, sizes, title, types} = props;
+    const pizzaTypes = ['тонкое', 'традиционное'];
 
     const [activeSize, setActiveSize] = useState(0);
     const [activeTypes, setActiveTypes] = useState(0);
     const dispatch = useAppDispatch();
+
 
     const onClickAdd = () => {
         const productItem: TCartItem = {
@@ -78,4 +79,4 @@ const CardItem: FC<TRootObjectProductPizzas> = (props) => {
     );
 };
 
-export default CardItem;
+export default ProductCardItem;

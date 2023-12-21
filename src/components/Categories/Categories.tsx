@@ -1,7 +1,6 @@
 import React from 'react';
 import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
-import productCategories from "../../utils/productCategories.ts";
 import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
 
@@ -11,6 +10,8 @@ type CategoriesProps = {
 }
 
 const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
+    const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
     return (
         <>
             <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}

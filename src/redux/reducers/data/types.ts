@@ -12,6 +12,7 @@ export type TPizzaParams = {
 	searchValue: string;
 	itemsPerPage: number;
 	activeCategory: number;
+	currentPage: number;
 }
 
 export enum EStatus {

@@ -1,17 +1,15 @@
 import React, {useCallback, useRef, useState} from 'react';
 import {InputStyled} from "./SearchBar.styled.tsx";
-import Flex from "../../styles/Flex/Flex.ts";
-import Button from "../UI/Button/Button.tsx";
-import {useAppDispatch} from "../../hooks/useStore.ts";
-import {setSearchValue} from "../../redux/reducers/filter/slice.ts";
-import {debounce} from "../../utils/debounce.ts";
+import Flex from "../../../styles/Flex/Flex.ts";
+import Button from "../Button/Button.tsx";
+import {useAppDispatch} from "../../../hooks/useStore.ts";
+import {setSearchValue} from "../../../redux/reducers/filter/slice.ts";
+import {debounce} from "../../../utils";
 
 const SearchBar = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const dispatch = useAppDispatch();
     const [value, setValue] = useState('');
-
-
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const updateSearchValue = useCallback(

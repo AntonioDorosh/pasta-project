@@ -16,9 +16,9 @@ const initialState: TProductState = {
 export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPizzaParams>(
     'product/fetchProductData',
     async (params) => {
-        const {searchValue, itemsPerPage, activeCategory} = params;
+        const {searchValue, itemsPerPage, activeCategory, currentPage} = params;
         try {
-            const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}${itemsPerPage !== 0 ? "&_limit=" + itemsPerPage : ""} ${activeCategory !== 0 ? "&category=" + activeCategory : ""}`);
+            const response = await fetch(`${API_URL}?${searchValue !== "" ? "&q=" + searchValue : ""}${itemsPerPage !== 0 ? "&_limit=" + itemsPerPage : ""} ${activeCategory !== 0 ? "&category=" + activeCategory : ""} ${currentPage !== 0 ? "&_page=" + currentPage : ""}`);
             return response.json()
         } catch (e) {
             console.log(e);

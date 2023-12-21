@@ -15,7 +15,6 @@ const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
 
-
     return (
         <>
             <Flex key={id} justifyContent={'space-between'} marginBottom={40}>

@@ -13,3 +13,4 @@ export type TCartStateSlice = {
     cartTotalQuantity: number;
     cartTotalAmount: number;
 }
+

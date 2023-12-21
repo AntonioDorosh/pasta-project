@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
-import SearchBar from "../SearchBar/SearchBar.tsx";
+import SearchBar from "../UI/SearchBar/SearchBar.tsx";
 
 const Header = () => {
     const cartTotalAmount = useAppSelector(cartSelector.cartTotalAmount);

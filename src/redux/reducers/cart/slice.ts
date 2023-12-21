@@ -64,6 +64,7 @@ const cartSlice = createSlice({
             state.cartTotalAmount = countPrice(state.cartItem);
             state.cartTotalQuantity = countSumQuantity(state.cartItem);
             localStorage.removeItem('cartItems');
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
         },
         removeItem(state, action: PayloadAction<number>) {
             // state.cartItem = state.cartItem.filter(({id}) => id !== action.payload.id)
