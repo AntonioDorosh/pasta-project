@@ -11,8 +11,6 @@ const initialState: TFilterState = {
     },
     currentPage: 1,
     itemsPerPage: 5,
-    activeSize: 0,
-    activeType: 0
 };
 
 const filterSlice = createSlice({

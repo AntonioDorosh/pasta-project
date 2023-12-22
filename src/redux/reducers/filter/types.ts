@@ -16,6 +16,4 @@ export type TFilterState = {
     sort: TSort;
     currentPage: number;
     itemsPerPage: number;
-    activeSize: number;
-    activeType: number;
 }
