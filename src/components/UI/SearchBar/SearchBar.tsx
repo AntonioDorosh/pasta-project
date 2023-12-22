@@ -28,7 +28,6 @@ const SearchBar = () => {
         setValue('')
     };
 
-
     return (
         <Flex>
             <InputStyled value={value} onChange={onChangeInput}/>

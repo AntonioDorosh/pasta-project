@@ -16,7 +16,7 @@ const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
         <>
             <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}
                   flexWrap={'wrap'}>
-                {productCategories.map((item, index) => (
+                {productCategories.map((product, index) => (
                     <li key={index}>
                         <Button $variant={'category'}
                                 $isActive={activeCategory === index}
@@ -24,7 +24,7 @@ const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
                                     onClickCategory(index);
                                 }}>
                             <Text fontSize={remCalc(14)}
-                                  fontWeight={700}>{item}</Text>
+                                  fontWeight={700}>{product}</Text>
                         </Button>
                     </li>
                 ))}

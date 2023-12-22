@@ -47,21 +47,21 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
             <Text marginBottom={22} fontSize={remCalc(20)}
                   fontWeight={800}>{title}</Text>
             <div>
-                {types.map((item, index) => (
+                {types.map((type, index) => (
                     <Button key={index} $variant={'card'}
                             $isActive={activeTypes === index}
                             onClick={() => setActiveTypes(index)}><Text
                         fontSize={remCalc(14)}
-                        fontWeight={700}>{pizzaTypes[item]}</Text></Button>
+                        fontWeight={700}>{pizzaTypes[type]}</Text></Button>
                 ))}
             </div>
             <div>
-                {sizes.map((item, index) => (
+                {sizes.map((size, index) => (
                     <Button key={index} $variant={'card'}
                             onClick={() => setActiveSize(index)}
                             $isActive={activeSize === index}><Text
                         fontSize={remCalc(14)}
-                        fontWeight={700}>{item}см. </Text></Button>
+                        fontWeight={700}>{size}см. </Text></Button>
                 ))}
             </div>
             <Flex gap={30} alignItems={'center'} position={'relative'}>

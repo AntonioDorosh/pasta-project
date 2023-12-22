@@ -15,13 +15,9 @@ const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
 
-    const decreaseQnt = () => {
-        dispatch(decreaseQuantity({id, type, size}))
-    };
-
-    const increaseQnt = () => {
-        dispatch(increaseQuantity({...props}))
-    };
+    const decreaseQnt = () => dispatch(decreaseQuantity({id, type, size}))
+    const increaseQnt = () => dispatch(increaseQuantity({...props}))
+    const removeHandler = () => dispatch(removeItem(id))
 
     return (
         <>
@@ -67,7 +63,7 @@ const CartItem: FC<TCartItem> = (props) => {
                     </Button>
                     <Text fontSize={remCalc(22)}
                           fontWeight={700}>{formatCurrency(price)}</Text>
-                    <Button onClick={() => dispatch(removeItem(id))}>
+                    <Button onClick={removeHandler}>
                         <img src="src/assets/trash.svg" alt="trash"/>
                     </Button>
                 </Flex>

@@ -10,7 +10,7 @@ type TCardProps = {
 const ProductCard = ({product}: TCardProps) => {
     return (
         <Flex flexWrap={'wrap'} gap={55}>
-            {product.map((item) => <ProductItem key={item.id} {...item}/>)}
+            {product.map((pizza) => <ProductItem key={pizza.id} {...pizza}/>)}
         </Flex>
     );
 };
