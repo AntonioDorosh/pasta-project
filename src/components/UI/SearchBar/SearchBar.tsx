@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {InputStyled} from "./SearchBar.styled.tsx";
 import Flex from "../../../styles/Flex/Flex.ts";
 import Button from "../Button/Button.tsx";
@@ -7,7 +7,6 @@ import {setSearchValue} from "../../../redux/reducers/filter/slice.ts";
 import {debounce} from "../../../utils";
 
 const SearchBar = () => {
-    const inputRef = useRef<HTMLInputElement>(null);
     const dispatch = useAppDispatch();
     const [value, setValue] = useState('');
 
@@ -26,14 +25,13 @@ const SearchBar = () => {
 
     const clearValue = () => {
         dispatch(setSearchValue(''));
-        inputRef.current!.value = '';
-        dispatch(setSearchValue(''))
+        setValue('')
     };
 
 
     return (
         <Flex>
-            <InputStyled ref={inputRef} value={value} onChange={onChangeInput}/>
+            <InputStyled value={value} onChange={onChangeInput}/>
             <Button onClick={clearValue}>
                 <img src="src/assets/trash.svg" alt="trash"/>
             </Button>

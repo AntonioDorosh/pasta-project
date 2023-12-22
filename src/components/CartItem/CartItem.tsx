@@ -15,6 +15,14 @@ const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
 
+    const decreaseQnt = () => {
+        dispatch(decreaseQuantity({id, type, size}))
+    };
+
+    const increaseQnt = () => {
+        dispatch(increaseQuantity({...props}))
+    };
+
     return (
         <>
             <Flex key={id} justifyContent={'space-between'} marginBottom={40}>
@@ -30,7 +38,7 @@ const CartItem: FC<TCartItem> = (props) => {
                 </Flex>
                 <Flex alignItems={'center'} gap={15}>
                     <Button
-                        onClick={() => dispatch(decreaseQuantity({...props}))}>
+                        onClick={decreaseQnt}>
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="32" height="32"
                              viewBox="0 0 32 32" fill="none">
@@ -45,7 +53,7 @@ const CartItem: FC<TCartItem> = (props) => {
                     <Text fontSize={remCalc(22)}
                           fontWeight={700}>{quantity}</Text>
                     <Button
-                        onClick={() => dispatch(increaseQuantity({...props}))}>
+                        onClick={increaseQnt}>
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="32" height="32"
                              viewBox="0 0 32 32" fill="none">
