@@ -4,7 +4,9 @@ import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
 import Button from "../UI/Button/Button.tsx";
 import {
-    addProduct, removeItem, removeProduct,
+    addProduct,
+    removeCurrentProduct,
+    removeProduct,
 } from "../../redux/reducers/cart/slice.ts";
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
 import {useAppDispatch} from "../../redux/hooks/useStore.ts";
@@ -15,7 +17,7 @@ const CartItem: FC<TCartItem> = (props) => {
     const {id, type, title, size, quantity, imageUrl, price} = props;
     const decreaseQnt = () => dispatch(removeProduct({id, type, size}))
     const increaseQnt = () => dispatch(addProduct({...props}))
-    const removeHandler = () => dispatch(removeItem(id))
+    const removeHandler = () => dispatch(removeCurrentProduct(id))
 
     return (
         <>

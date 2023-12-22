@@ -48,7 +48,7 @@ const cartSlice = createSlice({
             state.sumPrice = totalPrice(state.cartItem);
             state.totalQnt = totalQuantity(state.cartItem);
         },
-        removeItem(state, action: PayloadAction<number>) {
+        removeCurrentProduct(state, action: PayloadAction<number>) {
             const findItem = state.cartItem.findIndex(({id}) => id === action.payload);
 
             if (~findItem) {
@@ -62,6 +62,7 @@ const cartSlice = createSlice({
         clearCart(state) {
             state.cartItem = [];
             state.sumPrice = 0;
+            state.totalQnt = 0;
         }
     }
 });
@@ -69,7 +70,7 @@ const cartSlice = createSlice({
 export const {
     addProduct,
     removeProduct,
-    removeItem,
+    removeCurrentProduct,
     clearCart,
 } = cartSlice.actions;
 
