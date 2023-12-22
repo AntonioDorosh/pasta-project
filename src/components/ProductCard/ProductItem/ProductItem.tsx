@@ -6,7 +6,7 @@ import Flex from "../../../styles/Flex/Flex.ts";
 import {formatCurrency} from "../../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks/useStore.ts";
 import {TCartItem} from "../../../redux/reducers/cart/types.ts";
-import {addToCart} from "../../../redux/reducers/cart/slice.ts";
+import {addProduct} from "../../../redux/reducers/cart/slice.ts";
 import Button from "../../UI/Button/Button.tsx";
 import {AddButton} from "../../UI/Button/Button.styled.tsx";
 
@@ -26,7 +26,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
             type: pizzaTypes[activeTypes],
             quantity: 0
         };
-        dispatch(addToCart(productItem))
+        dispatch(addProduct(productItem))
     };
 
     const pizzaCount = useAppSelector((state) => {

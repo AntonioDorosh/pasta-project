@@ -4,9 +4,7 @@ import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
 import Button from "../UI/Button/Button.tsx";
 import {
-    addToCart,
-    decreaseQuantity,
-    removeItem
+    addProduct, removeItem, removeProduct,
 } from "../../redux/reducers/cart/slice.ts";
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
 import {useAppDispatch} from "../../redux/hooks/useStore.ts";
@@ -15,8 +13,8 @@ import {formatCurrency} from "../../utils/formatCurrency.ts";
 const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
-    const decreaseQnt = () => dispatch(decreaseQuantity({id, type, size}))
-    const increaseQnt = () => dispatch(addToCart({...props}))
+    const decreaseQnt = () => dispatch(removeProduct({id, type, size}))
+    const increaseQnt = () => dispatch(addProduct({...props}))
     const removeHandler = () => dispatch(removeItem(id))
 
     return (

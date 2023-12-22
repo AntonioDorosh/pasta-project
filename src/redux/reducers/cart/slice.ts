@@ -11,7 +11,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart(state, action: PayloadAction<TCartItem>) {
+        addProduct(state, action: PayloadAction<TCartItem>) {
             const itemIndex = state.cartItem.findIndex(({
                                                             id,
                                                             size,
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
             state.sumPrice = totalPrice(state.cartItem)
             state.totalQnt = totalQuantity(state.cartItem);
         },
-        decreaseQuantity(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
+        removeProduct(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
                 id === action.payload.id
                 && size === action.payload.size
@@ -49,7 +49,6 @@ const cartSlice = createSlice({
             state.totalQnt = totalQuantity(state.cartItem);
         },
         removeItem(state, action: PayloadAction<number>) {
-            // state.cartItem = state.cartItem.filter(({id}) => id !== action.payload.id)
             const findItem = state.cartItem.findIndex(({id}) => id === action.payload);
 
             if (~findItem) {
@@ -68,10 +67,10 @@ const cartSlice = createSlice({
 });
 
 export const {
-    addToCart,
+    addProduct,
+    removeProduct,
     removeItem,
     clearCart,
-    decreaseQuantity
 } = cartSlice.actions;
 
 export const cartSelector = (state: RootState) => state.cart;
