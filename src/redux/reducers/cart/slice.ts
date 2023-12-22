@@ -1,13 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TCartItem, TCartStateSlice} from "./types.ts";
-import {countPrice, countSumQuantity} from "../../../utils";
+import {TCartItem} from "./types.ts";
 import {RootState} from "../../store";
+import {getCartFromLS} from "../../../utils/getCartFromLS.ts";
+import {totalPrice} from "../../../utils";
+import {totalQuantity} from "../../../utils/totalQuantity.ts";
 
-const initialState: TCartStateSlice = {
-    cartItem: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') as string) : [],
-    cartTotalAmount: 0,
-    cartTotalQuantity: 0
-};
+const initialState = getCartFromLS();
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -31,8 +29,8 @@ const cartSlice = createSlice({
                 state.cartItem[itemIndex].quantity += 1;
             }
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
-            state.cartTotalAmount = countPrice(state.cartItem);
-            state.cartTotalQuantity = countSumQuantity(state.cartItem);
+            state.sumPrice = totalPrice(state.cartItem)
+            state.totalQnt = totalQuantity(state.cartItem);
         },
         increaseQuantity(state, action: PayloadAction<TCartItem>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
@@ -47,8 +45,9 @@ const cartSlice = createSlice({
                     quantity: 1
                 })
             }
-            state.cartTotalAmount = countPrice(state.cartItem);
-            state.cartTotalQuantity = countSumQuantity(state.cartItem);
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
+            state.sumPrice = totalPrice(state.cartItem);
+            state.totalQnt = totalQuantity(state.cartItem);
         },
         decreaseQuantity(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
@@ -61,10 +60,10 @@ const cartSlice = createSlice({
             } else {
                 state.cartItem.splice(findIndex, 1);
             }
-            state.cartTotalAmount = countPrice(state.cartItem);
-            state.cartTotalQuantity = countSumQuantity(state.cartItem);
             localStorage.removeItem('cartItems');
             localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
+            state.sumPrice = totalPrice(state.cartItem);
+            state.totalQnt = totalQuantity(state.cartItem);
         },
         removeItem(state, action: PayloadAction<number>) {
             // state.cartItem = state.cartItem.filter(({id}) => id !== action.payload.id)
@@ -75,13 +74,12 @@ const cartSlice = createSlice({
             }
 
             localStorage.removeItem('cartItems');
-            state.cartTotalAmount = countPrice(state.cartItem);
-            state.cartTotalQuantity = countSumQuantity(state.cartItem);
+            state.sumPrice = totalPrice(state.cartItem);
+            state.totalQnt = totalQuantity(state.cartItem);
         },
         clearCart(state) {
             state.cartItem = [];
-            state.cartTotalAmount = 0;
-            state.cartTotalQuantity = 0;
+            state.sumPrice = 0;
         }
     }
 });
@@ -96,7 +94,5 @@ export const {
 
 export const cartSelector = {
     cartItem: (state: RootState) => state.cart.cartItem,
-    cartTotalAmount: (state: RootState) => state.cart.cartTotalAmount,
-    cartTotalQuantity: (state: RootState) => state.cart.cartTotalQuantity
 }
 export default cartSlice;

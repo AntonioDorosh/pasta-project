@@ -8,9 +8,5 @@ export type TCartItem = {
     quantity: number;
 };
 
-export type TCartStateSlice = {
-    cartItem: TCartItem[];
-    cartTotalQuantity: number;
-    cartTotalAmount: number;
-}
+
 

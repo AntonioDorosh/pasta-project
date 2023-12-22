@@ -4,14 +4,15 @@ import remCalc from "../../utils/remCalc.ts";
 import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
-import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 import SearchBar from "../UI/SearchBar/SearchBar.tsx";
+import {useAppSelector} from "../../redux/hooks/useStore.ts";
+import {totalPrice} from "../../utils";
 
 const Header = () => {
-    const cartTotalAmount = useAppSelector(cartSelector.cartTotalAmount);
-    const cartTotalQuantity = useAppSelector(cartSelector.cartTotalQuantity);
+    const {cartItem} = useAppSelector(state => state.cart);
+
+    const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
     return (
         <Flex as={'header'} gap={20} marginBottom={80} alignItems={'center'}>
@@ -23,11 +24,12 @@ const Header = () => {
             <SearchBar/>
             <Link to='/cart'>
                 <Button $variant={'header'}>
-                    {formatCurrency(cartTotalAmount)}
+                    {formatCurrency(totalPrice(cartItem))}
                     <img src="src/assets/cart.svg" alt="cart"/>
-                    {cartTotalQuantity > 0 && <span>{cartTotalQuantity}</span>}
+                    {quantityTotal > 0 && <span>{quantityTotal}</span>}
                 </Button>
             </Link>
+
         </Flex>
     );
 };

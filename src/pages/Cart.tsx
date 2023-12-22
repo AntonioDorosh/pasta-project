@@ -9,11 +9,12 @@ import {Link} from "react-router-dom";
 import {clearCart} from "../redux/reducers/cart/slice.ts";
 import CartItem from "../components/CartItem/CartItem.tsx";
 import {formatCurrency} from "../utils/formatCurrency.ts";
+import {totalPrice} from "../utils";
 
 
 const Cart = () => {
     const dispatch = useAppDispatch();
-    const {cartItem, cartTotalAmount, cartTotalQuantity} = useAppSelector(state => state.cart);
+    const {cartItem, totalQnt} = useAppSelector(state => state.cart);
 
     const onClickClear = () => {
         if (window.confirm('are you sure to delete all products?')) {
@@ -66,8 +67,8 @@ const Cart = () => {
                     <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={40}>
                 <span style={{
                     fontSize: remCalc(22),
-                }}>Всего пицц: <Text fontSize={remCalc(22)} fontWeight={700}>{cartTotalQuantity}</Text></span>
-                        <span>Сумма заказа: <Text color='#FE5F1E' fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(cartTotalAmount)}</Text></span>
+                }}>Всего пицц: <Text fontSize={remCalc(22)} fontWeight={700}>{totalQnt}</Text></span>
+                        <span>Сумма заказа: <Text color='#FE5F1E' fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(totalPrice(cartItem))}</Text></span>
                     </Flex>
                     <Link to='/'>
                         <Button $variant={'header'}>
