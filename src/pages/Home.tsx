@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Header from "../components/Header/Header.tsx";
 import Layout from "../components/Layout/Layout.tsx";
 import Categories from "../components/Categories/Categories.tsx";
-import Card from "../components/Card/Card.tsx";
+import ProductCard from "../components/ProductCard/ProductCard.tsx";
 import {useAppDispatch, useAppSelector} from "../redux/hooks/useStore.ts";
 import {fetchProductData} from "../redux/reducers/data/slice.ts";
 import {
@@ -38,7 +38,7 @@ const Home = () => {
             <Categories
                 activeCategory={activeCategory}
                 onClickCategory={onChangeCategory}/>
-            <Card product={product}/>
+            <ProductCard product={product}/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </Layout>
     );

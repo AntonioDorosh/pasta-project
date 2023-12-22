@@ -4,8 +4,7 @@ export const StyledReactPaginate = styled(ReactPaginate)`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px 0;
     li {
         display: inline-flex;
     }
@@ -16,7 +15,7 @@ export const StyledReactPaginate = styled(ReactPaginate)`
         height: 45px;
         border: 1px solid #fe5f1e;
         border-radius: 30px;
-        margin-right: 10px;
+        margin: 0 10px 0 0;
         cursor: pointer;
         display: inline-block;
         color: #fe5f1e;

@@ -10,7 +10,7 @@ import {addToCart} from "../../../redux/reducers/cart/slice.ts";
 import Button from "../../UI/Button/Button.tsx";
 import {AddButton} from "../../UI/Button/Button.styled.tsx";
 
-const ProductCardItem: FC<TRootObjectProductPizzas> = (props) => {
+const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
     const {id, price, imageUrl, sizes, title, types} = props;
     const pizzaTypes = ['тонкое', 'традиционное'];
 
@@ -79,4 +79,4 @@ const ProductCardItem: FC<TRootObjectProductPizzas> = (props) => {
     );
 };
 
-export default ProductCardItem;
+export default ProductItem;

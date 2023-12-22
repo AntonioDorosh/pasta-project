@@ -9,7 +9,6 @@ type PaginationProps = {
 const Pagination = ({currentPage, onChangePage}: PaginationProps) => {
     return (
         <StyledReactPaginate
-            gap={20}
             marginPagesDisplayed={5}
             breakLabel="..."
             nextLabel=">"
