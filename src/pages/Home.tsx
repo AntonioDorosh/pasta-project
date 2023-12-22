@@ -12,18 +12,37 @@ import {
 import Pagination from "../components/UI/Pagination/Pagination.tsx";
 import {fetchProductData} from "../redux/reducers/data/asyncActions.ts";
 import {productSelector} from "../redux/reducers/data/slice.ts";
+import qs from 'qs';
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
     const {product} = useAppSelector(productSelector);
     const dispatch = useAppDispatch();
-    const searchValue = useAppSelector(filterSelector.getSearchValue)
-    const itemsPerPage = useAppSelector(filterSelector.getItemsPerPage)
-    const activeCategory = useAppSelector(filterSelector.getCategoryId);
-    const currentPage = useAppSelector(filterSelector.getCurrentPage);
+    const {
+        searchValue,
+        itemsPerPage,
+        activeCategory,
+        currentPage
+    } = useAppSelector(filterSelector)
 
     useEffect(() => {
-        dispatch(fetchProductData({searchValue, itemsPerPage, activeCategory, currentPage}));
+        dispatch(fetchProductData({
+            searchValue,
+            itemsPerPage,
+            activeCategory,
+            currentPage
+        }));
     }, [searchValue, itemsPerPage, activeCategory, currentPage]);
+
+    useEffect(() => {
+        const queryString = qs.stringify({
+            searchValue,
+            currentPage,
+            activeCategory
+        })
+        navigate(`?${queryString}`)
+    }, [searchValue, currentPage, activeCategory]);
 
     const onChangeCategory = (id: number) => {
         dispatch(setCategoryId(id));

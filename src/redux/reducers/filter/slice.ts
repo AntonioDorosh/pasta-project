@@ -39,11 +39,6 @@ export const {
     setCategoryId,
 } = filterSlice.actions;
 
+export const filterSelector = (state: RootState) => state.filter;
 
-export const filterSelector = {
-    getSearchValue: (state: RootState) => state.filter.searchValue,
-    getCategoryId: (state: RootState) => state.filter.activeCategory,
-    getItemsPerPage: (state: RootState) => state.filter.itemsPerPage,
-    getCurrentPage: (state: RootState) => state.filter.currentPage,
-};
 export default filterSlice;
