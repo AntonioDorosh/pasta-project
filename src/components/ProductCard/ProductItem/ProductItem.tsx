@@ -31,9 +31,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
 
     const pizzaCount = useAppSelector((state) => {
         const cartItem = state.cart.cartItem.filter((obj) => obj.id === id);
-        return cartItem.reduce((sum, obj) => {
-            return obj.quantity + sum;
-        }, 0);
+        return cartItem.reduce((sum, obj) => sum + obj.quantity, 0);
     });
 
     return (
