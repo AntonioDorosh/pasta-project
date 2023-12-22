@@ -32,23 +32,6 @@ const cartSlice = createSlice({
             state.sumPrice = totalPrice(state.cartItem)
             state.totalQnt = totalQuantity(state.cartItem);
         },
-        increaseQuantity(state, action: PayloadAction<TCartItem>) {
-            const findIndex = state.cartItem.findIndex(({id, size, type}) =>
-                id === action.payload.id
-                && size === action.payload.size
-                && type === action.payload.type);
-            if (~findIndex) {
-                state.cartItem[findIndex].quantity += 1;
-            } else {
-                state.cartItem.push({
-                    ...action.payload,
-                    quantity: 1
-                })
-            }
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
-            state.sumPrice = totalPrice(state.cartItem);
-            state.totalQnt = totalQuantity(state.cartItem);
-        },
         decreaseQuantity(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
             const findIndex = state.cartItem.findIndex(({id, size, type}) =>
                 id === action.payload.id
@@ -88,7 +71,6 @@ export const {
     addToCart,
     removeItem,
     clearCart,
-    increaseQuantity,
     decreaseQuantity
 } = cartSlice.actions;
 
