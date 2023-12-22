@@ -11,14 +11,11 @@ import Button from "../../UI/Button/Button.tsx";
 import {AddButton} from "../../UI/Button/Button.styled.tsx";
 
 const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
+    const dispatch = useAppDispatch();
     const {id, price, imageUrl, sizes, title, types} = props;
     const pizzaTypes = ['тонкое', 'традиционное'];
-
     const [activeSize, setActiveSize] = useState(0);
     const [activeTypes, setActiveTypes] = useState(0);
-    const dispatch = useAppDispatch();
-
-
     const onClickAdd = () => {
         const productItem: TCartItem = {
             imageUrl,
@@ -38,7 +35,6 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
             return obj.quantity + sum;
         }, 0);
     });
-
 
     return (
         <Flex flexDirection={'column'} alignItems={'center'}
@@ -70,7 +66,9 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
                 <AddButton onClick={onClickAdd}><Text fontWeight={700}>+
                     Добавить</Text></AddButton>
                 {pizzaCount > 0 && (
-                    <Flex position={'absolute'} top={-10} right={-5} background={'#EB5A1E'} color={'#FFF'} borderRadius={'50%'} paddingX={2}>
+                    <Flex position={'absolute'} top={-10} right={-5}
+                          background={'#EB5A1E'} color={'#FFF'}
+                          borderRadius={'50%'} paddingX={2}>
                         <Text>{pizzaCount}</Text>
                     </Flex>
                 )}

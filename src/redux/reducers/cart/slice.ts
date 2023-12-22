@@ -92,7 +92,5 @@ export const {
     decreaseQuantity
 } = cartSlice.actions;
 
-export const cartSelector = {
-    cartItem: (state: RootState) => state.cart.cartItem,
-}
+export const cartSelector = (state: RootState) => state.cart;
 export default cartSlice;

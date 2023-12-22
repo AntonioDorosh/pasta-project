@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Header from "../components/Header/Header.tsx";
 import Layout from "../components/Layout/Layout.tsx";
 import Categories from "../components/Categories/Categories.tsx";
@@ -17,14 +17,15 @@ import {useNavigate} from "react-router-dom";
 
 const Home = () => {
     const navigate = useNavigate();
+    const isMounted = useRef(false);
     const {product} = useAppSelector(productSelector);
-    const dispatch = useAppDispatch();
     const {
         searchValue,
         itemsPerPage,
         activeCategory,
         currentPage
     } = useAppSelector(filterSelector)
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchProductData({
@@ -36,12 +37,16 @@ const Home = () => {
     }, [searchValue, itemsPerPage, activeCategory, currentPage]);
 
     useEffect(() => {
-        const queryString = qs.stringify({
-            searchValue,
-            currentPage,
-            activeCategory
-        })
-        navigate(`?${queryString}`)
+        if (isMounted.current) {
+            const queryString = qs.stringify({
+                searchValue,
+                currentPage,
+                activeCategory
+            })
+            navigate(`?${queryString}`)
+        }
+
+        isMounted.current = true;
     }, [searchValue, currentPage, activeCategory]);
 
     const onChangeCategory = (id: number) => {

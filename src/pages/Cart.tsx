@@ -6,7 +6,7 @@ import Text from "../styles/Text/Text.ts";
 import remCalc from "../utils/remCalc.ts";
 import Button from "../components/UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
-import {clearCart} from "../redux/reducers/cart/slice.ts";
+import {cartSelector, clearCart} from "../redux/reducers/cart/slice.ts";
 import CartItem from "../components/CartItem/CartItem.tsx";
 import {formatCurrency} from "../utils/formatCurrency.ts";
 import {totalPrice} from "../utils";
@@ -14,7 +14,7 @@ import {totalPrice} from "../utils";
 
 const Cart = () => {
     const dispatch = useAppDispatch();
-    const {cartItem, totalQnt} = useAppSelector(state => state.cart);
+    const {cartItem, totalQnt} = useAppSelector(cartSelector);
 
     const onClickClear = () => {
         if (window.confirm('are you sure to delete all products?')) {
@@ -49,12 +49,14 @@ const Cart = () => {
                 </Flex>
             </Flex>
             {cartItem.length > 0 ? (
-                <Flex maxWidth={750} flexDirection={'column'} marginX={'auto'} gap={20}>
+                <Flex maxWidth={750} flexDirection={'column'} marginX={'auto'}
+                      gap={20}>
                     <Flex alignItems={'center'} marginBottom={60}
                           justifyContent={'space-between'}>
                         <Flex alignItems={'center'} gap={10}>
                             <img src="src/assets/cart-black.svg" alt="cart"/>
-                            <Text fontSize={remCalc(32)} fontWeight={700}>Корзина</Text>
+                            <Text fontSize={remCalc(32)}
+                                  fontWeight={700}>Корзина</Text>
                         </Flex>
                         <Flex alignItems={'center'}>
                             <Button onClick={onClickClear}>
@@ -63,12 +65,17 @@ const Cart = () => {
                             <Text color='#B6B6B6'>Очистить корзину</Text>
                         </Flex>
                     </Flex>
-                    {cartItem.map((item) => <CartItem key={item.id} {...item}/>)}
-                    <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={40}>
+                    {cartItem.map((item) => <CartItem
+                        key={item.id} {...item}/>)}
+                    <Flex alignItems={'center'} justifyContent={'space-between'}
+                          marginBottom={40}>
                 <span style={{
                     fontSize: remCalc(22),
-                }}>Всего пицц: <Text fontSize={remCalc(22)} fontWeight={700}>{totalQnt}</Text></span>
-                        <span>Сумма заказа: <Text color='#FE5F1E' fontSize={remCalc(22)} fontWeight={700}>{formatCurrency(totalPrice(cartItem))}</Text></span>
+                }}>Всего пицц: <Text fontSize={remCalc(22)}
+                                     fontWeight={700}>{totalQnt}</Text></span>
+                        <span>Сумма заказа: <Text color='#FE5F1E'
+                                                  fontSize={remCalc(22)}
+                                                  fontWeight={700}>{formatCurrency(totalPrice(cartItem))}</Text></span>
                     </Flex>
                     <Link to='/'>
                         <Button $variant={'header'}>
