@@ -8,5 +8,7 @@ export type TCartItem = {
     quantity: number;
 };
 
+export type TRemoveProduct = Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>;
+
 
 
