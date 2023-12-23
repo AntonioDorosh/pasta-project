@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TCartItem} from "./types.ts";
+import {TCartItem, TRemoveProduct} from "./types.ts";
 import {RootState} from "../../store";
 import {getCartFromLS} from "../../../utils/getCartFromLS.ts";
 import {totalPrice} from "../../../utils";
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
             state.sumPrice = totalPrice(cartItems)
             state.totalQnt = totalQuantity(cartItems);
         },
-        removeProduct(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
+        removeProduct(state, action: PayloadAction<TRemoveProduct>) {
             const cartItems = state.cartItem;
             const {id, size, type} = action.payload;
 
