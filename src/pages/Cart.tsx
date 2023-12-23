@@ -10,6 +10,7 @@ import {cartSelector, clearCart} from "../redux/reducers/cart/slice.ts";
 import CartItem from "../components/CartItem/CartItem.tsx";
 import {formatCurrency} from "../utils/formatCurrency.ts";
 import {totalPrice} from "../utils";
+import EmptyCart from "./EmptyCart.tsx";
 
 
 const Cart = () => {
@@ -20,23 +21,6 @@ const Cart = () => {
         if (window.confirm('are you sure to delete all products?')) {
             dispatch(clearCart())
         }
-    };
-
-    const emptyPage = () => {
-        return (
-            <Flex flexDirection={'column'} alignItems={'center'} gap={20}>
-                <Text fontSize={remCalc(32)} fontWeight={700}>Корзина пустая
-                    😕</Text>
-                <Text maxWidth={550} textAlign={'center'} color={'#777'}>Вероятней
-                    всего, вы не заказывали ещё пиццу.
-                    Для того, чтобы заказать пиццу, перейди на главную
-                    страницу.</Text>
-                <img src="src/assets/cart-empty.svg" alt="empty-cart"/>
-                <Link to='/'>
-                    <Button $variant={'header'}>Вернуться назад</Button>
-                </Link>
-            </Flex>
-        )
     };
 
     return (
@@ -84,7 +68,7 @@ const Cart = () => {
                     </Link>
                 </Flex>
             ) : (
-                emptyPage()
+                <EmptyCart/>
             )}
         </Layout>
     );

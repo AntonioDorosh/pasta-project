@@ -20,8 +20,8 @@ const cartSlice = createSlice({
         addProduct(state, action: PayloadAction<TCartItem>) {
             const cartItems = state.cartItem;
             const {id, size, type} = action.payload;
-
             const itemIndex = cartItems.findIndex((obj) => obj.id === id && obj.size === size && obj.type === type);
+
             if (itemIndex === -1) {
                 cartItems.push({
                     ...action.payload,
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
             }
 
             removeFromLS('cartItems');
-            addToLS(cartItems)
+            addToLS(cartItems);
             state.sumPrice = totalPrice(cartItems);
             state.totalQnt = totalQuantity(cartItems);
         },
