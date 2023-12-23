@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import {InputStyled} from "./SearchBar.styled.tsx";
 import Flex from "../../../styles/Flex/Flex.ts";
 import Button from "../Button/Button.tsx";
@@ -10,7 +10,6 @@ const SearchBar = () => {
     const dispatch = useAppDispatch();
     const [value, setValue] = useState('');
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const updateSearchValue = useCallback(
         debounce((value: string) => {
             dispatch(setSearchValue(value));
@@ -18,9 +17,17 @@ const SearchBar = () => {
         []
     );
 
-    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-        updateSearchValue(e.target.value);
+    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        const regex = /^[a-z]*$/i;
+        const isValid = regex.test(e.target.value);
+        const value = e.target.value;
+
+        if (!isValid && value === ' ') {
+            alert('Введите пожалуйста только буквы');
+        } else {
+            setValue(value);
+            updateSearchValue(value);
+        }
     };
 
     const clearValue = () => {

@@ -9,14 +9,14 @@ type CategoriesProps = {
     activeCategory: number
 }
 
-const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
-    const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
+const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
     return (
         <>
             <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}
                   flexWrap={'wrap'}>
-                {productCategories.map((product, index) => (
+                {productCategories.map((categories, index) => (
                     <li key={index}>
                         <Button $variant={'category'}
                                 $isActive={activeCategory === index}
@@ -24,7 +24,7 @@ const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
                                     onClickCategory(index);
                                 }}>
                             <Text fontSize={remCalc(14)}
-                                  fontWeight={700}>{product}</Text>
+                                  fontWeight={700}>{categories}</Text>
                         </Button>
                     </li>
                 ))}

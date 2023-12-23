@@ -62,7 +62,8 @@ const Home = () => {
             <Header/>
             <Categories
                 activeCategory={activeCategory}
-                onClickCategory={onChangeCategory}/>
+                onClickCategory={onChangeCategory}
+            />
             <ProductCard product={product}/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </Layout>

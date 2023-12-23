@@ -9,12 +9,11 @@ type PaginationProps = {
 const Pagination = ({currentPage, onChangePage}: PaginationProps) => {
     return (
         <StyledReactPaginate
-            marginPagesDisplayed={5}
             breakLabel="..."
             nextLabel=">"
             previousLabel="<"
             onPageChange={(event) => onChangePage(event.selected + 1)}
-            pageRangeDisplayed={5}
+            pageRangeDisplayed={4}
             pageCount={5}
             forcePage={currentPage - 1}
         />

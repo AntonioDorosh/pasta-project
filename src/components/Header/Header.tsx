@@ -8,9 +8,10 @@ import {formatCurrency} from "../../utils/formatCurrency.ts";
 import SearchBar from "../UI/SearchBar/SearchBar.tsx";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {totalPrice} from "../../utils";
+import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 
 const Header = () => {
-    const {cartItem} = useAppSelector(state => state.cart);
+    const {cartItem} = useAppSelector(cartSelector);
 
     const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
