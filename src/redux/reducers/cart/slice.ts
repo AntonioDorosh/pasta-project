@@ -7,57 +7,55 @@ import {totalQuantity} from "../../../utils/totalQuantity.ts";
 
 const initialState = getCartFromLS();
 
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
         addProduct(state, action: PayloadAction<TCartItem>) {
-            const itemIndex = state.cartItem.findIndex(({
-                                                            id,
-                                                            size,
-                                                            type
-                                                        }) =>
-                id === action.payload.id
-                && size === action.payload.size
-                && type === action.payload.type);
+            const cartItems = state.cartItem;
+            const {id, size, type} = action.payload;
+
+            const itemIndex = cartItems.findIndex((obj) => obj.id === id && obj.size === size && obj.type === type);
             if (itemIndex === -1) {
-                state.cartItem.push({
+                cartItems.push({
                     ...action.payload,
                     quantity: 1
                 })
             } else {
-                state.cartItem[itemIndex].quantity += 1;
+                cartItems[itemIndex].quantity += 1;
             }
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
-            state.sumPrice = totalPrice(state.cartItem)
-            state.totalQnt = totalQuantity(state.cartItem);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            state.sumPrice = totalPrice(cartItems)
+            state.totalQnt = totalQuantity(cartItems);
         },
         removeProduct(state, action: PayloadAction<Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>>) {
-            const findIndex = state.cartItem.findIndex(({id, size, type}) =>
-                id === action.payload.id
-                && size === action.payload.size
-                && type === action.payload.type);
+            const cartItems = state.cartItem;
+            const {id, size, type} = action.payload;
 
-            if (state.cartItem[findIndex].quantity > 1) {
-                state.cartItem[findIndex].quantity -= 1;
+            const findIndex = cartItems.findIndex((obj) => obj.id === id && obj.size === size && obj.type === type);
+
+            if (cartItems[findIndex].quantity > 1) {
+                cartItems[findIndex].quantity -= 1;
             } else {
-                state.cartItem.splice(findIndex, 1);
+                cartItems.splice(findIndex, 1);
             }
             localStorage.removeItem('cartItems');
-            localStorage.setItem('cartItems', JSON.stringify(state.cartItem));
-            state.sumPrice = totalPrice(state.cartItem);
-            state.totalQnt = totalQuantity(state.cartItem);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            state.sumPrice = totalPrice(cartItems);
+            state.totalQnt = totalQuantity(cartItems);
         },
         removeCurrentProduct(state, action: PayloadAction<number>) {
-            const findItem = state.cartItem.findIndex(({id}) => id === action.payload);
+            const cartItems = state.cartItem;
+            const findItem = cartItems.findIndex(({id}) => id === action.payload);
 
             if (~findItem) {
-                state.cartItem.splice(findItem, 1);
+                cartItems.splice(findItem, 1);
             }
 
             localStorage.removeItem('cartItems');
-            state.sumPrice = totalPrice(state.cartItem);
-            state.totalQnt = totalQuantity(state.cartItem);
+            state.sumPrice = totalPrice(cartItems);
+            state.totalQnt = totalQuantity(cartItems);
         },
         clearCart(state) {
             state.cartItem = [];
