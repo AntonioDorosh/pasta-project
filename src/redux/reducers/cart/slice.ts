@@ -1,11 +1,16 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TCartItem, TRemoveProduct} from "./types.ts";
 import {RootState} from "../../store";
-import {getCartFromLS} from "../../../utils/getCartFromLS.ts";
+import {getCartFromLS} from "../../../utils";
 import {totalPrice} from "../../../utils";
-import {totalQuantity} from "../../../utils/totalQuantity.ts";
+import {totalQuantity} from "../../../utils";
+import {addToLS, removeFromLS} from "../../../utils";
 
-const initialState = getCartFromLS();
+const initialState = getCartFromLS() || {
+    cartItem: [],
+    sumPrice: 0,
+    totalQnt: 0,
+};
 
 
 const cartSlice = createSlice({
@@ -25,14 +30,14 @@ const cartSlice = createSlice({
             } else {
                 cartItems[itemIndex].quantity += 1;
             }
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            addToLS(cartItems);
             state.sumPrice = totalPrice(cartItems)
             state.totalQnt = totalQuantity(cartItems);
         },
         removeProduct(state, action: PayloadAction<TRemoveProduct>) {
             const cartItems = state.cartItem;
             const {id, size, type} = action.payload;
-
             const findIndex = cartItems.findIndex((obj) => obj.id === id && obj.size === size && obj.type === type);
 
             if (cartItems[findIndex].quantity > 1) {
@@ -40,8 +45,9 @@ const cartSlice = createSlice({
             } else {
                 cartItems.splice(findIndex, 1);
             }
-            localStorage.removeItem('cartItems');
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            removeFromLS('cartItems');
+            addToLS(cartItems)
             state.sumPrice = totalPrice(cartItems);
             state.totalQnt = totalQuantity(cartItems);
         },
@@ -53,7 +59,7 @@ const cartSlice = createSlice({
                 cartItems.splice(findItem, 1);
             }
 
-            localStorage.removeItem('cartItems');
+            removeFromLS('cartItems');
             state.sumPrice = totalPrice(cartItems);
             state.totalQnt = totalQuantity(cartItems);
         },
