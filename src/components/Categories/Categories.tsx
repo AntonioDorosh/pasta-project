@@ -9,9 +9,11 @@ type CategoriesProps = {
     activeCategory: number
 }
 
-const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
+
+
+    const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     return (
         <>
             <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}

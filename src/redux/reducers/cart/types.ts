@@ -4,11 +4,16 @@ export type TCartItem = {
     price: number;
     imageUrl: string;
     type: string;
-    size: number;
+    size?: number;
     quantity: number;
 };
 
-export type TRemoveProduct = Omit<TCartItem, 'title' | 'imageUrl' | 'quantity' | 'price'>;
 
+export type TCartState = {
+    cartItem: TCartItem[];
+    sumPrice: number;
+};
+
+export type TCartRemove = Omit<TCartItem, 'title' | 'price' | 'imageUrl' | 'quantity'>
 
 

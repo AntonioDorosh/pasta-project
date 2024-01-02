@@ -7,15 +7,17 @@ import remCalc from "../utils/remCalc.ts";
 import Button from "../components/UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import {cartSelector, clearCart} from "../redux/reducers/cart/slice.ts";
-import CartItem from "../components/CartItem/CartItem.tsx";
 import {formatCurrency} from "../utils/formatCurrency.ts";
 import {totalPrice} from "../utils";
 import EmptyCart from "./EmptyCart.tsx";
+import CartItem from "../components/CartItem/CartItem.tsx";
 
 
 const Cart = () => {
     const dispatch = useAppDispatch();
-    const {cartItem, totalQnt} = useAppSelector(cartSelector);
+    const {cartItem} = useAppSelector(cartSelector);
+
+    const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
 
     const onClickClear = () => {
         if (window.confirm('are you sure to delete all products?')) {
@@ -49,14 +51,13 @@ const Cart = () => {
                             <Text color='#B6B6B6'>Очистить корзину</Text>
                         </Flex>
                     </Flex>
-                    {cartItem.map((item) => <CartItem
-                        key={item.id} {...item}/>)}
+                    {cartItem.map((item) => <CartItem {...item}/>)}
                     <Flex alignItems={'center'} justifyContent={'space-between'}
                           marginBottom={40}>
                 <span style={{
                     fontSize: remCalc(22),
                 }}>Всего пицц: <Text fontSize={remCalc(22)}
-                                     fontWeight={700}>{totalQnt}</Text></span>
+                                     fontWeight={700}>{pizzaCount}</Text></span>
                         <span>Сумма заказа: <Text color='#FE5F1E'
                                                   fontSize={remCalc(22)}
                                                   fontWeight={700}>{formatCurrency(totalPrice(cartItem))}</Text></span>

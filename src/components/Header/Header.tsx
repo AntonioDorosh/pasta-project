@@ -12,7 +12,6 @@ import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 
 const Header = () => {
     const {cartItem} = useAppSelector(cartSelector);
-
     const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
     return (

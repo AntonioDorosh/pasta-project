@@ -21,7 +21,7 @@ const CartItem: FC<TCartItem> = (props) => {
 
     return (
         <>
-            <Flex key={id} justifyContent={'space-between'} marginBottom={40}>
+            <Flex justifyContent={'space-between'} marginBottom={40}>
                 <Flex alignItems={'center'} gap={10}>
                     <img width={80} height={80} src={imageUrl}
                          alt={title}/>
@@ -68,7 +68,6 @@ const CartItem: FC<TCartItem> = (props) => {
                     </Button>
                 </Flex>
             </Flex>
-
         </>
     );
 };

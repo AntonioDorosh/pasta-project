@@ -1,6 +1,5 @@
 import React, {useEffect, useRef} from 'react';
 import Header from "../components/Header/Header.tsx";
-import Layout from "../components/Layout/Layout.tsx";
 import Categories from "../components/Categories/Categories.tsx";
 import ProductCard from "../components/ProductCard/ProductCard.tsx";
 import {useAppDispatch, useAppSelector} from "../redux/hooks/useStore.ts";
@@ -14,6 +13,7 @@ import {fetchProductData} from "../redux/reducers/data/asyncActions.ts";
 import {productSelector} from "../redux/reducers/data/slice.ts";
 import qs from 'qs';
 import {useNavigate} from "react-router-dom";
+import Layout from "../components/Layout/Layout.tsx";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -41,13 +41,13 @@ const Home = () => {
             const queryString = qs.stringify({
                 searchValue,
                 currentPage,
-                activeCategory
+                activeCategory,
             })
             navigate(`?${queryString}`)
         }
 
         isMounted.current = true;
-    }, [searchValue, currentPage, activeCategory]);
+    }, [searchValue, currentPage, activeCategory, navigate]);
 
     const onChangeCategory = (id: number) => {
         dispatch(setCategoryId(id));
