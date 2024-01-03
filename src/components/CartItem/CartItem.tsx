@@ -11,6 +11,7 @@ import {
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
 import {useAppDispatch} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
+import {px2vw} from "../../utils";
 
 const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
@@ -21,22 +22,22 @@ const CartItem: FC<TCartItem> = (props) => {
 
     return (
         <>
-            <Flex justifyContent={'space-between'} marginBottom={40}>
-                <Flex alignItems={'center'} gap={10}>
+            <Flex justifyContent={'space-between'} marginBottom={px2vw(40)}>
+                <Flex alignItems={'center'} gap={px2vw(10)}>
                     <img width={80} height={80} src={imageUrl}
                          alt={title}/>
-                    <Flex flexDirection={'column'} maxWidth={260}>
+                    <Flex flexDirection={'column'} maxWidth={px2vw(260)}>
                         <Text fontSize={remCalc(22)}
                               fontWeight={700}>{title}</Text>
                         <Text color={'#8D8D8D'}
                               fontSize={remCalc(18)}>{type} {size}см.</Text>
                     </Flex>
                 </Flex>
-                <Flex alignItems={'center'} gap={15}>
+                <Flex alignItems={'center'} gap={px2vw(15)}>
                     <Button
                         onClick={decreaseQnt}>
                         <svg xmlns="http://www.w3.org/2000/svg"
-                             width="32" height="32"
+                             width={remCalc(32)} height={remCalc(32)}
                              viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="15"
                                     fill="white" stroke="#FE5F1E"
@@ -51,7 +52,7 @@ const CartItem: FC<TCartItem> = (props) => {
                     <Button
                         onClick={increaseQnt}>
                         <svg xmlns="http://www.w3.org/2000/svg"
-                             width="32" height="32"
+                             width={remCalc(32)} height={remCalc(32)}
                              viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="15"
                                     fill="white" stroke="#FE5F1E"

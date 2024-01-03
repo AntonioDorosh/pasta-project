@@ -8,7 +8,7 @@ import Button from "../components/UI/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import {cartSelector, clearCart} from "../redux/reducers/cart/slice.ts";
 import {formatCurrency} from "../utils/formatCurrency.ts";
-import {totalPrice} from "../utils";
+import {px2vw, totalPrice} from "../utils";
 import EmptyCart from "./EmptyCart.tsx";
 import CartItem from "../components/CartItem/CartItem.tsx";
 
@@ -25,6 +25,8 @@ const Cart = () => {
         }
     };
 
+
+    console.log(cartItem)
     return (
         <Layout>
             <Flex gap={20} marginBottom={100}>
@@ -35,9 +37,9 @@ const Cart = () => {
                 </Flex>
             </Flex>
             {cartItem.length > 0 ? (
-                <Flex maxWidth={750} flexDirection={'column'} marginX={'auto'}
-                      gap={20}>
-                    <Flex alignItems={'center'} marginBottom={60}
+                <Flex maxWidth={remCalc(760)} flexDirection={'column'} marginX={'auto'}
+                      gap={px2vw(20)}>
+                    <Flex alignItems={'center'} marginBottom={px2vw(60)}
                           justifyContent={'space-between'}>
                         <Flex alignItems={'center'} gap={10}>
                             <img src="src/assets/cart-black.svg" alt="cart"/>
@@ -51,7 +53,7 @@ const Cart = () => {
                             <Text color='#B6B6B6'>Очистить корзину</Text>
                         </Flex>
                     </Flex>
-                    {cartItem.map((item) => <CartItem {...item}/>)}
+                    {cartItem.map((props) => <CartItem {...props}/>)}
                     <Flex alignItems={'center'} justifyContent={'space-between'}
                           marginBottom={40}>
                 <span style={{

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {TButtonProps} from "./types.ts";
 import {variant} from "styled-system";
+import {px2vw} from "../../../utils";
 
 const defaultStyles = {
     outline: 'none',
@@ -40,12 +41,12 @@ export const StyledButton = styled.button<TButtonProps>`
     }
   })}
 `
-export const AddButton = styled.button`
-  border-radius: 30px;
+export const AddButton = styled(StyledButton)`
+  border-radius: ${px2vw(30)};
   border: 1px solid #EB5A1E;
   background-color: #fff;
   color: #EB5A1E;
-  padding: 10px 30px;
+  padding: ${px2vw(10)} ${px2vw(30)};
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -53,5 +54,5 @@ export const AddButton = styled.button`
     background-color: #EB5A1E;
     color: #fff;
   }
-`;
+`
 

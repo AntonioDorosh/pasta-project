@@ -1,7 +1,7 @@
 import {TCartItem} from "../redux/reducers/cart/types.ts";
 
-export const addToLS = (arr: TCartItem[]) => {
-    localStorage.setItem('cartItems', JSON.stringify(arr));
+export const addToLS = (arr: TCartItem[], key: string) => {
+    localStorage.setItem(key, JSON.stringify(arr));
 };
 
 export const removeFromLS = (key: string) => {

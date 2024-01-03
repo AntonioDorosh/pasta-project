@@ -3,6 +3,7 @@ import Flex from "../../styles/Flex/Flex.ts";
 import Button from "../UI/Button/Button.tsx";
 import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
+import {px2vw} from "../../utils";
 
 type CategoriesProps = {
     onClickCategory: (id: number) => void
@@ -16,7 +17,7 @@ const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
     const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     return (
         <>
-            <Flex as={'ul'} alignItems={'center'} marginBottom={40} flex={1}
+            <Flex as={'ul'} alignItems={'center'} marginBottom={px2vw(40)} flex={1}
                   flexWrap={'wrap'}>
                 {productCategories.map((categories, index) => (
                     <li key={index}>

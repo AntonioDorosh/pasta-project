@@ -7,15 +7,17 @@ import {Link} from "react-router-dom";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import SearchBar from "../UI/SearchBar/SearchBar.tsx";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
-import {totalPrice} from "../../utils";
+import {px2vw, totalPrice} from "../../utils";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
+import {HeaderStyled} from "./Header.styled.tsx";
+
 
 const Header = () => {
     const {cartItem} = useAppSelector(cartSelector);
     const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <Flex as={'header'} gap={20} marginBottom={80} alignItems={'center'}>
+        <Flex as={HeaderStyled} gap={px2vw(20)} marginBottom={px2vw(80)} alignItems={'center'}>
             <img src="src/assets/logo.svg" alt="pizza-logo"/>
             <Flex display={'inline-block'} flex={1}>
                 <Text fontSize={remCalc(24)} fontWeight={800}
