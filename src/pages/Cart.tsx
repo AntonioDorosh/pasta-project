@@ -24,9 +24,6 @@ const Cart = () => {
             dispatch(clearCart())
         }
     };
-
-
-    console.log(cartItem)
     return (
         <Layout>
             <Flex gap={20} marginBottom={100}>
@@ -37,7 +34,8 @@ const Cart = () => {
                 </Flex>
             </Flex>
             {cartItem.length > 0 ? (
-                <Flex maxWidth={remCalc(760)} flexDirection={'column'} marginX={'auto'}
+                <Flex maxWidth={remCalc(760)} flexDirection={'column'}
+                      marginX={'auto'}
                       gap={px2vw(20)}>
                     <Flex alignItems={'center'} marginBottom={px2vw(60)}
                           justifyContent={'space-between'}>
@@ -53,7 +51,8 @@ const Cart = () => {
                             <Text color='#B6B6B6'>Очистить корзину</Text>
                         </Flex>
                     </Flex>
-                    {cartItem.map((props) => <CartItem {...props}/>)}
+                    {cartItem.map((props, index) => <CartItem
+                        key={index} {...props}/>)}
                     <Flex alignItems={'center'} justifyContent={'space-between'}
                           marginBottom={40}>
                 <span style={{

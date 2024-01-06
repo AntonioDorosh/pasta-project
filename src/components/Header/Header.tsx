@@ -9,7 +9,6 @@ import SearchBar from "../UI/SearchBar/SearchBar.tsx";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {px2vw, totalPrice} from "../../utils";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
-import {HeaderStyled} from "./Header.styled.tsx";
 
 
 const Header = () => {
@@ -17,7 +16,7 @@ const Header = () => {
     const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <Flex as={HeaderStyled} gap={px2vw(20)} marginBottom={px2vw(80)} alignItems={'center'}>
+        <Flex gap={px2vw(20)} marginBottom={px2vw(80)} alignItems={'center'}>
             <img src="src/assets/logo.svg" alt="pizza-logo"/>
             <Flex display={'inline-block'} flex={1}>
                 <Text fontSize={remCalc(24)} fontWeight={800}
