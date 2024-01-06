@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductItem from "./ProductItem/ProductItem.tsx";
+import ProductItem from "../ProductItem/ProductItem.tsx";
 import Flex from "../../styles/Flex/Flex.ts";
 import {TRootObjectProductPizzas} from "../../redux/reducers/data/types.ts";
 import {px2vw} from "../../utils";

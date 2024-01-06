@@ -11,7 +11,6 @@ const createQuery = (params: TPizzaParams) => {
         `_page=${currentPage}`,
         `_limit=${itemsPerPage}`
     ].join('&');
-
 };
 
 export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPizzaParams>(
