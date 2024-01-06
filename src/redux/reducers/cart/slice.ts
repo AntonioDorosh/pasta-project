@@ -17,23 +17,15 @@ export const cartSlice = createSlice({
         addProduct: (state, action: PayloadAction<TCartItem>) => {
             const cartItem = state.cartItem;
             const {id, size, type} = action.payload;
+            const existingProduct = cartItem.find((obj) => obj.id === id && obj.type === type && obj.size === size);
 
-            if (!cartItem) {
-                state.cartItem = [{
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cartItem.push({
                     ...action.payload,
                     quantity: 1
-                }]
-            } else {
-                const findProduct = cartItem.findIndex((obj) => obj.id === id && obj.size === size && obj.type === type);
-
-                if (findProduct === -1) {
-                    cartItem.push({
-                        ...action.payload,
-                        quantity: 1
-                    })
-                } else {
-                    cartItem[findProduct].quantity += 1;
-                }
+                })
             }
 
             addToLS(cartItem, 'cartItem')

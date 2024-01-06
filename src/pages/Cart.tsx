@@ -11,11 +11,14 @@ import {formatCurrency} from "../utils/formatCurrency.ts";
 import {px2vw, totalPrice} from "../utils";
 import EmptyCart from "./EmptyCart.tsx";
 import CartItem from "../components/CartItem/CartItem.tsx";
+import {openModal, selectModal} from "../redux/reducers/modal/slice.ts";
+import Modal from "../components/UI/Modal/Modal.tsx";
 
 
 const Cart = () => {
     const dispatch = useAppDispatch();
     const {cartItem} = useAppSelector(cartSelector);
+    const {isOpen} = useAppSelector(selectModal);
 
     const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
 
@@ -63,15 +66,23 @@ const Cart = () => {
                                                   fontSize={remCalc(22)}
                                                   fontWeight={700}>{formatCurrency(totalPrice(cartItem))}</Text></span>
                     </Flex>
-                    <Link to='/'>
-                        <Button $variant={'header'}>
-                            Вернуться назад
+                    <Flex justifyContent={'space-between'}>
+                        <Link to='/'>
+                            <Button $variant={'header'}>
+                                Вернуться назад
+                            </Button>
+                        </Link>
+                        <Button $variant={'header'}
+                                onClick={() => dispatch(openModal(true))}>
+                            Оплатить сейчас
                         </Button>
-                    </Link>
+                    </Flex>
+
                 </Flex>
             ) : (
                 <EmptyCart/>
             )}
+            {isOpen && <Modal/>}
         </Layout>
     );
 };

@@ -30,7 +30,7 @@ const CartItem: FC<TCartItem> = (props) => {
                         <Text fontSize={remCalc(22)}
                               fontWeight={700}>{title}</Text>
                         <Text color={'#8D8D8D'}
-                              fontSize={remCalc(18)}>{type} {size}см.</Text>
+                              fontSize={remCalc(18)}>{type} {size}cm.</Text>
                     </Flex>
                 </Flex>
                 <Flex alignItems={'center'} gap={px2vw(15)}>

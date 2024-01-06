@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputStyled = styled.input.attrs({
     type: "text",
-    placeholder: "Поиск по названию",
+    placeholder: "Searching for pizza...",
 })`
   width: 260px;
   height: 40px;

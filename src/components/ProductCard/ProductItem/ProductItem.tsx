@@ -11,11 +11,17 @@ import Button from "../../UI/Button/Button.tsx";
 import {AddButton} from "../../UI/Button/Button.styled.tsx";
 
 const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
+    const pizzaTypes = ['thin', 'traditional'];
     const dispatch = useAppDispatch();
     const {id, price, imageUrl, sizes, title, types} = props;
-    const pizzaTypes = ['тонкое', 'традиционное'];
     const [activeSize, setActiveSize] = useState(0);
     const [activeTypes, setActiveTypes] = useState(0);
+
+    const pizzaCount = useAppSelector((state) => {
+        const {cartItem} = state.cart;
+        const currentPizza = cartItem.find((obj) => obj.id === id && obj.type === pizzaTypes[activeTypes] && obj.size === sizes[activeSize]);
+        return currentPizza ? currentPizza.quantity : 0;
+    });
     const onClickAdd = () => {
         const productItem: TCartItem = {
             imageUrl,
@@ -28,11 +34,6 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
         };
         dispatch(addProduct(productItem))
     };
-
-    const pizzaCount = useAppSelector((state) => {
-        const cartItem = state.cart.cartItem.filter((obj) => obj.id === id);
-        return cartItem.reduce((sum, obj) => sum + obj.quantity, 0);
-    });
 
     return (
         <Flex flexDirection={'column'} alignItems={'center'}
@@ -55,7 +56,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
                             onClick={() => setActiveSize(index)}
                             $isActive={activeSize === index}><Text
                         fontSize={remCalc(14)}
-                        fontWeight={700}>{size}см. </Text></Button>
+                        fontWeight={700}>{size}cm. </Text></Button>
                 ))}
             </div>
             <Flex gap={30} alignItems={'center'} position={'relative'}>

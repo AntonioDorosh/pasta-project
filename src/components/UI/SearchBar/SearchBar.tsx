@@ -22,7 +22,7 @@ const SearchBar = () => {
         const isValid = regex.test(e.target.value);
         const targetValue = e.target.value;
 
-        if (!isValid && targetValue === ' ') {
+        if (!isValid) {
             alert('Введите пожалуйста только буквы');
         } else {
             setValue(targetValue);

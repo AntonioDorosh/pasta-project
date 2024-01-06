@@ -10,29 +10,25 @@ type CategoriesProps = {
     activeCategory: number
 }
 
-
 const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
+    const productCategories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
 
-
-    const productCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     return (
-        <>
-            <Flex as={'ul'} alignItems={'center'} marginBottom={px2vw(40)} flex={1}
-                  flexWrap={'wrap'}>
-                {productCategories.map((categories, index) => (
-                    <li key={index}>
-                        <Button $variant={'category'}
-                                $isActive={activeCategory === index}
-                                onClick={() => {
-                                    onClickCategory(index);
-                                }}>
-                            <Text fontSize={remCalc(14)}
-                                  fontWeight={700}>{categories}</Text>
-                        </Button>
-                    </li>
-                ))}
-            </Flex>
-        </>
+        <Flex as={'ul'} alignItems={'center'} marginBottom={px2vw(40)} flex={1}
+              flexWrap={'wrap'}>
+            {productCategories.map((categories, index) => (
+                <li key={index}>
+                    <Button $variant={'category'}
+                            $isActive={activeCategory === index}
+                            onClick={() => {
+                                onClickCategory(index);
+                            }}>
+                        <Text fontSize={remCalc(14)}
+                              fontWeight={700}>{categories}</Text>
+                    </Button>
+                </li>
+            ))}
+        </Flex>
     );
 };
 
