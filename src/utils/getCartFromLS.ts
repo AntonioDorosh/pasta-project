@@ -3,6 +3,7 @@ import {totalPrice} from "./totalPrice.ts";
 
 export const getCartFromLS = () => {
     const data = localStorage.getItem('cartItem');
+
     if (!data) {
         return {
             cartItem: [] as TCartItem[],

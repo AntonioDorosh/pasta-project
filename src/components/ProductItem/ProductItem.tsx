@@ -23,7 +23,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
         return currentPizza ? currentPizza.quantity : 0;
     });
     const onClickAdd = () => {
-        const productItem: TCartItem = {
+        const newProduct: TCartItem = {
             imageUrl,
             id,
             price,
@@ -32,7 +32,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
             type: pizzaTypes[activeTypes],
             quantity: 0
         };
-        dispatch(addProduct(productItem))
+        dispatch(addProduct(newProduct))
     };
 
     return (

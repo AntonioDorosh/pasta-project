@@ -17,7 +17,7 @@ const SearchBar = () => {
         []
     );
 
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[a-z]*$/i;
         const isValid = regex.test(e.target.value);
         const targetValue = e.target.value;
@@ -37,7 +37,7 @@ const SearchBar = () => {
 
     return (
         <Flex>
-            <InputStyled value={value} onChange={onChangeInput}/>
+            <InputStyled value={value} onChange={onChangeHandler}/>
             <Button onClick={clearValue}>
                 <img src="src/assets/trash.svg" alt="trash"/>
             </Button>
