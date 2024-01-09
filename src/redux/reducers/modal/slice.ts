@@ -6,13 +6,13 @@ type ModalState = {
 };
 
 
-const initialStat: ModalState = {
+const initialState: ModalState = {
     isOpen: false,
 };
 
 const modalSlice = createSlice({
     name: 'modal',
-    initialState: initialStat,
+    initialState: initialState,
     reducers: {
         openModal: (state, action: PayloadAction<boolean>) => {
             state.isOpen = action.payload;
