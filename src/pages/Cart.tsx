@@ -27,6 +27,7 @@ const Cart = () => {
             dispatch(clearCart())
         }
     };
+
     return (
         <Layout>
             <Flex gap={20} marginBottom={100}>
@@ -54,8 +55,8 @@ const Cart = () => {
                             <Text color='#B6B6B6'>Очистить корзину</Text>
                         </Flex>
                     </Flex>
-                    {cartItem.map((props, index) => <CartItem
-                        key={index} {...props}/>)}
+                    {cartItem.map((props) => <CartItem
+                        key={crypto.randomUUID()} {...props}/>)}
                     <Flex alignItems={'center'} justifyContent={'space-between'}
                           marginBottom={40}>
                 <span style={{
