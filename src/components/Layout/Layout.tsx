@@ -6,11 +6,8 @@ type LayoutProps = {
 }
 
 const Layout = ({children}: LayoutProps) => {
-    return (
-        <LayoutStyled>
-            {children}
-        </LayoutStyled>
-    );
+    return <LayoutStyled>{children}</LayoutStyled>
+
 };
 
 export default Layout;

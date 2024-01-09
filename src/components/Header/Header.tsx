@@ -30,7 +30,6 @@ const Header = () => {
                     {quantityTotal > 0 && <span>{quantityTotal}</span>}
                 </Button>
             </Link>
-
         </Flex>
     );
 };

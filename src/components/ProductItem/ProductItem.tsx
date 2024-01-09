@@ -8,7 +8,6 @@ import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
 import {TCartItem} from "../../redux/reducers/cart/types.ts";
 import {addProduct} from "../../redux/reducers/cart/slice.ts";
 import Button from "../UI/Button/Button.tsx";
-import {AddButton} from "../UI/Button/Button.styled.tsx";
 
 const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
     const pizzaTypes = ['thin', 'traditional'];
@@ -37,10 +36,12 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
 
     return (
         <Flex flexDirection={'column'} alignItems={'center'}
-              justifyContent={'center'} gap={20}>
-            <img width={260} src={imageUrl} alt={title}/>
+              justifyContent={'center'} gap={15}>
+            <picture>
+                <img width={260} height={260} src={imageUrl} alt={title}/>
+            </picture>
             <Text marginBottom={22} fontSize={remCalc(20)}
-                  fontWeight={800}>{title}</Text>
+                  fontWeight={500}>{title}</Text>
             <div>
                 {types.map((type, index) => (
                     <Button key={index} $variant={'card'}
@@ -56,14 +57,15 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
                             onClick={() => setActiveSize(index)}
                             $isActive={activeSize === index}><Text
                         fontSize={remCalc(14)}
-                        fontWeight={700}>{size}cm. </Text></Button>
+                        fontWeight={400}>{size}cm. </Text></Button>
                 ))}
             </div>
             <Flex gap={30} alignItems={'center'} position={'relative'}>
                 <Text fontSize={remCalc(20)}
-                      fontWeight={800}>{formatCurrency(price)}</Text>
-                <AddButton onClick={onClickAdd}><Text fontWeight={700}>+
-                    Добавить</Text></AddButton>
+                      fontWeight={700}>{formatCurrency(price)}</Text>
+                <Button $variant={'addButton'} onClick={onClickAdd}><Text
+                    fontWeight={400}>+
+                    Добавить</Text></Button>
                 {pizzaCount > 0 && (
                     <Flex position={'absolute'} top={-10} right={-5}
                           background={'#EB5A1E'} color={'#FFF'}

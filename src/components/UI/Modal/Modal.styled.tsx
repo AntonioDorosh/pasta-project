@@ -15,8 +15,7 @@ export const ModalStyled = styled.article`
 `;
 export const ModalWrapper = styled.div`
   position: relative;
-  width: 50%;
-  min-height: 50%;
+  width: min(100%, 600px);
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
@@ -30,12 +29,17 @@ export const ModalWrapper = styled.div`
 
 export const ModalClose = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -30px;
+  right: -20px;
   cursor: pointer;
-
+  transition: all 0.3s ease;
   img {
     width: 20px;
     height: 20px;
   }
+  
+    &:hover {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
 `;
