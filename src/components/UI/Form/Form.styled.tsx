@@ -11,7 +11,7 @@ export const ValidationInput = styled.input<{ $borderColor?: string }>`
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  border: 1px solid ${({$borderColor}) => $borderColor ? $borderColor : '#ccc'};
+  border: ${({$borderColor}) => $borderColor || '1px solid #B6B6B6'};
   padding: 0 20px;
   font-size: 18px;
   line-height: 22px;
@@ -20,7 +20,7 @@ export const ValidationInput = styled.input<{ $borderColor?: string }>`
   transition: all 0.3s ease;
 
   &:focus {
-    border-color: #FE5F1E;
+    border-color: #0ef106;
   }
 `;
 

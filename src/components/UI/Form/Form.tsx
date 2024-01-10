@@ -1,86 +1,82 @@
 import React from 'react';
+import {useFormik} from "formik";
+import {TFormValues} from "./type.ts";
 import {
     ValidationButton,
     ValidationForm,
-    ValidationInput,
+    ValidationInput
 } from "./Form.styled.tsx";
-import {useFormik} from "formik";
-import {TFormValues} from "./type.ts";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+
 
 const Form = () => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const phoneRegexp = /^(\+)(\d{3}\s?){4}(\d{2})?$/;
+
     const {
         values,
-        handleBlur,
+        errors,
         handleChange,
         handleSubmit,
-        errors
+        touched
     } = useFormik<TFormValues>({
         initialValues: {
             name: '',
+            email: '',
             phone: '',
             address: '',
-            email: '',
         },
         validationSchema: Yup.object({
             name: Yup.string()
-                .min(2, 'Must be 2 characters or more')
-                .max(15, 'Must be 15 characters or less')
-                .required('Required'),
-            phone: Yup.string()
-                .min(2, 'Must be 2 characters or more')
-                .max(15, 'Must be 15 characters or less')
-                .required('Required'),
-            address: Yup.string()
-                .min(2, 'Must be 2 characters or more')
-                .max(15, 'Must be 15 characters or less')
+                .min(2, 'Too Short!')
+                .max(50, 'Too Long!')
                 .required('Required'),
             email: Yup.string()
-                .email('Invalid email address')
+                .matches(emailRegex, 'Invalid email')
+                .required('Required'),
+            phone: Yup.string()
+                .matches(phoneRegexp, 'Invalid phone number, without spaces')
+                .required('Required'),
+            address: Yup.string()
+                .min(10, 'Too Short!')
+                .max(50, 'Too Long!')
                 .required('Required'),
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
+        onSubmit: (values) => {
+            setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+            }, 500)
+        }
     });
 
-    console.log(values)
-
+    console.log(errors)
 
     return (
         <ValidationForm onSubmit={handleSubmit}>
-            <label htmlFor="name">Name</label>
-            <ValidationInput id={'name'} type="text"
-                             placeholder={'enter your name'}
-                             onChange={handleChange}
-                             value={values.name}
-                             onBlur={handleBlur}
-                             $borderColor={errors.phone ? 'red' : undefined}/>
-            <label htmlFor="phone">Phone</label>
-            <ValidationInput id={'phone'} type="text"
-                             placeholder={'enter your phone'}
-                             onChange={handleChange}
-                             value={values.phone}
-                             onBlur={handleBlur}
-                             $borderColor={errors.phone ? 'red' : undefined}
+            <label htmlFor="name">{errors.name && touched.name &&
+                <p>{errors.name}</p> || 'Valid Name'}</label>
+            <ValidationInput id={'name'} placeholder={'enter your name'}
+                             value={values.name} onChange={handleChange}
+                             $borderColor={errors.name && '1px solid red'}/>
+            <label htmlFor="email">{errors.email && touched.email &&
+                <p>{errors.email}</p> || 'valid email'}</label>
+            <ValidationInput id={'email'} placeholder={'enter your email'}
+                             value={values.email} onChange={handleChange}
+                             $borderColor={errors.email && '1px solid red'}
             />
-            <label htmlFor="address">Address</label>
-            <ValidationInput id={'address'} type="text"
-                             placeholder={'enter your Address'}
-                             onChange={handleChange}
-                             value={values.address}
-                             onBlur={handleBlur}
-                             $borderColor={errors.phone ? 'red' : undefined}
+            <label htmlFor="phone">{errors.phone && touched.phone &&
+                <p>{errors.phone}</p> || 'valid phone'}</label>
+            <ValidationInput id={'phone'} placeholder={'enter your phone'}
+                             value={values.phone} onChange={handleChange}
+                             $borderColor={errors.phone && '1px solid red'}
             />
-            <label htmlFor="email">Email</label>
-            <ValidationInput id={'email'} type="text"
-                             placeholder={'enter your Email'}
-                             onChange={handleChange}
-                             value={values.email}
-                             onBlur={handleBlur}
-                             $borderColor={errors.phone ? 'red' : undefined}
+            <label htmlFor="address">{errors.address && touched.address &&
+                <p>{errors.address}</p> || 'valid address'}</label>
+            <ValidationInput id={'address'} placeholder={'enter your address'}
+                             value={values.address} onChange={handleChange}
+                             $borderColor={errors.address && '1px solid red'}
             />
-            <ValidationButton>checkout</ValidationButton>
+            <ValidationButton>Submit</ValidationButton>
         </ValidationForm>
     );
 };
