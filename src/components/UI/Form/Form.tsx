@@ -6,19 +6,19 @@ import {
     ValidationForm,
     ValidationInput
 } from "./Form.styled.tsx";
-import * as Yup from "yup";
+import {validationSchema} from "./Schema/validationSchema.ts";
 
 
 const Form = () => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const phoneRegexp = /^(\+)(\d{3}\s?){4}(\d{2})?$/;
+
 
     const {
         values,
         errors,
         handleChange,
         handleSubmit,
-        touched
+        touched,
+        isSubmitting
     } = useFormik<TFormValues>({
         initialValues: {
             name: '',
@@ -26,25 +26,11 @@ const Form = () => {
             phone: '',
             address: '',
         },
-        validationSchema: Yup.object({
-            name: Yup.string()
-                .min(2, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-            email: Yup.string()
-                .matches(emailRegex, 'Invalid email')
-                .required('Required'),
-            phone: Yup.string()
-                .matches(phoneRegexp, 'Invalid phone number, without spaces')
-                .required('Required'),
-            address: Yup.string()
-                .min(10, 'Too Short!')
-                .max(50, 'Too Long!')
-                .required('Required'),
-        }),
-        onSubmit: (values) => {
+        validationSchema,
+        onSubmit: (values, formikHelpers) => {
             setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
+                formikHelpers.resetForm();
             }, 500)
         }
     });
@@ -76,7 +62,7 @@ const Form = () => {
                              value={values.address} onChange={handleChange}
                              $borderColor={errors.address && '1px solid red'}
             />
-            <ValidationButton>Submit</ValidationButton>
+            <ValidationButton disabled={isSubmitting}>Submit</ValidationButton>
         </ValidationForm>
     );
 };
