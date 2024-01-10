@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import {useFormik} from "formik";
 import {TFormValues} from "./type.ts";
 import {
@@ -10,15 +10,13 @@ import {validationSchema} from "./Schema/validationSchema.ts";
 
 
 const Form = () => {
-
-
     const {
         values,
         errors,
         handleChange,
-        handleSubmit,
         touched,
-        isSubmitting
+        isSubmitting,
+        handleSubmit
     } = useFormik<TFormValues>({
         initialValues: {
             name: '',
@@ -35,10 +33,19 @@ const Form = () => {
         }
     });
 
-    console.log(errors)
+    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+        if (Object.keys(values).length === 0) {
+            e.preventDefault();
+            alert('Please fill in the form');
+        }
+        handleSubmit(e);
+        e.preventDefault();
+    };
+
+    console.log(values);
 
     return (
-        <ValidationForm onSubmit={handleSubmit}>
+        <ValidationForm onSubmit={submitHandler}>
             <label htmlFor="name">{errors.name && touched.name &&
                 <p>{errors.name}</p> || 'Valid Name'}</label>
             <ValidationInput id={'name'} placeholder={'enter your name'}
@@ -62,7 +69,8 @@ const Form = () => {
                              value={values.address} onChange={handleChange}
                              $borderColor={errors.address && '1px solid red'}
             />
-            <ValidationButton disabled={isSubmitting}>Submit</ValidationButton>
+            <ValidationButton
+                disabled={isSubmitting}>Submit</ValidationButton>
         </ValidationForm>
     );
 };
