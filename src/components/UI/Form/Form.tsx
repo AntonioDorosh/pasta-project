@@ -34,7 +34,7 @@ const Form = () => {
     });
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-        if (Object.keys(values).length === 0) {
+        if (!values.name || !values.email || !values.phone || !values.address) {
             e.preventDefault();
             alert('Please fill in the form');
         }
@@ -42,7 +42,6 @@ const Form = () => {
         e.preventDefault();
     };
 
-    console.log(values);
 
     return (
         <ValidationForm onSubmit={submitHandler}>
