@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import Header from "../components/Header/Header.tsx";
 import Categories from "../components/Categories/Categories.tsx";
 import ProductCard from "../components/ProductCard/ProductCard.tsx";
@@ -27,6 +27,14 @@ const Home = () => {
     } = useAppSelector(filterSelector)
     const dispatch = useAppDispatch();
 
+    const onChangeCategory = useCallback((id: number) => {
+        dispatch(setCategoryId(id))
+    }, []);
+
+    const onChangePage = (page: number) => {
+        dispatch(setCurrentPage(page))
+    };
+
     useEffect(() => {
         dispatch(fetchProductData({
             searchValue,
@@ -49,13 +57,6 @@ const Home = () => {
         isMounted.current = true;
     }, [searchValue, currentPage, activeCategory, navigate]);
 
-    const onChangeCategory = (id: number) => {
-        dispatch(setCategoryId(id));
-    };
-
-    const onChangePage = (page: number) => {
-        dispatch(setCurrentPage(page))
-    };
 
     return (
         <Layout>

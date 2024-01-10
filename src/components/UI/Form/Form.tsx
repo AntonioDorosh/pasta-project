@@ -46,24 +46,24 @@ const Form = () => {
     return (
         <ValidationForm onSubmit={submitHandler}>
             <label htmlFor="name">{errors.name && touched.name &&
-                <p>{errors.name}</p> || 'Valid Name'}</label>
+                <p>{errors.name}</p>}</label>
             <ValidationInput id={'name'} placeholder={'enter your name'}
                              value={values.name} onChange={handleChange}
                              $borderColor={errors.name && '1px solid red'}/>
             <label htmlFor="email">{errors.email && touched.email &&
-                <p>{errors.email}</p> || 'valid email'}</label>
+                <p>{errors.email}</p>}</label>
             <ValidationInput id={'email'} placeholder={'enter your email'}
                              value={values.email} onChange={handleChange}
                              $borderColor={errors.email && '1px solid red'}
             />
             <label htmlFor="phone">{errors.phone && touched.phone &&
-                <p>{errors.phone}</p> || 'valid phone'}</label>
+                <p>{errors.phone}</p>}</label>
             <ValidationInput id={'phone'} placeholder={'enter your phone'}
                              value={values.phone} onChange={handleChange}
                              $borderColor={errors.phone && '1px solid red'}
             />
             <label htmlFor="address">{errors.address && touched.address &&
-                <p>{errors.address}</p> || 'valid address'}</label>
+                <p>{errors.address}</p>}</label>
             <ValidationInput id={'address'} placeholder={'enter your address'}
                              value={values.address} onChange={handleChange}
                              $borderColor={errors.address && '1px solid red'}
