@@ -12,6 +12,7 @@ import {px2vw, totalPrice} from "../utils";
 import EmptyCart from "./EmptyCart.tsx";
 import CartItem from "../components/CartItem/CartItem.tsx";
 import {openModal, selectModal} from "../redux/reducers/modal/slice.ts";
+import Form from "../components/UI/Form/Form.tsx";
 import Modal from "../components/UI/Modal/Modal.tsx";
 
 
@@ -78,12 +79,15 @@ const Cart = () => {
                             Оплатить сейчас
                         </Button>
                     </Flex>
-
                 </Flex>
             ) : (
                 <EmptyCart/>
             )}
-            {isOpen && <Modal/>}
+            {
+                isOpen && <Modal>
+                    <Form/>
+                </Modal>
+            }
         </Layout>
     );
 };
