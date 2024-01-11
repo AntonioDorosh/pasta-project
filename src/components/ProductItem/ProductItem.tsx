@@ -35,7 +35,7 @@ const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
     };
 
     return (
-        <Flex flexDirection={'column'} alignItems={'center'}
+        <Flex as={'li'} flexDirection={'column'} alignItems={'center'}
               justifyContent={'center'} gap={15}>
             <picture>
                 <img width={260} height={260} src={imageUrl} alt={title}/>

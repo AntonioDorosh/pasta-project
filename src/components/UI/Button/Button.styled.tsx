@@ -53,6 +53,15 @@ export const StyledButton = styled.button<TButtonProps>`
         '&:hover': {
           backgroundColor: '#EB5A1E',
           color: '#fff',
+        },
+      },
+      danger: {
+        backgroundColor: '#ee0909',
+        color: '#fff',
+        padding: '10px 20px',
+        transition: 'all 0.5s ease',
+        '&:hover': {
+          opacity: 0.5
         }
       },
     }

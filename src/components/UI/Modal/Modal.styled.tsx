@@ -11,14 +11,14 @@ export const ModalStyled = styled.article`
   padding: 2rem;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
 `;
 export const ModalWrapper = styled.div`
   position: relative;
   width: min(100%, 600px);
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
   flex-direction: column;
@@ -29,17 +29,18 @@ export const ModalWrapper = styled.div`
 
 export const ModalClose = styled.div`
   position: absolute;
-  top: -30px;
-  right: -20px;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+
   img {
     width: 20px;
     height: 20px;
   }
-  
-    &:hover {
-        opacity: 0.7;
-        transform: scale(1.1);
-    }
+
+  &:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
 `;
