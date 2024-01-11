@@ -1,6 +1,6 @@
 import {addToLS, getCartFromLS, removeFromLS, totalPrice} from "../../../utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TCartItem, TCartRemove, TCartState} from "./types.ts";
+import {TCartItem, TCartRemove, TCartState} from "./type.ts";
 import {RootState} from "../../store";
 
 const {cartItem, sumPrice} = getCartFromLS();

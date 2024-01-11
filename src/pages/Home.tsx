@@ -10,7 +10,6 @@ import {
 } from "../redux/reducers/filter/slice.ts";
 import Pagination from "../components/UI/Pagination/Pagination.tsx";
 import {fetchProductData} from "../redux/reducers/data/asyncActions.ts";
-import {productSelector} from "../redux/reducers/data/slice.ts";
 import qs from 'qs';
 import {useNavigate} from "react-router-dom";
 import Layout from "../components/Layout/Layout.tsx";
@@ -18,7 +17,6 @@ import Layout from "../components/Layout/Layout.tsx";
 const Home = () => {
     const navigate = useNavigate();
     const isMounted = useRef(false);
-    const {product} = useAppSelector(productSelector);
     const {
         searchValue,
         itemsPerPage,
@@ -65,7 +63,7 @@ const Home = () => {
                 activeCategory={activeCategory}
                 onClickCategory={onChangeCategory}
             />
-            <ProductCard product={product}/>
+            <ProductCard/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </Layout>
     );

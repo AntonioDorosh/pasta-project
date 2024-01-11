@@ -1,14 +1,13 @@
 import React from 'react';
 import ProductItem from "../ProductItem/ProductItem.tsx";
 import Flex from "../../styles/Flex/Flex.ts";
-import {TRootObjectProductPizzas} from "../../redux/reducers/data/types.ts";
 import {px2vw} from "../../utils";
+import {useAppSelector} from "../../redux/hooks/useStore.ts";
+import {productSelector} from "../../redux/reducers/data/slice.ts";
 
-type TCardProps = {
-    product: TRootObjectProductPizzas[]
-}
+const ProductCard = () => {
+    const {product} = useAppSelector(productSelector);
 
-const ProductCard = ({product}: TCardProps) => {
     return (
         <Flex flexWrap={'wrap'} gap={px2vw(35)}>
             {product.map((pizza) => <ProductItem key={pizza.id} {...pizza}/>)}

@@ -1,4 +1,4 @@
-import {EStatus, TProductState} from "./types.ts";
+import {EStatus, TProductState} from "./type.ts";
 import {createReducer} from "@reduxjs/toolkit";
 import {fetchProductData} from "./asyncActions.ts";
 import {RootState} from "../../store";

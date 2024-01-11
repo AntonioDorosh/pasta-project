@@ -13,7 +13,6 @@ import EmptyCart from "./EmptyCart.tsx";
 import CartItem from "../components/CartItem/CartItem.tsx";
 import {openModal, selectModal} from "../redux/reducers/modal/slice.ts";
 import Form from "../components/UI/Form/Form.tsx";
-import Modal from "../components/UI/Modal/Modal.tsx";
 
 
 const Cart = () => {
@@ -78,16 +77,12 @@ const Cart = () => {
                                 onClick={() => dispatch(openModal(true))}>
                             Оплатить сейчас
                         </Button>
+                        {isOpen && <Form/>}
                     </Flex>
                 </Flex>
             ) : (
                 <EmptyCart/>
             )}
-            {
-                isOpen && <Modal>
-                    <Form/>
-                </Modal>
-            }
         </Layout>
     );
 };

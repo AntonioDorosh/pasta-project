@@ -1,12 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
+import {TModalState} from "./type.ts";
 
-type ModalState = {
-    isOpen: boolean
-};
-
-
-const initialState: ModalState = {
+const initialState: TModalState = {
     isOpen: false,
 };
 

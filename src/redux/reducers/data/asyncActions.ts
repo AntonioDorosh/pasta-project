@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {TPizzaParams, TRootObjectProductPizzas} from "./types.ts";
+import {TPizzaParams, TRootObjectProductPizzas} from "./type.ts";
 import {API_URL} from "../../../utils";
 
 const createQuery = (params: TPizzaParams) => {

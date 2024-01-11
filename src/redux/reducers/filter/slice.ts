@@ -1,4 +1,4 @@
-import {ESortProperty, TFilterState, TSort} from "./types.ts";
+import {ESortProperty, TFilterState, TSort} from "./type.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 

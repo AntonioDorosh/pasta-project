@@ -1,11 +1,11 @@
 import React, {FC, useState} from 'react';
-import {TRootObjectProductPizzas} from "../../redux/reducers/data/types.ts";
+import {TRootObjectProductPizzas} from "../../redux/reducers/data/type.ts";
 import Text from "../../styles/Text/Text.ts";
 import remCalc from "../../utils/remCalc.ts";
 import Flex from "../../styles/Flex/Flex.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
-import {TCartItem} from "../../redux/reducers/cart/types.ts";
+import {TCartItem} from "../../redux/reducers/cart/type.ts";
 import {addProduct} from "../../redux/reducers/cart/slice.ts";
 import Button from "../UI/Button/Button.tsx";
 
