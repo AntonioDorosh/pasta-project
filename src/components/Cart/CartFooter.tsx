@@ -10,7 +10,7 @@ import Form from "../UI/Form/Form.tsx";
 const CartFooter = () => {
     const dispatch = useAppDispatch();
     const getModalType = useAppSelector(selectModal);
-    const isOpen = getModalType.isOpen && getModalType.type === ModalType.PAYMENT;
+    const modal = getModalType.isOpen && getModalType.type === ModalType.PAYMENT;
 
     return (
         <footer>
@@ -24,7 +24,7 @@ const CartFooter = () => {
                         onClick={() => dispatch(openModal(ModalType.PAYMENT))}>
                     Оплатить сейчас
                 </Button>
-                {isOpen && <Form/>}
+                {modal && <Form/>}
             </Flex>
         </footer>
     );

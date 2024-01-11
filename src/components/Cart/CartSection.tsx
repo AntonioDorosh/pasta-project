@@ -18,7 +18,7 @@ const CartSection = () => {
     const dispatch = useAppDispatch();
     const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
     const getModalType = useAppSelector(selectModal);
-    const isOpen = getModalType.isOpen && getModalType.type === ModalType.DIALOG;
+    const modal = getModalType.isOpen && getModalType.type === ModalType.DIALOG;
 
 
     return (
@@ -45,7 +45,7 @@ const CartSection = () => {
                             onClick={() => dispatch(openModal(ModalType.DIALOG))}>
                             <img src="src/assets/trash.svg" alt="trash"/>
                         </Button>
-                        {isOpen && <ModalDialog/>}
+                        {modal && <ModalDialog/>}
                         <Text color='#B6B6B6'>Очистить корзину</Text>
                     </Flex>
                 </Flex>
