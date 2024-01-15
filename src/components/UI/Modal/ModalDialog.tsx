@@ -19,8 +19,8 @@ const ModalDialog = () => {
     return (
         <Modal>
             <Flex flexDirection={'column'}>
-                <Text fontSize={remCalc(24)} fontWeight={600}>Вы действительно хотите очистить корзину?</Text>
-                <Flex>
+                <Text fontSize={remCalc(24)} fontWeight={600} marginBottom={20}>Вы действительно хотите очистить корзину?</Text>
+                <Flex gap={20} alignItems={'center'}>
                     <Button onClick={() => dispatch(closeModal())}>Cancel
                     </Button>
                     <Button $variant={'danger'} onClick={removeHandler}>Delete</Button>
