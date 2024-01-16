@@ -18,6 +18,7 @@ export const StyledButton = styled.button<TButtonProps>`
       header: {
         backgroundColor: '#FE5F1E',
         color: '#fff',
+        
         borderRadius: '30px',
         padding: '15px 50px',
         fontWeight: 700,
