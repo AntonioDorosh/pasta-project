@@ -21,37 +21,35 @@ const CartItem: FC<TCartItem> = (props) => {
     const removeHandler = () => dispatch(removeCurrentProduct(id))
 
     return (
-        <>
-            <Flex justifyContent={'space-between'} marginBottom={px2vw(40)}>
-                <Flex alignItems={'center'} gap={px2vw(10)}>
-                    <img width={80} height={80} src={imageUrl}
-                         alt={title}/>
-                    <Flex flexDirection={'column'} maxWidth={px2vw(260)}>
-                        <Text fontSize={remCalc(22)}
-                              fontWeight={700}>{title}</Text>
-                        <Text color={'#8D8D8D'}
-                              fontSize={remCalc(18)}>{type} {size}cm.</Text>
-                    </Flex>
-                </Flex>
-                <Flex alignItems={'center'} gap={px2vw(15)}>
-                    <Button
-                        onClick={decreaseQnt}>
-                        <img src='src/assets/minus.svg' alt="plus"/>
-                    </Button>
+        <Flex justifyContent={'space-between'} marginBottom={px2vw(40)}>
+            <Flex alignItems={'center'} gap={px2vw(10)}>
+                <img width={80} height={80} src={imageUrl}
+                     alt={title}/>
+                <Flex flexDirection={'column'} maxWidth={px2vw(260)}>
                     <Text fontSize={remCalc(22)}
-                          fontWeight={700}>{quantity}</Text>
-                    <Button
-                        onClick={increaseQnt}>
-                        <img src='src/assets/plus.svg' alt="minus"/>
-                    </Button>
-                    <Text fontSize={remCalc(22)}
-                          fontWeight={700}>{formatCurrency(price)}</Text>
-                    <Button onClick={removeHandler}>
-                        <img src="src/assets/trash.svg" alt="trash"/>
-                    </Button>
+                          fontWeight={700}>{title}</Text>
+                    <Text color={'#8D8D8D'}
+                          fontSize={remCalc(18)}>{type} {size}cm.</Text>
                 </Flex>
             </Flex>
-        </>
+            <Flex alignItems={'center'} gap={px2vw(15)}>
+                <Button
+                    onClick={decreaseQnt}>
+                    <img src='src/assets/minus.svg' alt="plus"/>
+                </Button>
+                <Text fontSize={remCalc(22)}
+                      fontWeight={700}>{quantity}</Text>
+                <Button
+                    onClick={increaseQnt}>
+                    <img src='src/assets/plus.svg' alt="minus"/>
+                </Button>
+                <Text fontSize={remCalc(22)}
+                      fontWeight={700}>{formatCurrency(price)}</Text>
+                <Button onClick={removeHandler}>
+                    <img src="src/assets/trash.svg" alt="trash"/>
+                </Button>
+            </Flex>
+        </Flex>
     );
 };
 

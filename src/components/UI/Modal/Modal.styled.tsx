@@ -44,3 +44,5 @@ export const ModalClose = styled.div`
     transform: scale(1.1);
   }
 `;
+
+

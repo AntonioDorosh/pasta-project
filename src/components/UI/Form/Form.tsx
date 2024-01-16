@@ -12,6 +12,7 @@ import Text from "../../../styles/Text/Text.ts";
 import remCalc from "../../../utils/remCalc.ts";
 import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {closeModal} from "../../../redux/reducers/modal/slice.ts";
+import {clearCart} from "../../../redux/reducers/cart/slice.ts";
 
 type ErrorObject = {
     message: string
@@ -41,6 +42,7 @@ const Form = () => {
                 await new Promise((r) => setTimeout(r, 500));
                 alert(JSON.stringify(values, null, 2));
                 formikHelpers.setSubmitting(false);
+                dispatch(clearCart())
                 dispatch(closeModal());
             } catch (e) {
                 const error: ErrorObject = {message: 'An error occurred'};
