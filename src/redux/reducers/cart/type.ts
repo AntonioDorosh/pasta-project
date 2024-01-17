@@ -8,7 +8,6 @@ export type TCartItem = {
     quantity: number;
 };
 
-
 export type TCartState = {
     cartItem: TCartItem[];
     sumPrice: number;

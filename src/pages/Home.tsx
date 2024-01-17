@@ -21,7 +21,8 @@ const Home = () => {
         searchValue,
         itemsPerPage,
         activeCategory,
-        currentPage
+        currentPage,
+        sort
     } = useAppSelector(filterSelector)
     const dispatch = useAppDispatch();
 
@@ -38,9 +39,10 @@ const Home = () => {
             searchValue,
             itemsPerPage,
             activeCategory,
-            currentPage
+            currentPage,
+            sortBy: ""
         }));
-    }, [searchValue, itemsPerPage, activeCategory, currentPage]);
+    }, [searchValue, itemsPerPage, activeCategory, currentPage, sort]);
 
     useEffect(() => {
         if (isMounted.current) {

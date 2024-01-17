@@ -16,9 +16,9 @@ import {px2vw} from "../../utils";
 const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
-    const decreaseQnt = () => dispatch(removeProduct({id, type, size}))
-    const increaseQnt = () => dispatch(addProduct({...props}))
-    const removeHandler = () => dispatch(removeCurrentProduct(id))
+    const decreaseQnt = () => dispatch(removeProduct({id, type, size}));
+    const increaseQnt = () => dispatch(addProduct({...props}));
+    const removeHandler = () => dispatch(removeCurrentProduct(id));
 
     return (
         <Flex justifyContent={'space-between'} marginBottom={px2vw(40)}>

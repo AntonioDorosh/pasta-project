@@ -1,14 +1,10 @@
-import React, {ReactNode} from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 import {ModalClose, ModalStyled, ModalWrapper} from "./Modal.styled.tsx";
 import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {closeModal} from "../../../redux/reducers/modal/slice.ts";
 
-type ModalProps = {
-    children: ReactNode
-}
 
-const Modal = ({children}: ModalProps) => {
-
+const Modal: FC<PropsWithChildren> = ({children}) => {
     const dispatch = useAppDispatch();
 
     return (

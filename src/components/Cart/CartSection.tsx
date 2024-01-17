@@ -18,8 +18,7 @@ const CartSection = () => {
     const dispatch = useAppDispatch();
     const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
     const getModalType = useAppSelector(selectModal);
-    const modal = getModalType.isOpen && getModalType.type === ModalType.DIALOG;
-
+    const modal = getModalType.isOpen && getModalType.type === ModalType.dialog;
 
     return (
         <section>
@@ -42,7 +41,7 @@ const CartSection = () => {
                     </Flex>
                     <Flex alignItems={'center'}>
                         <Button
-                            onClick={() => dispatch(openModal(ModalType.DIALOG))}>
+                            onClick={() => dispatch(openModal(ModalType.dialog))}>
                             <img src="src/assets/trash.svg" alt="trash"/>
                         </Button>
                         {modal && <ModalDialog/>}

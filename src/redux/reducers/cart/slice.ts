@@ -36,7 +36,6 @@ export const cartSlice = createSlice({
             const {id, type, size} = action.payload;
             const findProduct = cartItem.findIndex((obj) => obj.id === id && obj.type === type && obj.size === size);
 
-
             if (cartItem[findProduct].quantity > 1) {
                 cartItem[findProduct].quantity -= 1;
             } else {

@@ -10,7 +10,7 @@ import Form from "../UI/Form/Form.tsx";
 const CartFooter = () => {
     const dispatch = useAppDispatch();
     const getModalType = useAppSelector(selectModal);
-    const modal = getModalType.isOpen && getModalType.type === ModalType.PAYMENT;
+    const modal = getModalType.isOpen && getModalType.type === ModalType.payment;
 
     return (
         <footer>
@@ -21,7 +21,7 @@ const CartFooter = () => {
                     </Button>
                 </Link>
                 <Button $variant={'header'}
-                        onClick={() => dispatch(openModal(ModalType.PAYMENT))}>
+                        onClick={() => dispatch(openModal(ModalType.payment))}>
                     Оплатить сейчас
                 </Button>
                 {modal && <Form/>}

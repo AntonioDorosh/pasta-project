@@ -1,15 +1,21 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {TPizzaParams, TRootObjectProductPizzas} from "./type.ts";
-import {API_URL} from "../../../utils";
 
 const createQuery = (params: TPizzaParams) => {
-    const {searchValue, currentPage, itemsPerPage, activeCategory} = params;
+    const {
+        searchValue,
+        currentPage,
+        itemsPerPage,
+        activeCategory,
+        sortBy
+    } = params;
 
     return [
         searchValue ? `q=${searchValue}` : '',
         activeCategory ? `category=${activeCategory}` : '',
         `_page=${currentPage}`,
-        `_limit=${itemsPerPage}`
+        `_limit=${itemsPerPage}`,
+        `&_sort=${sortBy}`,
     ].join('&');
 };
 
@@ -17,6 +23,7 @@ export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPi
     'product/fetchProductData',
     async (params, thunkAPI) => {
         const query = createQuery(params);
+        const API_URL = 'http://localhost:8000/products';
         try {
             const response = await fetch(`${API_URL}?${query}`);
             return await response.json()

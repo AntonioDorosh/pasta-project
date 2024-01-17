@@ -1,11 +1,7 @@
-import React from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 import {LayoutStyled} from "./Layout.styled.tsx";
 
-type LayoutProps = {
-    children: React.ReactNode;
-}
-
-const Layout = ({children}: LayoutProps) => {
+const Layout: FC<PropsWithChildren> = ({children}) => {
     return <LayoutStyled>{children}</LayoutStyled>
 
 };
