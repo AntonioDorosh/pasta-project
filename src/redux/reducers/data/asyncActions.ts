@@ -15,7 +15,7 @@ const createQuery = (params: TPizzaParams) => {
         activeCategory ? `category=${activeCategory}` : '',
         `_page=${currentPage}`,
         `_limit=${itemsPerPage}`,
-        `&_sort=${sortBy}`,
+        `&_sort=${sortBy}`
     ].join('&');
 };
 
@@ -25,10 +25,9 @@ export const fetchProductData = createAsyncThunk<TRootObjectProductPizzas[], TPi
         const query = createQuery(params);
         const API_URL = 'http://localhost:8000/products';
         try {
-            const response = await fetch(`${API_URL}?${query}`);
-            return await response.json()
-        } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            return await fetch(`${API_URL}?${query}`).then((res) => res.json());
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error)
         }
     }
 );

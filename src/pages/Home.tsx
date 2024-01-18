@@ -15,6 +15,8 @@ import {Categories} from "../components/Categories/Categories.tsx";
 import {ProductCard} from "../components/ProductCard/ProductCard.tsx";
 import {Pagination} from "../components/UI/Pagination/Pagination.tsx";
 import {Sort} from "../components/UI/Sort/Sort.tsx";
+import {productSelector} from "../redux/reducers/data/slice.ts";
+import {EStatus} from "../redux/reducers/data/type.ts";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -29,6 +31,7 @@ export const Home = () => {
     const dispatch = useAppDispatch();
     const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
+    const {status} = useAppSelector(productSelector);
 
     useEffect(() => {
         const sorting = sort.sortProperty === 'price_asc' ? 'price_desc' : 'price_desc';
@@ -55,6 +58,7 @@ export const Home = () => {
         isMounted.current = true;
     }, [searchValue, currentPage, activeCategory, navigate]);
 
+    if (status === EStatus.LOADING) return (<div>Loading...</div>);
 
     return (
         <Layout>
