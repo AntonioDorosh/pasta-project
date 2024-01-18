@@ -1,14 +1,15 @@
 import React from 'react';
+
+import Flex from "../../../styles/Flex/Flex.ts";
+import Text from "../../../styles/Text/Text.ts";
 import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {closeModal} from "../../../redux/reducers/modal/slice.ts";
-import Modal from "./Modal.tsx";
 import {clearCart} from "../../../redux/reducers/cart/slice.ts";
-import Text from "../../../styles/Text/Text.ts";
-import Flex from "../../../styles/Flex/Flex.ts";
-import remCalc from "../../../utils/remCalc.ts";
-import Button from "../Button/Button.tsx";
+import {Modal} from "./Modal.tsx";
+import {Button} from "../Button/Button.tsx";
+import {remCalc} from "../../../utils";
 
-const ModalDialog = () => {
+export const ModalDialog = () => {
     const dispatch = useAppDispatch();
 
     const removeHandler = () => {
@@ -29,5 +30,3 @@ const ModalDialog = () => {
         </Modal>
     );
 };
-
-export default ModalDialog;

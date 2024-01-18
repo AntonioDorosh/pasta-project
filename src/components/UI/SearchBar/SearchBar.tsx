@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useCallback, useState} from 'react';
-import {InputStyled} from "./SearchBar.styled.tsx";
+
 import Flex from "../../../styles/Flex/Flex.ts";
-import Button from "../Button/Button.tsx";
+import {InputStyled} from "./SearchBar.styled.tsx";
 import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {setSearchValue} from "../../../redux/reducers/filter/slice.ts";
 import {debounce} from "../../../utils";
+import {Button} from "../Button/Button.tsx";
 
-const SearchBar = () => {
+export const SearchBar = () => {
     const dispatch = useAppDispatch();
     const [value, setValue] = useState('');
 
@@ -44,5 +45,3 @@ const SearchBar = () => {
         </Flex>
     );
 };
-
-export default SearchBar;

@@ -1,12 +1,12 @@
 import React from 'react';
 import {useAppSelector} from "../redux/hooks/useStore.ts";
-import Layout from "../components/Layout/Layout.tsx";
+import {CartSection} from "../components/Cart/CartSection.tsx";
 import {cartSelector} from "../redux/reducers/cart/slice.ts";
-import EmptyCart from "./EmptyCart.tsx";
-import CartSection from "../components/Cart/CartSection.tsx";
+import {Layout} from "../components/Layout/Layout.tsx";
+import {EmptyCart} from "./EmptyCart.tsx";
 
 
-const Cart = () => {
+export const Cart = () => {
     const {cartItem} = useAppSelector(cartSelector);
 
     return (
@@ -15,5 +15,3 @@ const Cart = () => {
         </Layout>
     );
 };
-
-export default Cart;

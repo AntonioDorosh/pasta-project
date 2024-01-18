@@ -1,16 +1,15 @@
 import React from 'react';
 import Flex from "../../styles/Flex/Flex.ts";
-import Button from "../UI/Button/Button.tsx";
 import Text from "../../styles/Text/Text.ts";
-import remCalc from "../../utils/remCalc.ts";
-import {px2vw} from "../../utils";
+import {px2vw, remCalc} from "../../utils";
+import {Button} from "../UI/Button/Button.tsx";
 
 type CategoriesProps = {
     onClickCategory: (id: number) => void
     activeCategory: number
 }
 
-const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
+export const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
     const productCategories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
 
     return (
@@ -31,5 +30,3 @@ const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
         </Flex>
     );
 };
-
-export default Categories;

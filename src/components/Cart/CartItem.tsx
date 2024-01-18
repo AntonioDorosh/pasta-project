@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
+
 import Flex from "../../styles/Flex/Flex.ts";
 import Text from "../../styles/Text/Text.ts";
-import remCalc from "../../utils/remCalc.ts";
-import Button from "../UI/Button/Button.tsx";
 import {
     addProduct,
     removeCurrentProduct,
@@ -11,9 +10,10 @@ import {
 import {TCartItem} from "../../redux/reducers/cart/type.ts";
 import {useAppDispatch} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
-import {px2vw} from "../../utils";
+import {px2vw, remCalc} from "../../utils";
+import {Button} from "../UI/Button/Button.tsx";
 
-const CartItem: FC<TCartItem> = (props) => {
+export const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
     const {id, type, title, size, quantity, imageUrl, price} = props;
     const decreaseQnt = () => dispatch(removeProduct({id, type, size}));
@@ -52,5 +52,3 @@ const CartItem: FC<TCartItem> = (props) => {
         </Flex>
     );
 };
-
-export default CartItem;

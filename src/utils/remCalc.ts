@@ -1,6 +1,6 @@
 type remCalcType = (px: string | number, base?: number) => string;
 
-const remCalc: remCalcType = (px, base = 16) => {
+export const remCalc: remCalcType = (px, base = 16) => {
     let tempPx = px
     if (typeof tempPx === "string") {
         tempPx = tempPx.replace('px', '')
@@ -11,5 +11,3 @@ const remCalc: remCalcType = (px, base = 16) => {
     }
     return (1 / base) * tempPx + 'rem'
 }
-
-export default remCalc

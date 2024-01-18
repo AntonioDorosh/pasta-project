@@ -1,11 +1,12 @@
 import React from 'react';
-import ProductItem from "../ProductItem/ProductItem.tsx";
 import Flex from "../../styles/Flex/Flex.ts";
+
 import {px2vw} from "../../utils";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {productSelector} from "../../redux/reducers/data/slice.ts";
+import {ProductItem} from "../ProductItem/ProductItem.tsx";
 
-const ProductCard = () => {
+export const ProductCard = () => {
     const {product} = useAppSelector(productSelector);
 
     return (
@@ -14,5 +15,3 @@ const ProductCard = () => {
         </Flex>
     );
 };
-
-export default ProductCard;

@@ -1,9 +1,9 @@
 import React from "react";
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App.tsx";
-import Cart from "../pages/Cart.tsx";
+import {Cart} from "../pages/Cart.tsx";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
     {
         path: "*",
         element: <App/>
@@ -13,5 +13,3 @@ const router = createBrowserRouter([
         element: <Cart/>
     }
 ]);
-
-export default router;

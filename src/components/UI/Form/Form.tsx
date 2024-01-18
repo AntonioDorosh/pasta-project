@@ -7,12 +7,13 @@ import {
     ValidationInput
 } from "./Form.styled.tsx";
 import {validationSchema} from "./Schema/validationSchema.ts";
-import Modal from "../Modal/Modal.tsx";
+
 import Text from "../../../styles/Text/Text.ts";
-import remCalc from "../../../utils/remCalc.ts";
 import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
 import {closeModal} from "../../../redux/reducers/modal/slice.ts";
 import {clearCart} from "../../../redux/reducers/cart/slice.ts";
+import {Modal} from "../Modal/Modal.tsx";
+import {remCalc} from "../../../utils";
 
 type ErrorObject = {
     message: string
@@ -25,7 +26,7 @@ const initialValue: TFormValues = {
     phone: ''
 };
 
-const Form = () => {
+export const Form = () => {
     const dispatch = useAppDispatch();
     const {
         values,
@@ -98,5 +99,3 @@ const Form = () => {
         </Modal>
     )
 };
-
-export default Form;

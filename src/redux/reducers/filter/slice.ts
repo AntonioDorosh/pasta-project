@@ -1,4 +1,4 @@
-import {ESortProperty, TFilterState, TSort} from "./type.ts";
+import {Sort, SortPropertyObj, TFilterState} from "./type.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 
@@ -6,14 +6,14 @@ const initialState: TFilterState = {
     searchValue: '',
     activeCategory: 0,
     sort: {
-        name: 'популярности',
-        sortProperty: ESortProperty.PRICE_ASC,
+        name: 'По умолчанию',
+        sortProperty: SortPropertyObj.price_asc,
     },
     currentPage: 1,
     itemsPerPage: 5,
 };
 
-const filterSlice = createSlice({
+export const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
@@ -23,7 +23,7 @@ const filterSlice = createSlice({
         setCategoryId: (state, action: PayloadAction<number>) => {
             state.activeCategory = action.payload;
         },
-        setSort: (state, action: PayloadAction<TSort>) => {
+        setSort: (state, action: PayloadAction<Sort>) => {
             state.sort = action.payload;
         },
         setCurrentPage: (state, action: PayloadAction<number>) => {
@@ -40,5 +40,3 @@ export const {
 } = filterSlice.actions;
 
 export const filterSelector = (state: RootState) => state.filter;
-
-export default filterSlice;

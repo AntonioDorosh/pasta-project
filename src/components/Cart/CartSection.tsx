@@ -1,19 +1,19 @@
 import React from 'react';
 import Flex from "../../styles/Flex/Flex.ts";
-import remCalc from "../../utils/remCalc.ts";
-import {px2vw, totalPrice} from "../../utils";
 import Text from "../../styles/Text/Text.ts";
-import Button from "../UI/Button/Button.tsx";
+
+import {px2vw, remCalc, totalPrice} from "../../utils";
 import {openModal, selectModal} from "../../redux/reducers/modal/slice.ts";
 import {ModalType} from "../../redux/reducers/modal/type.ts";
-import CartItem from "./CartItem.tsx";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
-import CartFooter from "./CartFooter.tsx";
-import ModalDialog from "../UI/Modal/ModalDialog.tsx";
+import {CartFooter} from "./CartFooter.tsx";
+import {CartItem} from "./CartItem.tsx";
+import {ModalDialog} from "../UI/Modal/ModalDialog.tsx";
+import {Button} from "../UI/Button/Button.tsx";
 
-const CartSection = () => {
+export const CartSection = () => {
     const {cartItem} = useAppSelector(cartSelector);
     const dispatch = useAppDispatch();
     const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
@@ -66,5 +66,3 @@ const CartSection = () => {
         </section>
     );
 };
-
-export default CartSection;

@@ -1,17 +1,17 @@
 import React from 'react';
 import Text from "../../styles/Text/Text.ts";
-import remCalc from "../../utils/remCalc.ts";
 import Flex from "../../styles/Flex/Flex.ts";
-import Button from "../UI/Button/Button.tsx";
+
 import {Link} from "react-router-dom";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
-import SearchBar from "../UI/SearchBar/SearchBar.tsx";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
-import {px2vw, totalPrice} from "../../utils";
+import {px2vw, remCalc, totalPrice} from "../../utils";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
+import {SearchBar} from "../UI/SearchBar/SearchBar.tsx";
+import {Button} from "../UI/Button/Button.tsx";
 
 
-const Header = () => {
+export const Header = () => {
     const {cartItem} = useAppSelector(cartSelector);
     const quantityTotal = cartItem.reduce((total, item) => total + item.quantity, 0);
 
@@ -33,5 +33,3 @@ const Header = () => {
         </Flex>
     );
 };
-
-export default Header;

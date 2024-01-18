@@ -7,7 +7,7 @@ const initialState: TModalState = {
     type: undefined
 };
 
-const modalSlice = createSlice({
+export const modalSlice = createSlice({
     name: 'modal',
     initialState: initialState,
     reducers: {
@@ -26,4 +26,3 @@ export const {openModal, closeModal} = modalSlice.actions;
 
 export const selectModal = (state: RootState) => state.modal;
 
-export default modalSlice.reducer;

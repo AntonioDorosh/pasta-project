@@ -6,7 +6,7 @@ type PaginationProps = {
     onChangePage: (page: number) => void;
 }
 
-const Pagination = ({currentPage, onChangePage}: PaginationProps) => {
+export const Pagination = ({currentPage, onChangePage}: PaginationProps) => {
     return (
         <StyledReactPaginate
             breakLabel="..."
@@ -19,5 +19,3 @@ const Pagination = ({currentPage, onChangePage}: PaginationProps) => {
         />
     );
 };
-
-export default Pagination;

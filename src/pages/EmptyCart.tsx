@@ -1,11 +1,11 @@
 import React from 'react';
 import Text from "../styles/Text/Text.ts";
-import remCalc from "../utils/remCalc.ts";
 import {Link} from "react-router-dom";
-import Button from "../components/UI/Button/Button.tsx";
 import Flex from "../styles/Flex/Flex.ts";
+import {Button} from "../components/UI/Button/Button.tsx";
+import {remCalc} from "../utils";
 
-const EmptyCart = () => {
+export const EmptyCart = () => {
     return (
         <Flex flexDirection={'column'} alignItems={'center'} gap={20}>
             <Text fontSize={remCalc(32)} fontWeight={700}>Корзина пустая
@@ -21,5 +21,3 @@ const EmptyCart = () => {
         </Flex>
     );
 };
-
-export default EmptyCart;
