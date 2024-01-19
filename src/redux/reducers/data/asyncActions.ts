@@ -3,16 +3,16 @@ import {TPizzaParams, TRootObjectProductPizzas} from "./type.ts";
 
 const createQuery = (params: TPizzaParams) => {
     const {
-        searchValue,
+        search,
         currentPage,
         itemsPerPage,
-        activeCategory,
+        category,
         sortBy
     } = params;
 
     return [
-        searchValue ? `q=${searchValue}` : '',
-        activeCategory ? `category=${activeCategory}` : '',
+        search ? `q=${search}` : '',
+        category ? `category=${category}` : '',
         `_page=${currentPage}`,
         `_limit=${itemsPerPage}`,
         `&_sort=${sortBy}`

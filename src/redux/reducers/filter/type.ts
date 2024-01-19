@@ -1,22 +1,21 @@
-export const SortPropertyObj = {
-    price_asc: 'asc',
-    price_desc: 'desc',
-    name_asc: 'name_asc',
-    name_desc: 'name_desc',
+export const sortProperty = {
+    RATING_ASC: "rating",
+    RATING_DESC: "rating&_order=desc",
+    PRICE_ASC: "price",
+    PRICE_DESC: "price&_order=desc",
 };
 
-export type SortPropertyObj = typeof SortPropertyObj[keyof typeof SortPropertyObj];
+export type sortPropertyType = typeof sortProperty[keyof typeof sortProperty];
 
-export type Sort = {
+export type TSort = {
     name: string;
-    sortProperty: SortPropertyObj;
+    sortProperty: sortPropertyType;
 };
-
 
 export type TFilterState = {
     searchValue: string;
     activeCategory: number;
-    sort: Sort;
+    sort: TSort;
     currentPage: number;
     itemsPerPage: number;
 }

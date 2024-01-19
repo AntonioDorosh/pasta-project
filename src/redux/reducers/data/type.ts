@@ -9,11 +9,12 @@ export type TRootObjectProductPizzas = {
 };
 
 export type TPizzaParams = {
-	searchValue: string;
+	search: string;
 	itemsPerPage: number;
-	activeCategory: number;
+	category: string;
 	currentPage: number;
-	sortBy?: string;
+	sortBy: string;
+	order: string
 }
 
 export enum EStatus {

@@ -26,24 +26,32 @@ export const Home = () => {
         itemsPerPage,
         activeCategory,
         currentPage,
-        sort
+        sort,
     } = useAppSelector(filterSelector)
     const dispatch = useAppDispatch();
     const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
     const {status} = useAppSelector(productSelector);
 
-    useEffect(() => {
-        const sorting = sort.sortProperty === 'price_asc' ? 'price_desc' : 'price_desc';
+    const getPizzas = async () => {
+        const sortBy = sort.sortProperty.replace('-', '');
+        const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+        const category = activeCategory > 0 ? String(activeCategory) : '';
+        const search = searchValue;
 
-        dispatch(fetchProductData({
-            searchValue,
-            itemsPerPage,
-            activeCategory,
-            currentPage,
-            sortBy: sorting,
-        }));
-    }, [searchValue, itemsPerPage, activeCategory, currentPage, sort.sortProperty]);
+        dispatch(
+            fetchProductData({
+                sortBy,
+                order,
+                category,
+                search,
+                currentPage,
+                itemsPerPage
+            }),
+        );
+
+        window.scrollTo(0, 0);
+    };
 
     useEffect(() => {
         if (isMounted.current) {
@@ -54,9 +62,9 @@ export const Home = () => {
             })
             navigate(`?${queryString}`)
         }
-
+        getPizzas().catch((e) => console.log(e));
         isMounted.current = true;
-    }, [searchValue, currentPage, activeCategory, navigate]);
+    }, [searchValue, currentPage, activeCategory, navigate, sort.sortProperty]);
 
     if (status === EStatus.LOADING) return (<div>Loading...</div>);
 
@@ -65,7 +73,7 @@ export const Home = () => {
             <Header/>
             <Categories activeCategory={activeCategory}
                         onClickCategory={onChangeCategory}/>
-            <Sort/>
+            <Sort sort={sort}/>
             <ProductCard/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </Layout>
