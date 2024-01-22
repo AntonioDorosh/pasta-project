@@ -22,7 +22,8 @@ export const CartFooter = () => {
                     </Button>
                 </Link>
                 <Button $variant={'header'}
-                        onClick={() => dispatch(openModal(ModalType.payment))}>
+                        onClick={() => dispatch(openModal(ModalType.payment))}
+                >
                     Оплатить сейчас
                 </Button>
                 {modal && <Form/>}

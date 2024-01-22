@@ -15,16 +15,19 @@ export const SelectStyled = styled.select`
     color: #2c2c2c;
     font-weight: 500;
     line-height: 19px;
+
     &:hover {
         border-color: #2c2c2c;
     }
-    &:focus {
+
+    &:focus {                       
         border-color: #2c2c2c;
     }
 `;
 
-export const OptionStyled = styled.option<{$isActive: boolean}>`
+export const OptionStyled = styled.option<{ $isActive: boolean }>`
+    opacity: ${({$isActive}) => ($isActive ? 1 : 0.5)};
     color: ${({$isActive}) => ($isActive ? '#fff' : '#2c2c2c')};
-    background-color: ${({$isActive}) => ($isActive ? '#2c2c2c' : '#fff')};
+    background-color: ${({$isActive}) => ($isActive ? '#ea4a06' : '#f2f2f2')};
     font-weight: 600;
 `;

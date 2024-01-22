@@ -5,14 +5,12 @@ import {RootState} from "../../store";
 
 const {cartItem, sumPrice} = getCartFromLS();
 
-const initialState: TCartState = {
-    cartItem,
-    sumPrice
-};
-
 export const cartSlice = createSlice({
     name: 'cart',
-    initialState,
+    initialState: {
+        cartItem,
+        sumPrice
+    } as TCartState,
     reducers: {
         addProduct: (state, action: PayloadAction<TCartItem>) => {
             const cartItem = state.cartItem;

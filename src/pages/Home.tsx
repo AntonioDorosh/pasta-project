@@ -59,6 +59,7 @@ export const Home = () => {
                 searchValue,
                 currentPage,
                 activeCategory,
+                sort: sort.sortProperty
             })
             navigate(`?${queryString}`)
         }

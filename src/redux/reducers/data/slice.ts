@@ -9,7 +9,7 @@ const initialState: TProductState = {
     error: '',
 };
 
-const produceReducer = createReducer(initialState, builder => {
+const productReducer = createReducer(initialState, builder => {
     builder
         .addCase(fetchProductData.pending, (state) => {
             state.status = EStatus.LOADING;
@@ -27,4 +27,4 @@ const produceReducer = createReducer(initialState, builder => {
 
 export const productSelector = (state: RootState) => state.product;
 
-export const product = produceReducer;
+export const product = productReducer;

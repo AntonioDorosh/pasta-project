@@ -2,20 +2,18 @@ import {sortProperty, TFilterState, TSort} from "./type.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 
-const initialState: TFilterState = {
-    searchValue: '',
-    activeCategory: 0,
-    sort: {
-        name: 'По умолчанию',
-        sortProperty: sortProperty.PRICE_ASC,
-    },
-    currentPage: 1,
-    itemsPerPage: 5,
-};
-
 export const filterSlice = createSlice({
     name: 'filter',
-    initialState,
+    initialState: {
+        searchValue: '',
+        activeCategory: 0,
+        sort: {
+            name: 'По умолчанию',
+            sortProperty: sortProperty.PRICE_ASC,
+        },
+        currentPage: 1,
+        itemsPerPage: 5,
+    } as TFilterState,
     reducers: {
         setSearchValue: (state, action) => {
             state.searchValue = action.payload;

@@ -12,6 +12,7 @@ import {useAppDispatch} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {px2vw, remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
+import {QuantityButtons} from "./QuantityButtons.tsx";
 
 export const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();
@@ -33,16 +34,8 @@ export const CartItem: FC<TCartItem> = (props) => {
                 </Flex>
             </Flex>
             <Flex alignItems={'center'} gap={px2vw(15)}>
-                <Button
-                    onClick={decreaseQnt}>
-                    <img src='src/assets/minus.svg' alt="plus"/>
-                </Button>
-                <Text fontSize={remCalc(22)}
-                      fontWeight={700}>{quantity}</Text>
-                <Button
-                    onClick={increaseQnt}>
-                    <img src='src/assets/plus.svg' alt="minus"/>
-                </Button>
+                <QuantityButtons increase={increaseQnt} decrease={decreaseQnt}
+                                 quantity={quantity}/>
                 <Text fontSize={remCalc(22)}
                       fontWeight={700}>{formatCurrency(price)}</Text>
                 <Button onClick={removeHandler}>

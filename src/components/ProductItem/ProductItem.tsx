@@ -6,33 +6,34 @@ import Flex from "../../styles/Flex/Flex.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
 import {TCartItem} from "../../redux/reducers/cart/type.ts";
-import {addProduct} from "../../redux/reducers/cart/slice.ts";
+import {addProduct, cartSelector} from "../../redux/reducers/cart/slice.ts";
 import {remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
 
-export const ProductItem: FC<TRootObjectProductPizzas> = (props) => {
-    const pizzaTypes = ['thin', 'traditional'];
+const pizzaTypes = ['thin', 'traditional'];
+const findPizzaCount = (cartItem: TCartItem[], id: number, activeTypes: number, activeSize: number, sizes: number[]) => {
+    const currentPizza = cartItem.find((obj) => obj.id === id && obj.type === pizzaTypes[activeTypes] && obj.size === sizes[activeSize]);
+    return currentPizza ? currentPizza.quantity : 0;
+};
+
+export const ProductItem: FC<TRootObjectProductPizzas> = ({id, price, imageUrl, sizes, title, types}) => {
     const dispatch = useAppDispatch();
-    const {id, price, imageUrl, sizes, title, types} = props;
+    const {cartItem} = useAppSelector(cartSelector);
     const [activeSize, setActiveSize] = useState(0);
     const [activeTypes, setActiveTypes] = useState(0);
+    const pizzaCount = findPizzaCount(cartItem, id, activeTypes, activeSize, sizes);
 
-    const pizzaCount = useAppSelector((state) => {
-        const {cartItem} = state.cart;
-        const currentPizza = cartItem.find((obj) => obj.id === id && obj.type === pizzaTypes[activeTypes] && obj.size === sizes[activeSize]);
-        return currentPizza ? currentPizza.quantity : 0;
-    });
     const onClickAdd = () => {
-        const newProduct: TCartItem = {
-            imageUrl,
+        const newProduct = {
             id,
+            imageUrl,
             price,
             title,
-            size: sizes[activeSize],
             type: pizzaTypes[activeTypes],
-            quantity: 0
-        };
-        dispatch(addProduct(newProduct))
+            size: sizes[activeSize],
+            quantity: 1
+        } as TCartItem;
+        dispatch(addProduct(newProduct));
     };
 
     return (
