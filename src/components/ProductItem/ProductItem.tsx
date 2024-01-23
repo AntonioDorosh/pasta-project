@@ -9,8 +9,15 @@ import {TCartItem} from "../../redux/reducers/cart/type.ts";
 import {addProduct, cartSelector} from "../../redux/reducers/cart/slice.ts";
 import {remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
+import {
+    PizzaTypesButtons
+} from "../UI/Button/PizzaTypesButtons/PizzaTypesButtons.tsx";
+import {pizzaTypes} from "../../utils/const.ts";
+import {
+    PizzaSizesButtons
+} from "../UI/Button/PizzaSizesButtons/PizzaSizesButtons.tsx";
 
-const pizzaTypes = ['thin', 'traditional'];
+
 const findPizzaCount = (cartItem: TCartItem[], id: number, activeTypes: number, activeSize: number, sizes: number[]) => {
     const currentPizza = cartItem.find((obj) => obj.id === id && obj.type === pizzaTypes[activeTypes] && obj.size === sizes[activeSize]);
     return currentPizza ? currentPizza.quantity : 0;
@@ -45,27 +52,15 @@ export const ProductItem: FC<TRootObjectProductPizzas> = ({id, price, imageUrl, 
             <Text marginBottom={22} fontSize={remCalc(20)}
                   fontWeight={500}>{title}</Text>
             <div>
-                {types.map((type, index) => (
-                    <Button key={index} $variant={'card'}
-                            $isActive={activeTypes === index}
-                            onClick={() => setActiveTypes(index)}><Text
-                        fontSize={remCalc(14)}
-                        fontWeight={700}>{pizzaTypes[type]}</Text></Button>
-                ))}
+               <PizzaTypesButtons types={types} activeTypes={activeTypes} setActiveTypes={setActiveTypes}/>
             </div>
             <div>
-                {sizes.map((size, index) => (
-                    <Button key={index} $variant={'card'}
-                            onClick={() => setActiveSize(index)}
-                            $isActive={activeSize === index}><Text
-                        fontSize={remCalc(14)}
-                        fontWeight={400}>{size}cm. </Text></Button>
-                ))}
+                <PizzaSizesButtons sizes={sizes} activeSize={activeSize} setActiveSize={setActiveSize}/>
             </div>
             <Flex gap={30} alignItems={'center'} position={'relative'}>
                 <Text fontSize={remCalc(20)}
                       fontWeight={700}>{formatCurrency(price)}</Text>
-                <Button $variant={'addButton'} onClick={onClickAdd}><Text
+                <Button $variant={"addButton"} onClick={onClickAdd}><Text
                     fontWeight={400}>+
                     Добавить</Text></Button>
                 {pizzaCount > 0 && (

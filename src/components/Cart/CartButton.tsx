@@ -10,7 +10,7 @@ import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 
 const calculateTotalQnt = (cartItem: TCartItem[]) => cartItem.reduce((acc, item) => acc + item.quantity, 0);
 
-const CartButton = () => {
+export const CartButton = () => {
     const {cartItem} = useAppSelector(cartSelector);
     const quantityTotal = calculateTotalQnt(cartItem);
 
@@ -24,5 +24,3 @@ const CartButton = () => {
         </Link>
     );
 };
-
-export default CartButton;

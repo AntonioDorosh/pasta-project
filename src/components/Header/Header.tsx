@@ -3,7 +3,7 @@ import Text from "../../styles/Text/Text.ts";
 import Flex from "../../styles/Flex/Flex.ts";
 import {px2vw, remCalc} from "../../utils";
 import {SearchBar} from "../UI/SearchBar/SearchBar.tsx";
-import CartButton from "../Cart/CartButton.tsx";
+import {CartButton} from "../Cart/CartButton.tsx";
 
 
 export const Header = () => {

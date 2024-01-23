@@ -3,13 +3,12 @@ import Flex from "../../styles/Flex/Flex.ts";
 import Text from "../../styles/Text/Text.ts";
 import {px2vw, remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
+import {productCategories} from "../../utils/const.ts";
 
 type CategoriesProps = {
     onClickCategory: (id: number) => void
     activeCategory: number
 }
-
-const productCategories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
 
 export const Categories = ({onClickCategory, activeCategory}: CategoriesProps) => {
     const handleCategoryClick = (index: number) => onClickCategory(index);
@@ -19,7 +18,7 @@ export const Categories = ({onClickCategory, activeCategory}: CategoriesProps) =
               flexWrap={'wrap'}>
             {productCategories.map((categories, index) => (
                 <li key={crypto.randomUUID()}>
-                    <Button $variant={'category'}
+                    <Button $variant={"category"}
                             $isActive={activeCategory === index}
                             onClick={() => {
                                 handleCategoryClick(index);

@@ -17,6 +17,8 @@ import {Pagination} from "../components/UI/Pagination/Pagination.tsx";
 import {Sort} from "../components/UI/Sort/Sort.tsx";
 import {productSelector} from "../redux/reducers/data/slice.ts";
 import {EStatus} from "../redux/reducers/data/type.ts";
+import Loading from "./Loading.tsx";
+import ErrorBoundary from "./Error/ErrorBoundary.tsx";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -33,7 +35,7 @@ export const Home = () => {
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
     const {status} = useAppSelector(productSelector);
 
-    const getPizzas = async () => {
+    const fetchPizzas = async () => {
         const sortBy = sort.sortProperty.replace('-', '');
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
         const category = activeCategory > 0 ? String(activeCategory) : '';
@@ -63,11 +65,11 @@ export const Home = () => {
             })
             navigate(`?${queryString}`)
         }
-        getPizzas().catch((e) => console.log(e));
+        fetchPizzas().catch(() => <ErrorBoundary/>);
         isMounted.current = true;
     }, [searchValue, currentPage, activeCategory, navigate, sort.sortProperty]);
 
-    if (status === EStatus.LOADING) return (<div>Loading...</div>);
+    if (status === EStatus.LOADING) return <Loading/>;
 
     return (
         <Layout>
