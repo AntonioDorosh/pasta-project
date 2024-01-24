@@ -11,7 +11,7 @@ export const Cart = () => {
 
     return (
         <Layout>
-            {cartItem.length === 0 ? <EmptyCart/> : <CartSection/>}
+            {!cartItem.length ? <EmptyCart/> : <CartSection/>}
         </Layout>
     );
 };

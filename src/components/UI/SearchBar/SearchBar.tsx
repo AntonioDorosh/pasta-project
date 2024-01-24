@@ -21,13 +21,13 @@ export const SearchBar = () => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const regex = /^[a-z]*$/i;
         const isValid = regex.test(e.target.value);
-        const value = e.target.value;
+        const targetValue = e.target.value;
 
         if (!isValid) {
             alert('Введите пожалуйста только буквы');
         } else {
-            setValue(value);
-            updateSearchValue(value);
+            setValue(targetValue);
+            updateSearchValue(targetValue);
         }
     };
 

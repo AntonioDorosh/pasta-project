@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "../Button.tsx";
 import Text from "../../../../styles/Text/Text.ts";
 import {remCalc} from "../../../../utils";
-import {pizzaTypes} from "../../../../utils/const.ts";
+import {pizzaTypes} from "../../../../utils";
 
 type PizzaTypesButtonsProps = {
     types: number[];

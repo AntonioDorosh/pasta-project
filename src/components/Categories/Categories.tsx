@@ -3,7 +3,7 @@ import Flex from "../../styles/Flex/Flex.ts";
 import Text from "../../styles/Text/Text.ts";
 import {px2vw, remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
-import {productCategories} from "../../utils/const.ts";
+import {productCategories} from "../../utils";
 
 type CategoriesProps = {
     onClickCategory: (id: number) => void

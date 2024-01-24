@@ -5,7 +5,7 @@ import {totalPrice} from "../../utils";
 import {Link} from "react-router-dom";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
-import {calculateTotalQnt} from "../../utils/const.ts";
+import {calculateTotalQnt} from "../../utils";
 
 export const CartButton = () => {
     const {cartItem} = useAppSelector(cartSelector);

@@ -11,7 +11,7 @@ import {Button} from "../UI/Button/Button.tsx";
 import {
     PizzaTypesButtons
 } from "../UI/Button/PizzaTypesButtons/PizzaTypesButtons.tsx";
-import {findPizzaCount, pizzaTypes} from "../../utils/const.ts";
+import {findPizzaCount, pizzaTypes} from "../../utils";
 import {
     PizzaSizesButtons
 } from "../UI/Button/PizzaSizesButtons/PizzaSizesButtons.tsx";
