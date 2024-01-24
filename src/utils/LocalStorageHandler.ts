@@ -1,8 +1,10 @@
 import {TCartItem} from "../redux/reducers/cart/type.ts";
 
 export const addToLS = (arr: TCartItem[], key: string) => {
-    if (arr.length > 0) {
-        localStorage.setItem(key, JSON.stringify(arr));
+    const nonEmptyItems = arr.filter(item => Object.keys(item).length !== 0);
+
+    if (nonEmptyItems.length !== 0) {
+        localStorage.setItem(key, JSON.stringify(nonEmptyItems));
     }
 };
 

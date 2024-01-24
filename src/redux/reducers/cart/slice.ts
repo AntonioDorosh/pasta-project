@@ -44,7 +44,7 @@ export const cartSlice = createSlice({
             addToLS(cartItem, 'cartItem')
             state.sumPrice = cartItem.reduce((sum, obj) => sum + obj.price * obj.quantity, 0);
         },
-        removeCurrentProduct: (state, action: PayloadAction<number>) => {
+        removeCurrentProduct: (state, action: PayloadAction<number | string>) => {
             const cartItem = state.cartItem;
             const findProduct = cartItem.findIndex((obj) => obj.id === action.payload);
 

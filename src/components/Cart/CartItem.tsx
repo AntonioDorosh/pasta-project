@@ -7,12 +7,13 @@ import {
     removeCurrentProduct,
     removeProduct,
 } from "../../redux/reducers/cart/slice.ts";
-import {TCartItem} from "../../redux/reducers/cart/type.ts";
 import {useAppDispatch} from "../../redux/hooks/useStore.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {px2vw, remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
 import {QuantityButtons} from "./QuantityButtons.tsx";
+
+import type {TCartItem} from "../../redux/reducers/cart/type.ts";
 
 export const CartItem: FC<TCartItem> = (props) => {
     const dispatch = useAppDispatch();

@@ -75,7 +75,7 @@ export const Form = () => {
                                  value={values.name} onChange={handleChange}
                                  $borderColor={errors.name && '1px solid red'}/>
                 <label htmlFor="email">{errors.email && touched.email &&
-                    <p>{errors.email}</p>}</label>
+                    <p>{errors.email}4</p>}</label>
                 <ValidationInput id={'email'} placeholder={'enter your email'}
                                  value={values.email} onChange={handleChange}
                                  $borderColor={errors.email && '1px solid red'}

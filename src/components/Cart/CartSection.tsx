@@ -48,7 +48,7 @@ export const CartSection = () => {
                         <Text color='#B6B6B6'>Очистить корзину</Text>
                     </Flex>
                 </Flex>
-                {cartItem.map((props) => <CartItem
+                {cartItem?.map((props) => <CartItem
                     key={crypto.randomUUID()} {...props}/>)}
                 <Flex alignItems={'center'} justifyContent={'space-between'}
                       marginBottom={40}>

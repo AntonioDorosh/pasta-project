@@ -18,7 +18,6 @@ import {Sort} from "../components/UI/Sort/Sort.tsx";
 import {productSelector} from "../redux/reducers/data/slice.ts";
 import {EStatus} from "../redux/reducers/data/type.ts";
 import Loading from "./Loading.tsx";
-import ErrorBoundary from "./Error/ErrorBoundary.tsx";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -34,6 +33,7 @@ export const Home = () => {
     const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
     const {status} = useAppSelector(productSelector);
+
 
     const fetchPizzas = async () => {
         const sortBy = sort.sortProperty.replace('-', '');
@@ -65,7 +65,9 @@ export const Home = () => {
             })
             navigate(`?${queryString}`)
         }
-        fetchPizzas().catch(() => <ErrorBoundary/>);
+        fetchPizzas().catch(() => {
+            throw new Error('Error fetch pizzas');
+        });
         isMounted.current = true;
     }, [searchValue, currentPage, activeCategory, navigate, sort.sortProperty]);
 

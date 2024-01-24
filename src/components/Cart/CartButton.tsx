@@ -3,12 +3,9 @@ import {Button} from "../UI/Button/Button.tsx";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {totalPrice} from "../../utils";
 import {Link} from "react-router-dom";
-import {TCartItem} from "../../redux/reducers/cart/type.ts";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {cartSelector} from "../../redux/reducers/cart/slice.ts";
-
-
-const calculateTotalQnt = (cartItem: TCartItem[]) => cartItem.reduce((acc, item) => acc + item.quantity, 0);
+import {calculateTotalQnt} from "../../utils/const.ts";
 
 export const CartButton = () => {
     const {cartItem} = useAppSelector(cartSelector);

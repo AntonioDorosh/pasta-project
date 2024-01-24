@@ -1,7 +1,7 @@
 export const ModalType = {
     dialog: 'dialog',
     payment: 'payment',
-}
+} as const;
 
 export type ModalType = typeof ModalType[keyof typeof ModalType];
 

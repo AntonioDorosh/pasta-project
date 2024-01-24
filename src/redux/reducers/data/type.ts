@@ -1,5 +1,5 @@
 export type TRootObjectProductPizzas = {
-	id: number;
+	id: number | string;
 	imageUrl: string;
 	title: string;
 	types: number[];

@@ -1,5 +1,5 @@
 export type TCartItem = {
-    id: number;
+    id: number | string;
     title: string;
     price: number;
     imageUrl: string;

@@ -3,11 +3,11 @@ import {createReducer} from "@reduxjs/toolkit";
 import {fetchProductData} from "./asyncActions.ts";
 import {RootState} from "../../store";
 
-const initialState: TProductState = {
+const initialState = {
     product: [],
     status: EStatus.LOADING,
     error: '',
-};
+} as TProductState;
 
 const productReducer = createReducer(initialState, builder => {
     builder
