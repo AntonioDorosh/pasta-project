@@ -5,7 +5,6 @@ export * from "./getCartFromLS.ts";
 export * from "./totalPrice.ts";
 export * from './px2vw.ts'
 export * from './const.ts'
-export * from './generateId.ts'
 
 
 

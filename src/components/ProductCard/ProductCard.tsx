@@ -5,30 +5,22 @@ import {px2vw} from "../../utils";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
 import {productSelector} from "../../redux/reducers/data/slice.ts";
 import {ProductItem} from "../ProductItem/ProductItem.tsx";
-import {generateId} from "../../utils";
 
 export const ProductCard = () => {
     const {product} = useAppSelector(productSelector);
     const productWithNewId = product.map((product) => {
         return {
             ...product,
-            id: generateId()
+            id: crypto.randomUUID()
         }
     });
 
-    const filteredPizzas = productWithNewId.filter((product) => {
-        const productValues = Object.values(product);
-        const validValues = productValues.some((value) => value === null || value === '' || value === undefined);
-
-        return !validValues
-    });
+    const filteredPizzas = productWithNewId.filter((product) => Object.values(product).every((value) => value !== null));
 
 
     return (
         <Flex as={'ul'} flexWrap={'wrap'} gap={px2vw(35)}>
-            {filteredPizzas?.map((product) => (
-                <ProductItem key={product.id} {...product}/>
-            ))}
+            {filteredPizzas?.map((product) => <ProductItem key={product.id} {...product}/>)}
         </Flex>
     );
 };

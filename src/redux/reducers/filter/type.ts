@@ -1,5 +1,5 @@
 export const sortProperty = {
-    RATING_ASC: "rating",
+    RATING_ASC: "rating&_order=asc",
     RATING_DESC: "rating&_order=desc",
     PRICE_ASC: "price",
     PRICE_DESC: "price&_order=desc",

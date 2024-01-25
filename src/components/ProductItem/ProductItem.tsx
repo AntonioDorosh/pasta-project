@@ -18,8 +18,6 @@ import {
 
 import type {TCartItem} from "../../redux/reducers/cart/type.ts";
 
-
-
 export const ProductItem: FC<TRootObjectProductPizzas> = ({id, price, imageUrl, sizes, title, types}) => {
     const dispatch = useAppDispatch();
     const {cartItem} = useAppSelector(cartSelector);
@@ -39,6 +37,7 @@ export const ProductItem: FC<TRootObjectProductPizzas> = ({id, price, imageUrl, 
         } as TCartItem;
         dispatch(addProduct(newProduct));
     };
+
 
     return (
         <Flex as={'li'} flexDirection={'column'} alignItems={'center'}
