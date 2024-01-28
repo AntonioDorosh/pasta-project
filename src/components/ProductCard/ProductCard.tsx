@@ -3,12 +3,14 @@ import Flex from "../../styles/Flex/Flex.ts";
 
 import {px2vw} from "../../utils";
 import {useAppSelector} from "../../redux/hooks/useStore.ts";
-import {productSelector} from "../../redux/reducers/data/slice.ts";
+import {
+    selectProduct
+} from "../../redux/reducers/data/slice.ts";
 import {ProductItem} from "../ProductItem/ProductItem.tsx";
 
 export const ProductCard = () => {
-    const {product} = useAppSelector(productSelector);
-    const productWithNewId = product.map((product) => {
+    const product = useAppSelector(selectProduct);
+    const productWithNewId = product?.map((product) => {
         return {
             ...product,
             id: crypto.randomUUID()

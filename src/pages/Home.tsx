@@ -8,16 +8,15 @@ import {
     setCategoryId,
     setCurrentPage
 } from "../redux/reducers/filter/slice.ts";
-import {fetchProductData} from "../redux/reducers/data/asyncActions.ts";
 import {Layout} from "../components/Layout/Layout.tsx";
 import {Header} from "../components/Header/Header.tsx";
 import {Categories} from "../components/Categories/Categories.tsx";
 import {ProductCard} from "../components/ProductCard/ProductCard.tsx";
 import {Pagination} from "../components/UI/Pagination/Pagination.tsx";
 import {Sort} from "../components/UI/Sort/Sort.tsx";
-import {productSelector} from "../redux/reducers/data/slice.ts";
 import {EStatus} from "../redux/reducers/data/type.ts";
 import Loading from "./Loading.tsx";
+import {fetchData, selectStatus} from "../redux/reducers/data/slice.ts";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -32,7 +31,7 @@ export const Home = () => {
     const dispatch = useAppDispatch();
     const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
-    const {status} = useAppSelector(productSelector);
+    const status = useAppSelector(selectStatus);
 
 
     const fetchPizzas = async () => {
@@ -42,7 +41,7 @@ export const Home = () => {
         const search = searchValue;
 
         dispatch(
-            fetchProductData({
+            fetchData({
                 sortBy,
                 order,
                 category,

@@ -27,7 +27,6 @@ export const filterSlice = createSlice({
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
-
     },
 });
 

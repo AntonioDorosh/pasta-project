@@ -1,7 +1,10 @@
 import {EStatus, TProductState} from "./type.ts";
-import {createReducer} from "@reduxjs/toolkit";
-import {fetchProductData} from "./asyncActions.ts";
-import {RootState} from "../../store";
+import {asyncThunkCreator, buildCreateSlice} from "@reduxjs/toolkit";
+import {API_URL, createQuery} from "../../../utils";
+
+const createAppSlice = buildCreateSlice({
+    creators: {asyncThunk: asyncThunkCreator}
+});
 
 const initialState = {
     product: [],
@@ -9,22 +12,46 @@ const initialState = {
     error: '',
 } as TProductState;
 
-const productReducer = createReducer(initialState, builder => {
-    builder
-        .addCase(fetchProductData.pending, (state) => {
-            state.status = EStatus.LOADING;
-        })
-        .addCase(fetchProductData.fulfilled, (state, action) => {
-            state.status = EStatus.SUCCESS;
-            state.product = action.payload;
-        })
-        .addCase(fetchProductData.rejected, (state, action) => {
-            state.status = EStatus.ERROR;
-            state.error = action.error.message as string;
-        })
-})
+const productSlice = createAppSlice({
+    name: 'product',
+    initialState,
+    selectors: {
+        selectProduct: (state) => state.product,
+        selectStatus: (state) => state.status
+    },
+    reducers: (create) => ({
+        fetchData: create.asyncThunk(
+            async (params, thunkAPI) => {
+                const query = createQuery(params);
+                try {
+                    return await fetch(`${API_URL}?${query}`).then((res) => res.json());
+                } catch (error) {
+                    return thunkAPI.rejectWithValue(error)
+                }
+            },
+            {
+                pending: (state) => {
+                    state.status = EStatus.LOADING;
+                },
+                fulfilled: (state, action) => {
+                    state.status = EStatus.SUCCESS;
+                    state.product = action.payload;
+                },
+                rejected: (state, action) => {
+                    state.status = EStatus.ERROR;
+                    state.error = action.error.message as string;
+                }
+            }
+        ),
+    }),
+});
+
+export const {fetchData} = productSlice.actions;
+
+export const {selectProduct, selectStatus} = productSlice.selectors;
+
+export const product = productSlice.reducer;
 
 
-export const productSelector = (state: RootState) => state.product;
 
-export const product = productReducer;
+

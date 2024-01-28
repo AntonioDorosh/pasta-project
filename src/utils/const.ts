@@ -14,3 +14,5 @@ export const findPizzaCount = (cartItem: TCartItem[], id: number | string, activ
     const currentPizza = cartItem.find((obj) => obj.id === id && obj.type === pizzaTypes[activeTypes] && obj.size === sizes[activeSize]);
     return currentPizza ? currentPizza.quantity : 0;
 };
+
+export const API_URL = 'http://localhost:8000/products';

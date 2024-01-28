@@ -7,14 +7,14 @@ import {openModal, selectModal} from "../../redux/reducers/modal/slice.ts";
 import {ModalType} from "../../redux/reducers/modal/type.ts";
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
-import {cartSelector} from "../../redux/reducers/cart/slice.ts";
 import {CartFooter} from "./CartFooter.tsx";
 import {CartItem} from "./CartItem.tsx";
 import {ModalDialog} from "../UI/Modal/ModalDialog.tsx";
 import {Button} from "../UI/Button/Button.tsx";
+import {selectCartItems} from "../../redux/reducers/cart/slice.ts";
 
 export const CartSection = () => {
-    const {cartItem} = useAppSelector(cartSelector);
+    const cartItem = useAppSelector(selectCartItems);
     const dispatch = useAppDispatch();
     const pizzaCount = cartItem.reduce((acc, obj) => acc + obj.quantity, 0);
     const getModalType = useAppSelector(selectModal);

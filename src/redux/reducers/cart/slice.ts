@@ -1,7 +1,6 @@
 import {addToLS, getCartFromLS, removeFromLS, totalPrice} from "../../../utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TCartItem, TCartRemove, TCartState} from "./type.ts";
-import {RootState} from "../../store";
 
 const {cartItem, sumPrice} = getCartFromLS();
 
@@ -14,11 +13,11 @@ export const cartSlice = createSlice({
     reducers: {
         addProduct: (state, action: PayloadAction<TCartItem>) => {
             const cartItem = state.cartItem;
-            const {id, size, type} = action.payload;
-            const existingProduct = cartItem.find((obj) => obj.id === id && obj.type === type && obj.size === size);
+            const {id, type, size} = action.payload;
+            const existingProduct = cartItem.find((product) => product.id === id && product.type === type && product.size === size);
 
             if (existingProduct) {
-                existingProduct.quantity += 1;
+                existingProduct.quantity += 1
             } else {
                 cartItem.push({
                     ...action.payload,
@@ -27,17 +26,17 @@ export const cartSlice = createSlice({
             }
 
             addToLS(cartItem, 'cartItem')
-            state.sumPrice = totalPrice(cartItem);
+            state.sumPrice = totalPrice(cartItem)
         },
         removeProduct: (state, action: PayloadAction<TCartRemove>) => {
             const cartItem = state.cartItem;
             const {id, type, size} = action.payload;
-            const findProduct = cartItem.findIndex((obj) => obj.id === id && obj.type === type && obj.size === size);
+            const findIndexOfProduct = cartItem.findIndex((product) => product.id === id && product.size === size && product.type === type);
 
-            if (cartItem[findProduct].quantity > 1) {
-                cartItem[findProduct].quantity -= 1;
+            if (cartItem[findIndexOfProduct].quantity > 1) {
+                cartItem[findIndexOfProduct].quantity -= 1
             } else {
-                cartItem.splice(findProduct, 1);
+                cartItem.splice(findIndexOfProduct, 1)
             }
 
             removeFromLS('cartItem')
@@ -46,10 +45,10 @@ export const cartSlice = createSlice({
         },
         removeCurrentProduct: (state, action: PayloadAction<number | string>) => {
             const cartItem = state.cartItem;
-            const findProduct = cartItem.findIndex((obj) => obj.id === action.payload);
+            const findIndexOfProduct = cartItem.findIndex((obj) => obj.id === action.payload);
 
-            if (~findProduct) {
-                cartItem.splice(findProduct, 1);
+            if (~findIndexOfProduct) {
+                cartItem.splice(findIndexOfProduct, 1);
             }
 
             removeFromLS('cartItems')
@@ -59,6 +58,9 @@ export const cartSlice = createSlice({
             state.cartItem = [];
             state.sumPrice = 0;
         }
+    },
+    selectors: {
+        selectCartItems: (state) => state.cartItem,
     }
 })
 
@@ -69,4 +71,4 @@ export const {
     clearCart
 } = cartSlice.actions;
 
-export const cartSelector = (state: RootState) => state.cart;
+export const {selectCartItems} = cartSlice.selectors;

@@ -5,13 +5,12 @@ import Flex from "../../styles/Flex/Flex.ts";
 
 import {formatCurrency} from "../../utils/formatCurrency.ts";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/useStore.ts";
-import {addProduct, cartSelector} from "../../redux/reducers/cart/slice.ts";
-import {remCalc} from "../../utils";
+import {addProduct, selectCartItems} from "../../redux/reducers/cart/slice.ts";
+import {findPizzaCount, pizzaTypes, remCalc} from "../../utils";
 import {Button} from "../UI/Button/Button.tsx";
 import {
     PizzaTypesButtons
 } from "../UI/Button/PizzaTypesButtons/PizzaTypesButtons.tsx";
-import {findPizzaCount, pizzaTypes} from "../../utils";
 import {
     PizzaSizesButtons
 } from "../UI/Button/PizzaSizesButtons/PizzaSizesButtons.tsx";
@@ -20,7 +19,7 @@ import type {TCartItem} from "../../redux/reducers/cart/type.ts";
 
 export const ProductItem: FC<TRootObjectProductPizzas> = ({id, price, imageUrl, sizes, title, types}) => {
     const dispatch = useAppDispatch();
-    const {cartItem} = useAppSelector(cartSelector);
+    const cartItem = useAppSelector(selectCartItems);
     const [activeSize, setActiveSize] = useState(0);
     const [activeTypes, setActiveTypes] = useState(0);
     const pizzaCount = findPizzaCount(cartItem, id, activeTypes, activeSize, sizes);
