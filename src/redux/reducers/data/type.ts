@@ -14,7 +14,7 @@ export type TPizzaParams = {
 	category: string;
 	currentPage: number;
 	sortBy: string;
-	order: string
+	order?: string
 }
 
 export enum EStatus {

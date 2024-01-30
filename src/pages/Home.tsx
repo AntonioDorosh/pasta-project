@@ -14,9 +14,7 @@ import {Categories} from "../components/Categories/Categories.tsx";
 import {ProductCard} from "../components/ProductCard/ProductCard.tsx";
 import {Pagination} from "../components/UI/Pagination/Pagination.tsx";
 import {Sort} from "../components/UI/Sort/Sort.tsx";
-import {EStatus} from "../redux/reducers/data/type.ts";
-import Loading from "./Loading.tsx";
-import {fetchData, selectStatus} from "../redux/reducers/data/slice.ts";
+import {fetchData} from "../redux/reducers/data/slice.ts";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -31,7 +29,6 @@ export const Home = () => {
     const dispatch = useAppDispatch();
     const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
-    const status = useAppSelector(selectStatus);
 
 
     const fetchPizzas = async () => {
@@ -40,19 +37,22 @@ export const Home = () => {
         const category = activeCategory > 0 ? String(activeCategory) : '';
         const search = searchValue;
 
+
         dispatch(
             fetchData({
                 sortBy,
                 order,
                 category,
                 search,
-                currentPage,
+                currentPage: String(currentPage),
                 itemsPerPage
             }),
         );
 
         window.scrollTo(0, 0);
     };
+
+    
 
     useEffect(() => {
         if (isMounted.current) {
@@ -67,10 +67,10 @@ export const Home = () => {
         fetchPizzas().catch(() => {
             throw new Error('Error fetch pizzas');
         });
-        isMounted.current = true;
-    }, [searchValue, currentPage, activeCategory, navigate, sort.sortProperty]);
 
-    if (status === EStatus.LOADING) return <Loading/>;
+        isMounted.current = true;
+    }, [searchValue, currentPage, activeCategory, sort.sortProperty]);
+
 
     return (
         <Layout>

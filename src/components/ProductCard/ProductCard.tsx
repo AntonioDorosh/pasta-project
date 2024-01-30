@@ -19,6 +19,8 @@ export const ProductCard = () => {
 
     const filteredPizzas = productWithNewId.filter((product) => Object.values(product).every((value) => value !== null));
 
+    console.log(filteredPizzas)
+
 
     return (
         <Flex as={'ul'} flexWrap={'wrap'} gap={px2vw(35)}>

@@ -15,4 +15,4 @@ export const findPizzaCount = (cartItem: TCartItem[], id: number | string, activ
     return currentPizza ? currentPizza.quantity : 0;
 };
 
-export const API_URL = 'http://localhost:8000/products';
+export const API_URL = 'http://localhost:8000/products?';

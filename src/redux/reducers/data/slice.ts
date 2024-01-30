@@ -1,4 +1,4 @@
-import {EStatus, TProductState} from "./type.ts";
+import {EStatus, TProductState, TRootObjectProductPizzas} from "./type.ts";
 import {asyncThunkCreator, buildCreateSlice} from "@reduxjs/toolkit";
 import {API_URL, createQuery} from "../../../utils";
 
@@ -21,12 +21,14 @@ const productSlice = createAppSlice({
     },
     reducers: (create) => ({
         fetchData: create.asyncThunk(
-            async (params, thunkAPI) => {
+            async (params, thunkAPI): Promise<TRootObjectProductPizzas[]> => {
                 const query = createQuery(params);
                 try {
-                    return await fetch(`${API_URL}?${query}`).then((res) => res.json());
+                    const response = await fetch(`${API_URL}${query}`);
+
+                    return response.json()
                 } catch (error) {
-                    return thunkAPI.rejectWithValue(error)
+                    return thunkAPI.rejectWithValue(error) as never;
                 }
             },
             {

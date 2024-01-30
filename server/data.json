@@ -338,16 +338,6 @@
       "price": 39,
       "category": 1,
       "rating": 7
-    },
-    {
-      "id": 21,
-      "imageUrl": null,
-      "title": null,
-      "types": [],
-      "price": "abc",
-      "category": null,
-      "rating": null,
-      "sizes": []
     }
   ]
 }

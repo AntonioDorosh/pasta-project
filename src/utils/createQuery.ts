@@ -3,17 +3,17 @@ import {TPizzaParams} from "../redux/reducers/data/type.ts";
 export const createQuery = (params: TPizzaParams) => {
     const {
         search,
-        currentPage,
         itemsPerPage,
         category,
-        sortBy
+        sortBy,
+        currentPage
     } = params;
 
     return [
         search ? `q=${search}` : '',
         category ? `category=${category}` : '',
-        `_page=${currentPage}`,
         `_limit=${itemsPerPage}`,
+        `_page=${currentPage}`,
         `&_sort=${sortBy}`
     ].join('&');
 };
