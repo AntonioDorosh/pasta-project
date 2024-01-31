@@ -1,5 +1,5 @@
-import {TCartItem} from "../redux/reducers/cart/type.ts";
-import {totalPrice} from "./totalPrice.ts";
+import { TCartItem } from '../redux/reducers/cart/type.ts';
+import { totalPrice } from './totalPrice.ts';
 
 export const getCartFromLS = () => {
     const data = localStorage.getItem('cartItem');
@@ -11,4 +11,3 @@ export const getCartFromLS = () => {
         sumPrice,
     };
 };
-

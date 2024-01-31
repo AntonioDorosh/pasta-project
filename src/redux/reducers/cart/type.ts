@@ -13,6 +13,7 @@ export type TCartState = {
     sumPrice: number;
 };
 
-export type TCartRemove = Omit<TCartItem, 'title' | 'price' | 'imageUrl' | 'quantity'>
-
-
+export type TCartRemove = Omit<
+    TCartItem,
+    'title' | 'price' | 'imageUrl' | 'quantity'
+>;

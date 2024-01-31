@@ -3,9 +3,9 @@ export const ModalType = {
     payment: 'payment',
 } as const;
 
-export type ModalType = typeof ModalType[keyof typeof ModalType];
+export type ModalType = (typeof ModalType)[keyof typeof ModalType];
 
 export type TModalState = {
-    isOpen: boolean
-    type: ModalType | undefined
+    isOpen: boolean;
+    type: ModalType | undefined;
 };

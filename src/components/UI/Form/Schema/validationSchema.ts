@@ -11,8 +11,8 @@ export const validationSchema = Yup.object({
         .matches(emailRegex, 'Invalid email')
         .required('A email field is required'),
     phone: Yup.number()
-        .typeError('That doesn\'t look like a phone number')
-        .integer('A phone number can\'t include a decimal point')
+        .typeError("That doesn't look like a phone number")
+        .integer("A phone number can't include a decimal point")
         .min(11)
         .required('A phone number is required'),
     address: Yup.string()

@@ -1,6 +1,6 @@
-import {sortProperty, TFilterState, TSort} from "./type.ts";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../store";
+import { sortProperty, TFilterState, TSort } from './type.ts';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../store';
 
 export const filterSlice = createSlice({
     name: 'filter',
@@ -30,11 +30,7 @@ export const filterSlice = createSlice({
     },
 });
 
-export const {
-    setSearchValue,
-    setSort,
-    setCurrentPage,
-    setCategoryId,
-} = filterSlice.actions;
+export const { setSearchValue, setSort, setCurrentPage, setCategoryId } =
+    filterSlice.actions;
 
 export const filterSelector = (state: RootState) => state.filter;

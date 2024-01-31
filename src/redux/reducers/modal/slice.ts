@@ -1,10 +1,10 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../store";
-import {ModalType, TModalState} from "./type.ts";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../store';
+import { ModalType, TModalState } from './type.ts';
 
 const initialState: TModalState = {
     isOpen: false,
-    type: undefined
+    type: undefined,
 };
 
 export const modalSlice = createSlice({
@@ -15,14 +15,13 @@ export const modalSlice = createSlice({
             state.isOpen = true;
             state.type = action.payload;
         },
-        closeModal: (state) => {
+        closeModal: state => {
             state.isOpen = false;
             state.type = undefined;
-        }
-    }
+        },
+    },
 });
 
-export const {openModal, closeModal} = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 
 export const selectModal = (state: RootState) => state.modal;
-

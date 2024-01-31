@@ -1,4 +1,4 @@
-import {TCartItem} from "../redux/reducers/cart/type.ts";
+import { TCartItem } from '../redux/reducers/cart/type.ts';
 
 export const addToLS = (arr: TCartItem[], key: string) => {
     const nonEmptyItems = arr.filter(item => Object.keys(item).length !== 0);

@@ -1,21 +1,21 @@
 export type TRootObjectProductPizzas = {
-	id: number | string;
-	imageUrl: string;
-	title: string;
-	types: number[];
-	sizes: number[];
-	price: number;
-	quantity?: number;
+    id: number | string;
+    imageUrl: string;
+    title: string;
+    types: number[];
+    sizes: number[];
+    price: number;
+    quantity?: number;
 };
 
 export type TPizzaParams = {
-	search: string;
-	itemsPerPage: number;
-	category: string;
-	currentPage: number;
-	sortBy: string;
-	order?: string
-}
+    search: string;
+    itemsPerPage: number;
+    category: string;
+    currentPage: number;
+    sortBy: string;
+    order?: string;
+};
 
 export enum EStatus {
     LOADING = 'LOADING',
@@ -24,7 +24,7 @@ export enum EStatus {
 }
 
 export type TProductState = {
-	product: TRootObjectProductPizzas[];
-	status: EStatus;
-	error: string;
+    product: TRootObjectProductPizzas[];
+    status: EStatus;
+    error: string;
 };
