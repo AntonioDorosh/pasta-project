@@ -15,7 +15,7 @@ export const filterSlice = createSlice({
         itemsPerPage: 5,
     } as TFilterState,
     reducers: {
-        setSearchValue: (state, action) => {
+        setSearchValue: (state, action: PayloadAction<string>) => {
             state.searchValue = action.payload;
         },
         setCategoryId: (state, action: PayloadAction<number>) => {

@@ -1,6 +1,6 @@
-import React, {ChangeEvent, FC, memo, useState} from 'react';
-import {useAppDispatch} from "../../../redux/hooks/useStore.ts";
-import {setSort} from "../../../redux/reducers/filter/slice.ts";
+import React, {ChangeEvent, memo} from 'react';
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks/useStore.ts";
+import {filterSelector, setSort} from "../../../redux/reducers/filter/slice.ts";
 import {
     sortProperty,
     sortPropertyType
@@ -12,32 +12,31 @@ type SortItem = {
     sortProperty: sortPropertyType
 }
 
-type SortProps = {
-    sort: SortItem;
-}
+const sortList: SortItem[] = [
+    {name: 'rating (DESC)', sortProperty: sortProperty.RATING_DESC},
+    {name: 'rating (ASC)', sortProperty: sortProperty.RATING_ASC},
+    {name: 'price (ASC)', sortProperty: sortProperty.PRICE_ASC},
+    {name: 'price (DESC)', sortProperty: sortProperty.PRICE_DESC},
+];
 
-export const Sort: FC<SortProps> = memo(({sort}) => {
-    const sortList: SortItem[] = [
-        {name: 'rating (DESC)', sortProperty: sortProperty.RATING_DESC},
-        {name: 'rating (ASC)', sortProperty: sortProperty.RATING_ASC},
-        {name: 'price (DESC)', sortProperty: sortProperty.PRICE_DESC},
-        {name: 'price (ASC)', sortProperty: sortProperty.PRICE_ASC},
-    ];
+export const Sort = memo(() => {
     const dispatch = useAppDispatch();
-    const [selectedSort, setSelectedSort] = useState(sort.sortProperty);
+    const {sort} = useAppSelector(filterSelector);
     const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const newSort = event.target.value as sortPropertyType
-        setSelectedSort(newSort);
-        dispatch(setSort({name: '', sortProperty: newSort}));
+        const newSortProperty = event.target.value as sortPropertyType;
+        const newSortItem = sortList.find(item => item.sortProperty === newSortProperty);
+        if (newSortItem) {
+            dispatch(setSort(newSortItem));
+        }
     };
 
     return (
         <>
             <b>Сортировка по:</b>
-            <SelectStyled value={selectedSort} onChange={handleSortChange}>
+            <SelectStyled value={sort.sortProperty} onChange={handleSortChange}>
                 {sortList.map(({sortProperty, name}, i) => (
                     <OptionStyled key={i} value={sortProperty}
-                                  $isActive={sortProperty === selectedSort}>
+                                  $isActive={sortProperty === sort.sortProperty}>
                         {name}
                     </OptionStyled>
                 ))}

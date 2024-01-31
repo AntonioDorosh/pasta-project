@@ -37,7 +37,6 @@ export const Home = () => {
         const category = activeCategory > 0 ? String(activeCategory) : '';
         const search = searchValue;
 
-
         dispatch(
             fetchData({
                 sortBy,
@@ -45,14 +44,13 @@ export const Home = () => {
                 category,
                 search,
                 currentPage: String(currentPage),
-                itemsPerPage
+                itemsPerPage,
             }),
         );
 
         window.scrollTo(0, 0);
     };
 
-    
 
     useEffect(() => {
         if (isMounted.current) {
@@ -60,7 +58,7 @@ export const Home = () => {
                 searchValue,
                 currentPage,
                 activeCategory,
-                sort: sort.sortProperty
+                sort: sort.sortProperty,
             })
             navigate(`?${queryString}`)
         }
@@ -77,7 +75,7 @@ export const Home = () => {
             <Header/>
             <Categories activeCategory={activeCategory}
                         onClickCategory={onChangeCategory}/>
-            <Sort sort={sort}/>
+            <Sort/>
             <ProductCard/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </Layout>
