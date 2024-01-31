@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../redux/hooks/useStore.ts";
 import {
     filterSelector,
-    setCategoryId,
     setCurrentPage
 } from "../redux/reducers/filter/slice.ts";
 import {Layout} from "../components/Layout/Layout.tsx";
@@ -27,10 +26,8 @@ export const Home = () => {
         sort,
     } = useAppSelector(filterSelector)
     const dispatch = useAppDispatch();
-    const onChangeCategory = useCallback((id: number) => dispatch(setCategoryId(id)), []);
     const onChangePage = useCallback((page: number) => dispatch(setCurrentPage(page)), []);
-
-
+    
     const fetchPizzas = async () => {
         const sortBy = sort.sortProperty.replace('-', '');
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
@@ -50,7 +47,6 @@ export const Home = () => {
 
         window.scrollTo(0, 0);
     };
-
 
     useEffect(() => {
         if (isMounted.current) {
@@ -73,8 +69,7 @@ export const Home = () => {
     return (
         <Layout>
             <Header/>
-            <Categories activeCategory={activeCategory}
-                        onClickCategory={onChangeCategory}/>
+            <Categories activeCategory={activeCategory}/>
             <Sort/>
             <ProductCard/>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
