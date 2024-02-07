@@ -50,6 +50,6 @@ const productSlice = createAppSlice({
 
 export const { fetchData } = productSlice.actions;
 
-export const { selectProduct, selectStatus } = productSlice.selectors;
+export const { selectProduct } = productSlice.selectors;
 
 export const product = productSlice.reducer;

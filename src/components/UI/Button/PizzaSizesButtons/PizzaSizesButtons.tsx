@@ -1,33 +1,36 @@
-import React from 'react';
-import { Button } from '../Button.tsx';
-import Text from '../../../../styles/Text/Text.ts';
-import { remCalc } from '../../../../utils';
+import React from "react";
+import { Button } from "../Button.tsx";
+import Text from "../../../../styles/Text/Text.ts";
+import { remCalc } from "../../../../utils";
+import { useAppDispatch } from "../../../../redux/hooks/useStore.ts";
+import { setActiveSize } from "../../../../redux/reducers/filter/slice.ts";
 
 type PizzaSizesButtonsProps = {
-    sizes: number[];
-    activeSize: number;
-    setActiveSize: (index: number) => void;
+  sizes: number[];
+  id: number | string;
+  activeSize: { [key: string]: number };
 };
 
 export const PizzaSizesButtons = ({
-    sizes,
-    activeSize,
-    setActiveSize,
+  sizes,
+  id,
+  activeSize,
 }: PizzaSizesButtonsProps) => {
-    return (
-        <>
-            {sizes.map((size, index) => (
-                <Button
-                    key={index}
-                    $variant={'card'}
-                    onClick={() => setActiveSize(index)}
-                    $isActive={activeSize === index}
-                >
-                    <Text fontSize={remCalc(14)} fontWeight={400}>
-                        {size}cm.{' '}
-                    </Text>
-                </Button>
-            ))}
-        </>
-    );
+  const dispatch = useAppDispatch();
+  return (
+    <>
+      {sizes.map((size, index) => (
+        <Button
+          key={index}
+          $variant={"card"}
+          onClick={() => dispatch(setActiveSize({ id, size: index }))}
+          $isActive={activeSize[id] === index}
+        >
+          <Text fontSize={remCalc(14)} fontWeight={400}>
+            {size}cm.{" "}
+          </Text>
+        </Button>
+      ))}
+    </>
+  );
 };
