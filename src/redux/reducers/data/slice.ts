@@ -1,6 +1,6 @@
-import { EStatus, TProductState, TRootObjectProductPizzas } from './type.ts';
-import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit';
-import { createQuery } from '../../../utils';
+import { EStatus, TProductState, TRootObjectProductPizzas } from "./type.ts";
+import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
+import { createQuery } from "../../../utils";
 
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -9,17 +9,17 @@ const createAppSlice = buildCreateSlice({
 const initialState = {
     product: [],
     status: EStatus.LOADING,
-    error: '',
+    error: "",
 } as TProductState;
 
 const productSlice = createAppSlice({
-    name: 'product',
+    name: "product",
     initialState,
     selectors: {
-        selectProduct: state => state.product,
-        selectStatus: state => state.status,
+        selectProduct: (state) => state.product,
+        selectStatus: (state) => state.status,
     },
-    reducers: create => ({
+    reducers: (create) => ({
         fetchData: create.asyncThunk(
             async (params, thunkAPI): Promise<TRootObjectProductPizzas[]> => {
                 const query = createQuery(params);
@@ -32,7 +32,7 @@ const productSlice = createAppSlice({
                 }
             },
             {
-                pending: state => {
+                pending: (state) => {
                     state.status = EStatus.LOADING;
                 },
                 fulfilled: (state, action) => {
@@ -50,6 +50,6 @@ const productSlice = createAppSlice({
 
 export const { fetchData } = productSlice.actions;
 
-export const { selectProduct } = productSlice.selectors;
+export const { selectProduct, selectStatus } = productSlice.selectors;
 
 export const product = productSlice.reducer;

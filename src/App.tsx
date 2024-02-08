@@ -1,13 +1,28 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Home } from './pages/Home.tsx';
-import { Cart } from './pages/Cart.tsx';
+import React, { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+
+const HomePage = lazy(() => import("./pages/Home.tsx"));
+const CartPage = lazy(() => import("./pages/Cart.tsx"));
 
 const App = () => {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+                path="/"
+                element={
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <HomePage />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/cart"
+                element={
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <CartPage />
+                    </Suspense>
+                }
+            />
         </Routes>
     );
 };
