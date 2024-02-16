@@ -3,7 +3,7 @@ import { Button } from "../Button.tsx";
 import Text from "../../../../styles/Text/Text.ts";
 import { pizzaTypes, remCalc } from "../../../../utils";
 import { useAppDispatch } from "../../../../redux/hooks/useStore.ts";
-import { setActiveTypes } from "../../../../redux/reducers/filter/slice.ts";
+import { setActive } from "../../../../redux/reducers/filter/slice.ts";
 
 type PizzaTypesButtonsProps = {
     types: number[];
@@ -26,9 +26,10 @@ export const PizzaTypesButtons = ({
                     $isActive={activeTypes[id] === index}
                     onClick={() =>
                         dispatch(
-                            setActiveTypes({
+                            setActive({
                                 id,
-                                type: index,
+                                value: index,
+                                key: "activeTypes",
                             }),
                         )
                     }
