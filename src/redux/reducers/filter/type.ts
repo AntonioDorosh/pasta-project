@@ -18,12 +18,4 @@ export type TFilterState = {
     sort: TSort;
     currentPage: number;
     itemsPerPage: number;
-    activeSize: { [id: string]: number };
-    activeTypes: { [id: string]: number };
-};
-
-export type TSetActive = {
-    id: string | number;
-    value: number;
-    key: "activeSize" | "activeTypes";
 };

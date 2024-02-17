@@ -2,37 +2,26 @@ import React from "react";
 import { Button } from "../Button.tsx";
 import Text from "../../../../styles/Text/Text.ts";
 import { remCalc } from "../../../../utils";
-import { useAppDispatch } from "../../../../redux/hooks/useStore.ts";
-import { setActive } from "../../../../redux/reducers/filter/slice.ts";
 
 type PizzaSizesButtonsProps = {
     sizes: number[];
-    id: number | string;
-    activeSize: { [key: string]: number };
+    activeSize: number;
+    setActiveSize: (value: number) => void;
 };
 
 export const PizzaSizesButtons = ({
     sizes,
-    id,
     activeSize,
+    setActiveSize,
 }: PizzaSizesButtonsProps) => {
-    const dispatch = useAppDispatch();
     return (
         <>
             {sizes.map((size, index) => (
                 <Button
                     key={index}
                     $variant={"card"}
-                    onClick={() =>
-                        dispatch(
-                            setActive({
-                                id,
-                                value: index,
-                                key: "activeSize",
-                            }),
-                        )
-                    }
-                    $isActive={activeSize[id] === index}
+                    onClick={() => setActiveSize(index)}
+                    $isActive={activeSize === index}
                 >
                     <Text fontSize={remCalc(14)} fontWeight={400}>
                         {size}cm.{" "}
