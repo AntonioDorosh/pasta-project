@@ -52,7 +52,7 @@ export const ModalCart = ({ isOpenCart, onClose }: CartModalProps) => {
                 В корзине {cart?.length}{" "}
                 {cart?.length === 1 ? "товар" : "товара"}
               </Typography>
-              <Button $variant={"close"} onClick={onClose} />
+              <Button $variant={"close"} onClick={onClose}/>
             </Flex>
             {cart?.map((cartItem) => (
               <ModalCartItem key={cartItem.id} {...cartItem} />

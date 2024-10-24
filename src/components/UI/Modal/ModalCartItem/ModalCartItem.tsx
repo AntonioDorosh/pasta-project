@@ -2,16 +2,14 @@ import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { formatCurrency, px2vw, remCalc } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import { TCartItem } from "@/shared/types/cart";
+import { CartItemDto } from "@/shared/types/cart";
 import { Button } from "@/components/UI/Button/Button";
-import { useRemoveFromCart } from "@/shared/hooks/useRemoveFromCart";
 import { useUpdateQuantity } from "@/shared/hooks/useUpdateQuantity";
 
-export const ModalCartItem = (cartItem: TCartItem) => {
-  const { offers, imageSrc, title, type, quantity, price, id } = cartItem;
+export const ModalCartItem = (cartItem: CartItemDto) => {
+  const { offers, imageSrc, title, type, quantity, id } = cartItem;
   const { size, numericSize } = offers;
   const productDetails = `${size} ${numericSize} см, ${type?.toLowerCase()} тесто`;
-  const { removeFromCartMutation } = useRemoveFromCart();
   const updateQuantity = useUpdateQuantity();
 
   return (
@@ -20,18 +18,18 @@ export const ModalCartItem = (cartItem: TCartItem) => {
         <Flex flexDirection={"column"}>
           <img width={"65px"} src={imageSrc} alt={title} />
         </Flex>
-        <Flex marginLeft={px2vw(24)} flexDirection={"column"}>
+        <Flex marginLeft={px2vw(24)} flexDirection={"column"} flex={1}>
           <Typography fontWeight={700}>{title}</Typography>
-          <Typography fontSize={remCalc(14)} color={"#A1A1A1"}>
+          <Typography
+            fontSize={remCalc(14)}
+            color={"#A1A1A1"}
+            marginBottom={px2vw(15)}
+          >
             {productDetails}
           </Typography>
           <Flex alignItems={"center"} gap={px2vw(10)}>
             <Button
-              width={"30px"}
-              height={"30px"}
-              border={"1px solid #FE5F00"}
-              color={"#FE5F00"}
-              borderRadius={"10px"}
+              $variant={"quantity"}
               onClick={() =>
                 updateQuantity({
                   id: id!,
@@ -43,11 +41,7 @@ export const ModalCartItem = (cartItem: TCartItem) => {
             </Button>
             <Typography fontWeight={700}>{quantity}</Typography>
             <Button
-              width={"30px"}
-              height={"30px"}
-              border={"1px solid #FE5F00"}
-              color={"#FE5F00"}
-              borderRadius={"10px"}
+              $variant={"quantity"}
               onClick={() =>
                 updateQuantity({
                   id: id!,
@@ -57,10 +51,9 @@ export const ModalCartItem = (cartItem: TCartItem) => {
             >
               +
             </Button>
-            <Typography marginLeft={"auto"}>
-              {formatCurrency(price && price * quantity)}
+            <Typography marginLeft={"auto"} fontWeight={700}>
+              {formatCurrency(offers.price)}
             </Typography>
-            <button onClick={() => removeFromCartMutation(id!)}>remove</button>
           </Flex>
         </Flex>
       </Flex>

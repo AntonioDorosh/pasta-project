@@ -9,7 +9,7 @@ type TOffers = {
   discount?: number;
 };
 
-export type TCartItem = {
+export type CartItemDto = {
   id?: string;
   title: string;
   price: number;
@@ -21,4 +21,4 @@ export type TCartItem = {
   quantity: number;
 };
 
-export type TCartItemQueryResponse = TCartItem[] | undefined;
+export type CartItemDtoResponse = CartItemDto[] | undefined;

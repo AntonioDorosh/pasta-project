@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { ProductDto } from "@/shared/types/products";
+import { TProduct } from "@/shared/types/products";
 import { useOutsideClick } from "@/shared/hooks/useOutsideClick";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import {
@@ -16,7 +16,7 @@ import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { useAddToCart } from "@/shared/hooks/useAddToCart";
 import { OfferOptions } from "@/components/OfferOptions/OfferOptions";
 
-interface ProductModalProps extends ProductDto {
+interface ProductModalProps extends TProduct {
   isOpenModal: boolean;
   onClose: () => void;
 }

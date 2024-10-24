@@ -77,6 +77,66 @@ const BUTTON_STYLES = {
     background-color: #ffffff;
     border: ${({ $isActive }) => ($isActive ? "1px solid #fe5f00" : "none")};
   `,
+
+  quantity: css`
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fe5f00;
+    color: #fe5f00;
+    border-radius: 10px;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      background-color: #fe5f00;
+      color: #ffffffff;
+    }
+  `,
+
+  cart: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    gap: 5px;
+    border-radius: 15px;
+    border: 1px solid #fe5f00;
+    background-color: #fe5f00;
+  `,
+
+  close: css`
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      left: 15px;
+      content: " ";
+      height: 33px;
+      width: 2px;
+      background-color: #333;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  `,
 };
 
 export const ButtonStyled = styled.button<TButtonProps>`

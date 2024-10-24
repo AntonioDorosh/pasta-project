@@ -4,3 +4,4 @@ export * from "./formatCurrency";
 export * from "./getProductDetails";
 export * from "./createQuery";
 export * from "./calculatePriceWithIngredient";
+export * from "./calculateTotalPrice";

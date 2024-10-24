@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { TProduct } from "@/shared/types/products";
+import { ProductDto } from "@/shared/types/products";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { formatCurrency, px2vw, remCalc } from "@/utils";
 import { Button } from "@/components/UI/Button/Button";
 import { ModalProduct } from "@/components/UI/Modal/ModalProduct/ModalProduct";
 
-export const ProductItem = (props: TProduct) => {
+export const ProductItem = (props: ProductDto) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { title, imageSrc, description, price } = props;
 

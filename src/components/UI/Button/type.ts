@@ -9,7 +9,14 @@ import {
   WidthProps,
 } from "styled-system";
 
-type ButtonVariants = "category" | "add" | "options" | "ingredients";
+type ButtonVariants =
+  | "category"
+  | "add"
+  | "options"
+  | "ingredients"
+  | "quantity"
+  | "cart"
+  | "close";
 
 type StyledSystemProps = SpaceProps &
   WidthProps &

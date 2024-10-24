@@ -7,6 +7,7 @@ import { useFetchProducts } from "@/shared/hooks/useFetchProducts";
 import { ModalCart } from "@/components/UI/Modal/ModalCart/ModalCart";
 import { SearchBar } from "@/components/UI/SearchBar/SearchBar";
 import { CartButton } from "@/components/UI/CartButton/CartButton";
+import { CurrentCategory } from "@/components/CurrentCategory/CurrentCategory";
 
 export const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
@@ -34,6 +35,7 @@ export const Home = () => {
         />
         <CartButton isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart} />
       </Header>
+      <CurrentCategory selectedCategory={selectedCategory} />
       <Categories
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}

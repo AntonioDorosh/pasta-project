@@ -28,5 +28,8 @@ export const Global = createGlobalStyle`
         line-height: 1.5;
         color: #000;
     }
-    
+
+    a {
+        text-decoration: none;
+    }
 `;

@@ -2,10 +2,10 @@ import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { ProductItem } from "@/components/ProductItem/ProductItem";
 import { px2vw } from "@/utils";
-import { TProduct } from "@/shared/types/products";
+import { ProductDto } from "@/shared/types/products";
 
 type ProductCardProps = {
-  products: TProduct[] | undefined;
+  products: ProductDto[] | undefined;
 };
 
 export const ProductList = ({ products }: ProductCardProps) => {

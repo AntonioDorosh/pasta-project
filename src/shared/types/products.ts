@@ -12,7 +12,7 @@ export type TIngredients = {
   imageSrc: string;
   price: number;
 };
-export type TProduct = {
+export type ProductDto = {
   id: string;
   title: string;
   price: number;
@@ -24,4 +24,4 @@ export type TProduct = {
   ingredients: TIngredients[];
 };
 
-export type TProductsResponseQuery = TProduct[] | undefined;
+export type ProductDtoResponse = ProductDto[] | undefined;
