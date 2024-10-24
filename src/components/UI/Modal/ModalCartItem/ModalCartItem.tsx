@@ -3,7 +3,7 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { px2vw, remCalc } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { TCartItem } from "@/shared/types/cart";
-import { useRemoveFromCart } from "@/shared/api/useRemoveFromCart";
+import { useRemoveFromCart } from "@/shared/hooks/useRemoveFromCart";
 
 export const ModalCartItem = (cartItem: TCartItem) => {
   const { offers, imageSrc, title, type, id } = cartItem;
