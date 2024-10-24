@@ -1,0 +1,353 @@
+{
+  "cart": [],
+  "products": [
+    {
+      "id": "1",
+      "title": "Сырный цыпленок",
+      "price": 395,
+      "description": "Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок",
+      "imageSrc": "/images/item-1.png",
+      "category": 5,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 11,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 12,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 13,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Диабло",
+      "price": 449,
+      "description": "Острая чоризо, острый перец халапеньо, соус барбекю, митболы, томаты, сладкий перец, красный лук, моцарелла",
+      "imageSrc": "/images/item-2.png",
+      "category": 4,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 22,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 23,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 24,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Чизбургер-пицца",
+      "price": 200,
+      "description": "Попробуйте уникальное сочетание сочного мяса, сыра и соусов, создающее незабываемый вкус чизбургера в формате пиццы.",
+      "imageSrc": "/images/item-3.png",
+      "category": 1,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 33,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 34,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 35,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Сырная",
+      "price": 395,
+      "description": "Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок",
+      "imageSrc": "/images/item-4.png",
+      "category": 5,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 44,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 45,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 46,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Креветки по-азиатски",
+      "price": 290,
+      "description": "Креветки, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок",
+      "imageSrc": "/images/item-5.png",
+      "category": 2,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 55,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 56,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 57,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Сырный цыпленок",
+      "price": 385,
+      "description": "Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок",
+      "imageSrc": "/images/item-6.png",
+      "category": 3,
+      "types": [
+        0,
+        1
+      ],
+      "offers": [
+        {
+          "productId": 66,
+          "discount": 10,
+          "price": 300,
+          "size": "Маленькая",
+          "numericSize": 25,
+          "weight": 300
+        },
+        {
+          "productId": 67,
+          "discount": 20,
+          "price": 400,
+          "size": "Средняя",
+          "numericSize": 30,
+          "weight": 500
+        },
+        {
+          "productId": 68,
+          "discount": 30,
+          "price": 500,
+          "size": "Большая",
+          "numericSize": 35,
+          "weight": 700
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": 1,
+          "name": "Сырный бортик",
+          "imageSrc": "/images/cheese.png",
+          "price": 179
+        },
+        {
+          "ingredientId": 2,
+          "name": "Сливочная моцарелла",
+          "imageSrc": "/images/mozzarella.png",
+          "price": 79
+        },
+        {
+          "ingredientId": 3,
+          "name": "Сыры чеддер и пармезан",
+          "imageSrc": "/images/cheddar.png",
+          "price": 79
+        }
+      ]
+    }
+  ]
+}
