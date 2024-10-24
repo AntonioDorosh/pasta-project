@@ -3,12 +3,18 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { TProduct } from "@/shared/types/products";
 import { useOutsideClick } from "@/shared/hooks/useOutsideClick";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import { formatCurrency, getProductDetails, px2vw, remCalc } from "@/utils";
+import {
+  calculatePriceWithIngredient,
+  formatCurrency,
+  getProductDetails,
+  px2vw,
+  remCalc,
+} from "@/utils";
 import { Button } from "@/components/UI/Button/Button";
-import { PRODUCT_TYPE } from "@/shared/utils";
 import { Ingredients } from "@/components/UI/Ingredients/Ingredients";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
-import { useAddItemToCart } from "@/shared/hooks/useAddToCart";
+import { useAddToCart } from "@/shared/hooks/useAddToCart";
+import { OfferOptions } from "@/components/OfferOptions/OfferOptions";
 
 interface ProductModalProps extends TProduct {
   isOpenModal: boolean;
@@ -31,7 +37,7 @@ export const ModalProduct = ({
   const { title, imageSrc, offers, types, ingredients, id } = rest;
   const modalRef = useOutsideClick(isOpenModal, onClose);
   const { cart } = useFetchCart();
-  const addToCart = useAddItemToCart({
+  const addToCart = useAddToCart({
     imageSrc,
     cart,
     ingredients,
@@ -40,6 +46,13 @@ export const ModalProduct = ({
     id: Number(id),
     selectedIngredient,
     selectedOffer: offers[selectedOptions.size],
+  });
+
+  const totalPrice = calculatePriceWithIngredient({
+    offers,
+    selectedSize: selectedOptions.size,
+    ingredients,
+    selectedIngredients: selectedIngredient,
   });
 
   return (
@@ -83,42 +96,14 @@ export const ModalProduct = ({
           <Flex position={"absolute"} top={2} right={2}>
             <Button onClick={() => onClose()}>X</Button>
           </Flex>
-          <Flex
-            background={"rgb(243,243, 247)"}
-            borderRadius={"30px"}
-            marginBottom={px2vw(12)}
-          >
-            {offers.map((offer, index) => (
-              <Button
-                key={`offer-${index}`}
-                $variant={"options"}
-                $isActive={selectedOptions.size === index}
-                onClick={() =>
-                  setSelectedOptions((prev) => ({ ...prev, size: index }))
-                }
-              >
-                {offer.size}
-              </Button>
-            ))}
-          </Flex>
-          <Flex
-            background={"rgb(243,243, 247)"}
-            borderRadius={"30px"}
-            marginBottom={px2vw(30)}
-          >
-            {types.map((type, index) => (
-              <Button
-                key={`type-${index}`}
-                $variant={"options"}
-                $isActive={selectedOptions.type === index}
-                onClick={() =>
-                  setSelectedOptions((prev) => ({ ...prev, type: index }))
-                }
-              >
-                {PRODUCT_TYPE[type]}
-              </Button>
-            ))}
-          </Flex>
+          <OfferOptions
+            offers={offers}
+            options={{
+              selectedOptions,
+              setSelectedOptions,
+            }}
+            types={types}
+          />
           <Typography
             fontSize={remCalc(18)}
             fontWeight={700}
@@ -132,8 +117,7 @@ export const ModalProduct = ({
             setSelectedIngredient={setSelectedIngredient}
           />
           <Button $variant={"add"} onClick={() => addToCart()}>
-            Добавить в корзину{" "}
-            {formatCurrency(offers[selectedOptions.size].price)}
+            Добавить в корзину {formatCurrency(totalPrice)}
           </Button>
         </Flex>
       </Flex>

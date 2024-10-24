@@ -23,6 +23,7 @@ export const Categories = ({
     >
       {PRODUCT_CATEGORIES.map((category, index) => (
         <Button
+          key={index}
           $variant={"category"}
           $isActive={selectedCategory === index}
           onClick={() => setSelectedCategory(index)}

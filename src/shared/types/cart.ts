@@ -12,7 +12,7 @@ type TOffers = {
 export type TCartItem = {
   id?: string;
   title: string;
-  price?: number;
+  price: number;
   description?: string;
   imageSrc: string;
   type?: string;

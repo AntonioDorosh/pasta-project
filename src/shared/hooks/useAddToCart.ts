@@ -43,7 +43,7 @@ const findExistingProduct = (
       JSON.stringify(item.ingredients) === JSON.stringify(selectedIngredients),
   );
 
-export const useAddItemToCart = ({
+export const useAddToCart = ({
   cart,
   ingredients,
   selectedIngredient,
@@ -77,6 +77,7 @@ export const useAddItemToCart = ({
     return dataService.addToCart({
       title,
       imageSrc,
+      price: selectedOffer.price,
       offers: {
         productId: id,
         size: selectedOffer.size,
@@ -90,10 +91,10 @@ export const useAddItemToCart = ({
     });
   };
 
-  const { mutate: addItemToCart } = useMutation({
+  const { mutate: addToCartMutation } = useMutation({
     mutationFn: addItem,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
   });
 
-  return addItemToCart;
+  return addToCartMutation;
 };
