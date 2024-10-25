@@ -11,6 +11,7 @@ import {
 import { OrderSummarySection } from "@/components/OrderSummarySection/OrderSummarySection";
 import { OrderCartSection } from "@/components/OrderCartSection/OrderCartSection";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
+import { Form } from "@/components/UI/Form/Form";
 
 export const OrderPage = () => {
   const { cart } = useFetchCart();
@@ -23,17 +24,10 @@ export const OrderPage = () => {
       ) : (
         <Layout>
           <OrderCartSection />
-
           <OrderSummarySection />
-
           <FormSection>
-            <h2>Персональная информация</h2>
-            <input placeholder="Имя" />
-            <input placeholder="Фамилия" />
-            <input placeholder="E-Mail" />
-            <input placeholder="Телефон" />
+            <Form />
           </FormSection>
-
           <Footer>
             <OrderButton>Перейти к оплате</OrderButton>
           </Footer>
