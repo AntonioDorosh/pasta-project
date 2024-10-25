@@ -47,7 +47,7 @@ const getSelectedIngredients = (
  * @param id - идентификатор продукта
  * @param selectedOffer - предложение продукта по размеру
  * @param selectedType - тип продукта
- * @param selectedIngredients - Выбранные ингредиенты (сравниваются через JSON.stringify для точного совпадения массива).
+ * @param selectedIngredients - Ингредиенты (сравниваются через JSON.stringify для точного совпадения массива).
  * @return - находит существующий продукт в корзине
  */
 
@@ -66,19 +66,7 @@ const findExistingProduct = (
       JSON.stringify(item.ingredients) === JSON.stringify(selectedIngredients),
   );
 
-/**
- *
- * @param cart - массив продуктов в корзине
- * @param ingredients - список ингредиентов
- * @param selectedIngredient - выбранные ингредиенты
- * @param selectedType - выбранный тип
- * @param selectedOffer - выбранное предложение
- * @param id - идентификатор
- * @param imageSrc - картинка
- * @param title - название
- */
-
-export const useAddToCart = ({
+const addToCart = ({
   cart,
   ingredients,
   selectedIngredient,
@@ -93,41 +81,41 @@ export const useAddToCart = ({
     validIngredients(ingredients),
   );
 
-  const addItem = () => {
-    const existingProduct = findExistingProduct(
-      cart,
-      id,
-      selectedOffer,
-      selectedType,
-      selectedIngredients,
-    );
+  const existingProduct = findExistingProduct(
+    cart,
+    id,
+    selectedOffer,
+    selectedType,
+    selectedIngredients,
+  );
 
-    if (existingProduct) {
-      const { id: productId = 0, quantity } = existingProduct;
-      const newQuantity = quantity + 1;
+  if (existingProduct) {
+    const { id: productId = 0, quantity } = existingProduct;
+    const newQuantity = quantity + 1;
 
-      return dataService.updateQuantity(productId, newQuantity);
-    }
+    return dataService.updateQuantity(productId, newQuantity);
+  }
 
-    return dataService.addToCart({
-      title,
-      imageSrc,
+  return dataService.addToCart({
+    title,
+    imageSrc,
+    price: selectedOffer.price,
+    offers: {
+      productId: id,
+      size: selectedOffer.size,
       price: selectedOffer.price,
-      offers: {
-        productId: id,
-        size: selectedOffer.size,
-        price: selectedOffer.price,
-        weight: selectedOffer.weight,
-        numericSize: selectedOffer.numericSize,
-      },
-      type: PRODUCT_TYPE[selectedType],
-      ingredients: selectedIngredients,
-      quantity: 1,
-    });
-  };
+      weight: selectedOffer.weight,
+      numericSize: selectedOffer.numericSize,
+    },
+    type: PRODUCT_TYPE[selectedType],
+    ingredients: selectedIngredients,
+    quantity: 1,
+  });
+};
 
+export const useAddToCart = () => {
   const { mutate: addToCartMutation } = useMutation({
-    mutationFn: addItem,
+    mutationFn: addToCart,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
   });
 

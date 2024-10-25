@@ -13,7 +13,7 @@ type CalculatePriceWithIngredientProps = {
  * @param selectedIngredients - выбранные ингредиенты
  * @param selectedSize - выбранный размер продукта
  * @param ingredients - список ингредиентов
- * @return - цена с учетом выбранных ингредиентов
+ * @return number - цена с учетом выбранных ингредиентов
  */
 
 export const calculatePriceWithIngredient = ({

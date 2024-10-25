@@ -1,16 +1,20 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { formatCurrency, px2vw, remCalc } from "@/utils";
+import { calculateTotalPrice, formatCurrency, px2vw, remCalc } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { CartItemDto } from "@/shared/types/cart";
-import { Button } from "@/components/UI/Button/Button";
-import { useUpdateQuantity } from "@/shared/hooks/useUpdateQuantity";
+import { QuantityControl } from "@/components/QuantityControl/QuantityControl";
+import { useFetchCart } from "@/shared/hooks/useFetchCart";
 
 export const ModalCartItem = (cartItem: CartItemDto) => {
-  const { offers, imageSrc, title, type, quantity, id } = cartItem;
+  const { cart } = useFetchCart();
+  const { offers, imageSrc, title, type, quantity, id, ingredients } = cartItem;
   const { size, numericSize } = offers;
   const productDetails = `${size} ${numericSize} см, ${type?.toLowerCase()} тесто`;
-  const updateQuantity = useUpdateQuantity();
+  const ingredientsDetails = ingredients
+    .map((ingredient) => `+ ${ingredient.name}`)
+    .join(", ");
+  const totalPrice = calculateTotalPrice(cart);
 
   return (
     <>
@@ -20,41 +24,17 @@ export const ModalCartItem = (cartItem: CartItemDto) => {
         </Flex>
         <Flex marginLeft={px2vw(24)} flexDirection={"column"} flex={1}>
           <Typography fontWeight={700}>{title}</Typography>
-          <Typography
-            fontSize={remCalc(14)}
-            color={"#A1A1A1"}
-            marginBottom={px2vw(15)}
-          >
+          <Typography fontSize={remCalc(14)} color={"#A1A1A1"}>
             {productDetails}
           </Typography>
-          <Flex alignItems={"center"} gap={px2vw(10)}>
-            <Button
-              $variant={"quantity"}
-              onClick={() =>
-                updateQuantity({
-                  id: id!,
-                  quantity: quantity - 1,
-                })
-              }
-            >
-              -
-            </Button>
-            <Typography fontWeight={700}>{quantity}</Typography>
-            <Button
-              $variant={"quantity"}
-              onClick={() =>
-                updateQuantity({
-                  id: id!,
-                  quantity: quantity + 1,
-                })
-              }
-            >
-              +
-            </Button>
+          <Typography marginBottom={px2vw(20)} color={"#A1A1A1"}>
+            {ingredientsDetails}
+          </Typography>
+          <QuantityControl quantity={quantity} id={id}>
             <Typography marginLeft={"auto"} fontWeight={700}>
-              {formatCurrency(offers.price)}
+              {formatCurrency(totalPrice)}
             </Typography>
-          </Flex>
+          </QuantityControl>
         </Flex>
       </Flex>
     </>

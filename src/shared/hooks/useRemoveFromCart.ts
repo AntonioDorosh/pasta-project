@@ -8,5 +8,5 @@ export const useRemoveFromCart = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
   });
 
-  return { removeFromCartMutation };
+  return removeFromCartMutation;
 };

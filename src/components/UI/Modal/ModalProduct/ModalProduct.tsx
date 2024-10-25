@@ -37,16 +37,18 @@ export const ModalProduct = ({
   const { title, imageSrc, offers, types, ingredients, id } = rest;
   const modalRef = useOutsideClick(isOpenModal, onClose);
   const { cart } = useFetchCart();
-  const addToCart = useAddToCart({
-    imageSrc,
-    cart,
-    ingredients,
-    selectedType: selectedOptions.type,
-    title,
-    id: Number(id),
-    selectedIngredient,
-    selectedOffer: offers[selectedOptions.size],
-  });
+  const addToCart = useAddToCart();
+  const addToCartHandler = () =>
+    addToCart({
+      imageSrc,
+      cart,
+      ingredients,
+      selectedType: selectedOptions.type,
+      title,
+      id: Number(id),
+      selectedIngredient,
+      selectedOffer: offers[selectedOptions.size],
+    });
 
   const totalPrice = calculatePriceWithIngredient({
     offers,
@@ -114,7 +116,7 @@ export const ModalProduct = ({
             selectedIngredient={selectedIngredient}
             setSelectedIngredient={setSelectedIngredient}
           />
-          <Button $variant={"add"} onClick={() => addToCart()}>
+          <Button $variant={"add"} onClick={addToCartHandler}>
             Добавить в корзину {formatCurrency(totalPrice)}
           </Button>
         </Flex>

@@ -1,6 +1,10 @@
 import React, { PropsWithChildren } from "react";
 import { ContainerStyled } from "@/components/Layouts/Container/Container.styled";
 
-export const Container = ({ children }: PropsWithChildren) => {
-  return <ContainerStyled>{children}</ContainerStyled>;
+type ContainerProps = PropsWithChildren & {
+  $bgColor?: string;
+};
+
+export const Container = ({ children, $bgColor }: ContainerProps) => {
+  return <ContainerStyled $bgColor={$bgColor}>{children}</ContainerStyled>;
 };

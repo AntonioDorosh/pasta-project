@@ -4,6 +4,7 @@ import { calculateTotalPrice, formatCurrency, px2vw } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { Link } from "react-router-dom";
+import arrowIcon from "@/assets/images/arrow.svg";
 
 export const ModalCartSummary = () => {
   const { cart } = useFetchCart();
@@ -41,6 +42,7 @@ export const ModalCartSummary = () => {
         <Link to={"/cart"}>
           <Flex
             as={"button"}
+            position={"relative"}
             background={"#FE5F00"}
             color={"#FFFFFF"}
             width={"100%"}
@@ -51,6 +53,16 @@ export const ModalCartSummary = () => {
             cursor={"pointer"}
           >
             Оформить заказ
+            <Flex
+              position={"absolute"}
+              top={"37%"}
+              right={"27%"}
+              width={"20px"}
+              height={"20px"}
+              backgroundImage={`url(${arrowIcon})`}
+              backgroundRepeat={"no-repeat"}
+              backgroundPosition={"cover"}
+            />
           </Flex>
         </Link>
       </Flex>

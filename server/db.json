@@ -1,22 +1,5 @@
 {
-  "cart": [
-    {
-      "title": "Сырный цыпленок",
-      "imageSrc": "/images/item-1.png",
-      "price": 300,
-      "offers": {
-        "productId": 1,
-        "size": "Маленькая",
-        "price": 300,
-        "weight": 300,
-        "numericSize": 25
-      },
-      "type": "Традиционное",
-      "ingredients": [],
-      "quantity": 1,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "products": [
     {
       "id": "1",
