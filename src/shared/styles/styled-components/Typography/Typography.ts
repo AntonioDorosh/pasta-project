@@ -22,7 +22,7 @@ const Typography = styled.span.withConfig({
 })<TTextProps>(
   textProps,
   css({
-    display: "inline-block",
+    display: "block",
   }),
 );
 

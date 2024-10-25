@@ -27,7 +27,7 @@ export const ModalCartItem = (cartItem: CartItemDto) => {
           <Typography fontSize={remCalc(14)} color={"#A1A1A1"}>
             {productDetails}
           </Typography>
-          <Typography marginBottom={px2vw(20)} color={"#A1A1A1"}>
+          <Typography marginBottom={px2vw(12)} color={"#A1A1A1"}>
             {ingredientsDetails}
           </Typography>
           <QuantityControl quantity={quantity} id={id}>

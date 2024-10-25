@@ -41,6 +41,7 @@ export const QuantityControl = ({
       >
         +
       </Button>
+      {children}
     </Flex>
   );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "@/pages/Home/Home";
-import { Cart } from "@/pages/Cart/Cart";
+import { OrderPage } from "@/pages/OrderPage/OrderPage";
 
 export const App = () => {
   return (
     <Routes>
       <Route path={"/"} element={<Home />} />
-      <Route path={"/cart"} element={<Cart />} />
+      <Route path={"/cart"} element={<OrderPage />} />
     </Routes>
   );
 };

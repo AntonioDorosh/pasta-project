@@ -8,8 +8,15 @@ import { ModalCart } from "@/components/UI/Modal/ModalCart/ModalCart";
 import { SearchBar } from "@/components/UI/SearchBar/SearchBar";
 import { CartButton } from "@/components/UI/CartButton/CartButton";
 import { CurrentCategory } from "@/components/CurrentCategory/CurrentCategory";
+import { SortProperty } from "@/shared/types/sort";
+import Flex from "@/shared/styles/styled-components/Flex/Flex";
+import { Sort } from "@/components/UI/Sort/Sort";
 
 export const Home = () => {
+  const [sort, setSort] = useState<SortProperty>({
+    field: "default",
+    order: "asc",
+  });
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [searchProduct, setSearchProduct] = useState("");
   const [isOpenCart, setIsOpenCart] = useState(false);
@@ -18,6 +25,10 @@ export const Home = () => {
   const { products } = useFetchProducts({
     category: selectedCategory,
     searchTerm: searchProductDeferred,
+    sortBy: {
+      name: sort.field,
+      sortProperty: sort,
+    },
   });
 
   return (
@@ -35,7 +46,11 @@ export const Home = () => {
         />
         <CartButton isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart} />
       </Header>
-      <CurrentCategory selectedCategory={selectedCategory} />
+      <Flex alignItems={"center"} justifyContent={"space-between"}>
+        <CurrentCategory selectedCategory={selectedCategory} />
+        <Sort sort={sort} setSort={setSort} />
+      </Flex>
+
       <Categories
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
