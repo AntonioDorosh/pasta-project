@@ -7,9 +7,9 @@ import {
   SectionTitle,
 } from "@/components/UI/Form/Form.styled";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { SignupScheme } from "@/shared/utils";
 
-type FormikValues = {
+export type FormikValues = {
   firstName: string;
   lastName: string;
   email: string;
@@ -22,20 +22,6 @@ const initialFormikValues: FormikValues = {
   email: "",
   phone: "",
 };
-
-const SignupScheme = Yup.object().shape({
-  firstName: Yup.string().required("Введите свое имя"),
-  lastName: Yup.string().required("Введите свою фамилию"),
-  email: Yup.string().required("Введите свою почту"),
-  phone: Yup.string()
-    .matches(
-      /^\+\d{1,3} \d{1,4} \d{3} \d{2} \d{2}$/,
-      "Некорректный формат номера телефона",
-    )
-    .required(
-      "Введите свой номер телефона, обязательно укажите номер с + в начале",
-    ),
-});
 
 export const Form = () => {
   const { resetForm, handleChange, errors, values, handleSubmit } = useFormik({

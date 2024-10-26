@@ -12,14 +12,7 @@
         "numericSize": 25
       },
       "type": "Традиционное",
-      "ingredients": [
-        {
-          "ingredientId": 1,
-          "name": "Сырный бортик",
-          "imageSrc": "/images/cheese.png",
-          "price": 179
-        }
-      ],
+      "ingredients": [],
       "quantity": 1,
       "id": 1
     }
