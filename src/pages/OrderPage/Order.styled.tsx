@@ -51,7 +51,7 @@ export const FormSection = styled.section`
 export const Footer = styled.footer`
   grid-area: footer;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 20px;
 `;
 

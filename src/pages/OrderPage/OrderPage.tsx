@@ -12,6 +12,9 @@ import { OrderSummarySection } from "@/components/OrderSummarySection/OrderSumma
 import { OrderCartSection } from "@/components/OrderCartSection/OrderCartSection";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { Form } from "@/components/UI/Form/Form";
+import Flex from "@/shared/styles/styled-components/Flex/Flex";
+import { Button } from "@/components/UI/Button/Button";
+import { Link } from "react-router-dom";
 
 export const OrderPage = () => {
   const { cart } = useFetchCart();
@@ -28,9 +31,19 @@ export const OrderPage = () => {
           <FormSection>
             <Form />
           </FormSection>
-          <Footer>
+          <Flex as={Footer}>
+            <Link to={"/"}>
+              <Button
+                backgroundColor={"#ff5722"}
+                color={"#FFFFFF"}
+                p={10}
+                borderRadius={"5px"}
+              >
+                Вернуться к покупкам
+              </Button>
+            </Link>
             <OrderButton>Перейти к оплате</OrderButton>
-          </Footer>
+          </Flex>
         </Layout>
       )}
     </Container>

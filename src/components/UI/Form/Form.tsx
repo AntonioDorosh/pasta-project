@@ -1,5 +1,4 @@
 import React from "react";
-import { useFormik } from "formik";
 import {
   FormContainer,
   FormikButton,
@@ -7,48 +6,42 @@ import {
   Label,
   SectionTitle,
 } from "@/components/UI/Form/Form.styled";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const initialFormikValues = {
-  name: "",
+type FormikValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+};
+
+const initialFormikValues: FormikValues = {
+  firstName: "",
   lastName: "",
   email: "",
   phone: "",
 };
 
-const validateFormikScheme = (values: typeof initialFormikValues) => {
-  const errors: {
-    name?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
-  } = {};
-  const onlyDigits = /^\d+$/;
-  if (!values.name) {
-    errors.name = "Введите ваше имя";
-  }
-  if (!values.lastName) {
-    errors.lastName = "Введите вашу фамилию";
-  }
-  if (!values.email) {
-    errors.email = "Введите ваш email";
-  }
-
-  if (!values.phone) {
-    errors.phone = "Введите ваш телефон";
-  } else if (!onlyDigits.test(values.phone)) {
-    errors.phone = "Телефон должен содержать только цифры";
-  } else if (values.phone.length < 11) {
-    errors.phone = "Телефон должен содержать не менее 11 цифр";
-  }
-
-  return errors;
-};
+const SignupScheme = Yup.object().shape({
+  firstName: Yup.string().required("Введите свое имя"),
+  lastName: Yup.string().required("Введите свою фамилию"),
+  email: Yup.string().required("Введите свою почту"),
+  phone: Yup.string()
+    .matches(
+      /^\+\d{1,3} \d{1,4} \d{3} \d{2} \d{2}$/,
+      "Некорректный формат номера телефона",
+    )
+    .required(
+      "Введите свой номер телефона, обязательно укажите номер с + в начале",
+    ),
+});
 
 export const Form = () => {
-  const formik = useFormik({
+  const { resetForm, handleChange, errors, values, handleSubmit } = useFormik({
     initialValues: initialFormikValues,
-    validate: (values) => validateFormikScheme(values),
-    onSubmit: (values, { resetForm }) => {
+    validationSchema: SignupScheme,
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       resetForm();
     },
@@ -57,67 +50,43 @@ export const Form = () => {
   return (
     <FormContainer>
       <SectionTitle>2. Персональная информация</SectionTitle>
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <Label htmlFor="name">Имя</Label>
-          <Input
-            id="name"
-            name="name"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            error={!!formik.errors.name}
-          />
-          {formik.errors.name && (
-            <div style={{ color: "red" }}>{formik.errors.name}</div>
-          )}
-        </div>
-
-        <div>
-          <Label htmlFor="lastName">Фамилия</Label>
-          <Input
-            id="lastName"
-            name="lastName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
-            error={!!formik.errors.lastName}
-          />
-          {formik.errors.lastName && (
-            <div style={{ color: "red" }}>{formik.errors.lastName}</div>
-          )}
-        </div>
-
-        <div>
-          <Label htmlFor="email">E-Mail</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            error={!!formik.errors.email}
-          />
-          {formik.errors.email && (
-            <div style={{ color: "red" }}>{formik.errors.email}</div>
-          )}
-        </div>
-
-        <div>
-          <Label htmlFor="phone">Телефон</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.phone}
-            error={!!formik.errors.phone}
-          />
-          {formik.errors.phone && (
-            <div style={{ color: "red" }}>{formik.errors.phone}</div>
-          )}
-        </div>
-
+      <form onSubmit={handleSubmit}>
+        <Label htmlFor={"firstName"}>Имя</Label>
+        <Input
+          name={"firstName"}
+          id={"firstName"}
+          type={"text"}
+          onChange={handleChange}
+          value={values.firstName}
+        />
+        {errors.firstName && <p style={{ color: "red" }}>{errors.firstName}</p>}
+        <Label htmlFor={"lastName"}>Фамилия</Label>
+        <Input
+          name={"lastName"}
+          id={"lastName"}
+          type={"text"}
+          onChange={handleChange}
+          value={values.lastName}
+        />
+        {errors.lastName && <p style={{ color: "red" }}>{errors.lastName}</p>}
+        <Label htmlFor={"email"}>Email</Label>
+        <Input
+          name={"email"}
+          id={"email"}
+          type={"email"}
+          onChange={handleChange}
+          value={values.email}
+        />
+        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        <Label htmlFor={"phone"}>Телефон</Label>
+        <Input
+          name={"phone"}
+          id={"phone"}
+          type={"tel"}
+          onChange={handleChange}
+          value={values.phone}
+        />
+        {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
         <FormikButton type={"submit"}>Отправить</FormikButton>
       </form>
     </FormContainer>
