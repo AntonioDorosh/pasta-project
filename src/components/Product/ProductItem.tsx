@@ -4,7 +4,7 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { formatCurrency, px2vw, remCalc } from "@/utils";
 import { Button } from "@/components/UI/Button/Button";
-import { ModalProduct } from "@/components/UI/Modal/ModalProduct/ModalProduct";
+import { ModalProduct } from "@/components/UI/Modal/ModalProduct";
 
 export const ProductItem = (props: ProductDto) => {
   const [isOpenModal, setIsOpenModal] = useState(false);

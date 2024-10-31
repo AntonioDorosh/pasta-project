@@ -7,16 +7,15 @@ import {
   FormSection,
   Layout,
   OrderButton,
-} from "@/pages/OrderPage/Order.styled";
-import { OrderSummarySection } from "@/components/OrderSummarySection/OrderSummarySection";
-import { OrderCartSection } from "@/components/OrderCartSection/OrderCartSection";
+} from "@/pages/Order/Order.styled";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { Form } from "@/components/UI/Form/Form";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { Button } from "@/components/UI/Button/Button";
 import { Link } from "react-router-dom";
+import { OrderCartSection, OrderSummarySection } from "@/components/Order";
 
-export const OrderPage = () => {
+export const Order = () => {
   const { cart } = useFetchCart();
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { ProductItem } from "@/components/ProductItem/ProductItem";
+import { ProductItem } from "@/components/Product/ProductItem";
 import { px2vw } from "@/utils";
 import { ProductDto } from "@/shared/types/products";
 

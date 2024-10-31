@@ -6,8 +6,8 @@ import Typography from "@/shared/styles/styled-components/Typography/Typography"
 import { px2vw } from "@/utils";
 import { Button } from "@/components/UI/Button/Button";
 import { EmptyCart } from "@/components/EmptyCart/EmptyCart";
-import { ModalCartItem } from "@/components/UI/Modal/ModalCartItem/ModalCartItem";
-import { ModalCartSummary } from "@/components/UI/Modal/ModalCartSummary/ModalCartSummary";
+import { ModalCartItem } from "@/components/UI/Modal/ModalCartItem";
+import { ModalCartSummary } from "@/components/UI/Modal/ModalCartSummary";
 
 type CartModalProps = {
   isOpenCart: boolean;

@@ -1,8 +1,8 @@
 import React from "react";
 import { px2vw, remCalc } from "@/utils";
-import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { PRODUCT_CATEGORIES } from "@/shared/utils";
+import Flex from "@/shared/styles/styled-components/Flex/Flex";
+import Typography from "@/shared/styles/styled-components/Typography/Typography";
 
 export const CurrentCategory = ({
   selectedCategory,

@@ -5,11 +5,11 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import boxIcon from "@/assets/images/box.svg";
 import percentIcon from "@/assets/images/percent.svg";
 import deliveryIcon from "@/assets/images/delivery.svg";
-import { SummarySection } from "@/pages/OrderPage/Order.styled";
-import {useFetchCart} from "@/shared/hooks/useFetchCart";
+import { SummarySection } from "@/pages/Order/Order.styled";
+import { useFetchCart } from "@/shared/hooks/useFetchCart";
 
 export const OrderSummarySection = () => {
-  const {cart} = useFetchCart();
+  const { cart } = useFetchCart();
 
   const totalPriceWithTaxAndDelivery = (): number => {
     const taxRate = 0.05;
