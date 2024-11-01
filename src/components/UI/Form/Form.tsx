@@ -8,6 +8,7 @@ import {
 } from "@/components/UI/Form/Form.styled";
 import { useFormik } from "formik";
 import { SignupScheme } from "@/shared/utils";
+import { useNavigate } from "react-router-dom";
 
 export type FormikValues = {
   firstName: string;
@@ -24,12 +25,15 @@ const initialFormikValues: FormikValues = {
 };
 
 export const Form = () => {
+  const navigate = useNavigate();
+
   const { resetForm, handleChange, errors, values, handleSubmit } = useFormik({
     initialValues: initialFormikValues,
     validationSchema: SignupScheme,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       resetForm();
+      navigate("/");
     },
   });
 

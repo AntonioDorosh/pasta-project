@@ -21,7 +21,7 @@ export const OrderSummarySection = () => {
 
   return (
     <SummarySection>
-      <Typography as={"h2"} marginBottom={px2vw(58)}>
+      <Typography as={"h2"} marginBottom={px2vw(20)}>
         Итого: {formatCurrency(totalPriceWithTaxAndDelivery())}
       </Typography>
       <Flex flexDirection={"column"} gap={px2vw(15)}>

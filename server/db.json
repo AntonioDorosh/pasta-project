@@ -12,27 +12,8 @@
         "numericSize": 25
       },
       "type": "Традиционное",
-      "ingredients": [
-        {
-          "ingredientId": 1,
-          "name": "Сырный бортик",
-          "imageSrc": "/images/cheese.png",
-          "price": 179
-        },
-        {
-          "ingredientId": 2,
-          "name": "Сливочная моцарелла",
-          "imageSrc": "/images/mozzarella.png",
-          "price": 79
-        },
-        {
-          "ingredientId": 3,
-          "name": "Сыры чеддер и пармезан",
-          "imageSrc": "/images/cheddar.png",
-          "price": 79
-        }
-      ],
-      "quantity": 2,
+      "ingredients": [],
+      "quantity": 1,
       "id": 1
     }
   ],
