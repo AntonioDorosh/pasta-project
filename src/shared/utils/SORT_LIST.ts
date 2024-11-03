@@ -7,5 +7,3 @@ export const SORT_LIST: TSort[] = [
   { name: "По названию (ASC)", sortProperty: sortOptions[3] },
   { name: "По названию (DESC)", sortProperty: sortOptions[4] },
 ];
-
-console.log(sortOptions);

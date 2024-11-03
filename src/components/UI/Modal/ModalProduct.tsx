@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import { ProductDto } from "@/shared/types/products";
-import { useOutsideClick } from "@/shared/hooks/useOutsideClick";
-import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import { formatCurrency, getProductDetails, px2vw, remCalc } from "@/utils";
-import { Button } from "@/components/UI/Button/Button";
-import { Ingredients } from "@/components/UI/Ingredients/Ingredients";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { useAddToCart } from "@/shared/hooks/useAddToCart";
 import { cartService } from "@/utils/cart-service";
-import { OfferOptions } from "@/components/Offer/OfferOptions";
 import { ModalWrapper } from "@/components/UI/Modal/ModalWrapper";
+import { useOutsideClick } from "@/shared/hooks/useOutsideClick";
+import Typography from "@/shared/styles/styled-components/Typography/Typography";
+import Flex from "@/shared/styles/styled-components/Flex/Flex";
+import { formatCurrency, getProductDetails, px2vw, remCalc } from "@/utils";
+import { Button } from "@/components/UI/Button/Button";
+import { OfferOptions } from "@/components/Offer/OfferOptions";
+import { Ingredients } from "@/components/UI/Ingredients/Ingredients";
+
+type SelectedOptionsProps = {
+  size: number;
+  type: number;
+};
 
 interface ProductModalProps extends ProductDto {
   isOpenModal: boolean;
@@ -22,18 +27,18 @@ export const ModalProduct = ({
   onClose,
   ...rest
 }: ProductModalProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<{
-    size: number;
-    type: number;
-  }>({
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptionsProps>({
     size: 0,
     type: 0,
   });
+
   const [selectedIngredient, setSelectedIngredient] = useState<number[]>([]);
   const { title, imageSrc, offers, types, ingredients, id } = rest;
-  const modalRef = useOutsideClick(isOpenModal, onClose);
+
   const { cart } = useFetchCart();
   const addToCart = useAddToCart();
+  const modalRef = useOutsideClick(isOpenModal, onClose);
+
   const addToCartHandler = () =>
     addToCart({
       imageSrc,
@@ -52,6 +57,16 @@ export const ModalProduct = ({
     ingredients,
     selectedIngredients: selectedIngredient,
   });
+
+  if (!isOpenModal) return null;
+
+  // const productData = { title, imageSrc, offers, types, ingredients, id };
+  // const selectionData = {
+  //   selectedOptions,
+  //   setSelectedOptions,
+  //   selectedIngredient,
+  //   setSelectedIngredient,
+  // };
 
   return (
     <ModalWrapper onClose={onClose}>
