@@ -33,25 +33,28 @@ export const OrderCartSection = () => {
           } = cartItem;
 
           return (
-            <Flex alignItems={"center"} minWidth={"762px"}>
+            <Flex key={id} alignItems={"center"} minWidth={"762px"} gap={20}>
               <img width={"65px"} src={imageSrc} alt={title} />
-              <Flex flexDirection={"column"} marginLeft={px2vw(20)}>
+              <Flex flexDirection={"column"} maxWidth={"300px"}>
                 <Typography fontWeight={700}>{title}</Typography>
                 <Typography color={"#A1A1A1"}>
                   {`${offers.size} ${offers.numericSize} см, ${type} тесто`}
                 </Typography>
+                <Typography color={"#A1A1A1"}>
+                  {ingredients.map((ingredient) => `+ ${ingredient.name}`)}
+                </Typography>
               </Flex>
-              <Flex flex={1} justifyContent={"flex-end"} alignItems={"center"}>
-                <Typography marginRight={px2vw(50)} fontWeight={800}>
+              <Flex
+                flex={1}
+                justifyContent={"flex-end"}
+                alignItems={"center"}
+                gap={30}
+              >
+                <Typography fontWeight={800}>
                   {formatCurrency(price)}
                 </Typography>
                 <QuantityControl quantity={quantity} id={id} />
-                <Button
-                  onClick={() => removeFromCart(id!)}
-                  marginLeft={px2vw(10)}
-                >
-                  X
-                </Button>
+                <Button onClick={() => removeFromCart(id!)}>X</Button>
               </Flex>
             </Flex>
           );

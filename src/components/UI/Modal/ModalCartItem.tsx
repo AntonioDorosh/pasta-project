@@ -1,10 +1,11 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { calculateTotalPrice, formatCurrency, px2vw, remCalc } from "@/utils";
+import { formatCurrency, px2vw, remCalc } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { CartItemDto } from "@/shared/types/cart";
 import { QuantityControl } from "@/components/QuantityControl/QuantityControl";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
+import { cartService } from "@/utils/cart-service";
 
 export const ModalCartItem = (cartItem: CartItemDto) => {
   const { cart } = useFetchCart();
@@ -14,7 +15,6 @@ export const ModalCartItem = (cartItem: CartItemDto) => {
   const ingredientsDetails = ingredients
     .map((ingredient) => `+ ${ingredient.name}`)
     .join(", ");
-  const totalPrice = calculateTotalPrice(cart);
 
   return (
     <>
@@ -32,7 +32,7 @@ export const ModalCartItem = (cartItem: CartItemDto) => {
           </Typography>
           <QuantityControl quantity={quantity} id={id}>
             <Typography marginLeft={"auto"} fontWeight={700}>
-              {formatCurrency(totalPrice)}
+              {formatCurrency(cartService.calculateTotalPrice(cart))}
             </Typography>
           </QuantityControl>
         </Flex>

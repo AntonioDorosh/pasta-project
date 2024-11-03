@@ -10,7 +10,6 @@ import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { useAddToCart } from "@/shared/hooks/useAddToCart";
 import { cartService } from "@/utils/cart-service";
 import { OfferOptions } from "@/components/Offer/OfferOptions";
-import { ModalWrapper } from "@/components/UI/Modal/ModalWrapper";
 
 interface ProductModalProps extends ProductDto {
   isOpenModal: boolean;
@@ -54,7 +53,18 @@ export const ModalProduct = ({
   });
 
   return (
-    <ModalWrapper onClose={onClose}>
+    <Flex
+      position={"fixed"}
+      top={0}
+      left={0}
+      width={"100%"}
+      height={"100%"}
+      background={"rgba(0, 0, 0, 0.5)"}
+      zIndex={1000}
+      display={"flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
       <Flex background={"#FFFFFF"} ref={modalRef} borderRadius={"30px"}>
         <Flex justifyContent={"center"} alignItems={"center"} flexBasis={"50%"}>
           <img src={imageSrc} alt={title} />
@@ -104,6 +114,6 @@ export const ModalProduct = ({
           </Button>
         </Flex>
       </Flex>
-    </ModalWrapper>
+    </Flex>
   );
 };

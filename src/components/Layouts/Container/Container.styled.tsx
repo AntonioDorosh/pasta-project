@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerStyled = styled.div<{ $bgColor?: string }>`
-  max-width: 1380px;
+  width: calc(80% - 40px);
   margin: 40px auto;
   padding: 30px;
   border-radius: 30px;

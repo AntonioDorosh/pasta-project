@@ -1,14 +1,14 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { calculateTotalPrice, formatCurrency, px2vw } from "@/utils";
+import { formatCurrency, px2vw } from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import { useFetchCart } from "@/shared/hooks/useFetchCart";
 import { Link } from "react-router-dom";
 import arrowIcon from "@/assets/images/arrow.svg";
+import { cartService } from "@/utils/cart-service";
 
 export const ModalCartSummary = () => {
   const { cart } = useFetchCart();
-  const totalPrice = calculateTotalPrice(cart);
 
   return (
     <>
@@ -26,7 +26,9 @@ export const ModalCartSummary = () => {
             borderBottom={"1px dotted #777777"}
             margin={"0 10px"}
           />
-          <Typography fontWeight={800}>{formatCurrency(totalPrice)}</Typography>
+          <Typography fontWeight={800}>
+            {formatCurrency(cartService.calculateTotalPrice(cart))}
+          </Typography>
         </Flex>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Typography>Налог 5% :</Typography>
@@ -36,7 +38,7 @@ export const ModalCartSummary = () => {
             margin={"0 10px"}
           />
           <Typography fontWeight={800}>
-            {formatCurrency(totalPrice * 0.05)}
+            {formatCurrency(cartService.calculateTotalPrice(cart) * 0.05)}
           </Typography>
         </Flex>
         <Link to={"/cart"}>
