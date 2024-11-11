@@ -1,5 +1,5 @@
-import React from "react";
-import { Input } from "@/components/UI/Input/Input";
+import React, {ChangeEvent} from "react";
+import {Input} from "@/components/UI/Input/Input";
 
 type SearchBarProps = {
   searchProductDeferred: string;
@@ -7,15 +7,17 @@ type SearchBarProps = {
 };
 
 export const SearchBar = ({
-  searchProductDeferred,
-  setSearchProduct,
-}: SearchBarProps) => {
+                            searchProductDeferred,
+                            setSearchProduct,
+                          }: SearchBarProps) => {
+  const handleSearch = ({target}: ChangeEvent<HTMLInputElement>) => setSearchProduct(target.value)
+
   return (
     <Input
       type={"text"}
       value={searchProductDeferred}
       placeholder={"Поиск пиццы"}
-      onChange={(event) => setSearchProduct(event.target.value)}
+      onChange={handleSearch}
     />
   );
 };

@@ -51,25 +51,10 @@ export const ModalProduct = ({
       selectedOffer: offers[selectedOptions.size],
     });
 
-  const totalPrice = cartService.calculatePriceWithIngredients({
-    offers,
-    selectedSize: selectedOptions.size,
-    ingredients,
-    selectedIngredients: selectedIngredient,
-  });
-
   if (!isOpenModal) return null;
 
-  // const productData = { title, imageSrc, offers, types, ingredients, id };
-  // const selectionData = {
-  //   selectedOptions,
-  //   setSelectedOptions,
-  //   selectedIngredient,
-  //   setSelectedIngredient,
-  // };
-
   return (
-    <ModalWrapper onClose={onClose}>
+    <ModalWrapper>
       <Flex background={"#FFFFFF"} ref={modalRef} borderRadius={"30px"}>
         <Flex justifyContent={"center"} alignItems={"center"} flexBasis={"50%"}>
           <img src={imageSrc} alt={title} />
@@ -115,7 +100,15 @@ export const ModalProduct = ({
             setSelectedIngredient={setSelectedIngredient}
           />
           <Button $variant={"add"} onClick={addToCartHandler}>
-            Добавить в корзину {formatCurrency(totalPrice)}
+            Добавить в корзину{" "}
+            {formatCurrency(
+              cartService.calculatePriceWithIngredients({
+                offers,
+                selectedSize: selectedOptions.size,
+                ingredients,
+                selectedIngredients: selectedIngredient,
+              }),
+            )}
           </Button>
         </Flex>
       </Flex>

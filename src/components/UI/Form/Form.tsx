@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  FormContainer,
-  FormikButton,
-  Input,
-  Label,
-  SectionTitle,
-} from "@/components/UI/Form/Form.styled";
-import { useFormik } from "formik";
-import { SignupScheme } from "@/shared/utils";
-import { useNavigate } from "react-router-dom";
+import {FormContainer, FormikButton, Input, Label, SectionTitle,} from "@/components/UI/Form/Form.styled";
+import {useFormik} from "formik";
+import {SignupScheme} from "@/shared/utils";
+import {useNavigate} from "react-router-dom";
 
 export type FormikValues = {
   firstName: string;
@@ -27,11 +21,13 @@ const initialFormikValues: FormikValues = {
 export const Form = () => {
   const navigate = useNavigate();
 
-  const { resetForm, handleChange, errors, values, handleSubmit } = useFormik({
+  const {resetForm, handleChange, errors, values, handleSubmit} = useFormik({
     initialValues: initialFormikValues,
     validationSchema: SignupScheme,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      alert(JSON.stringify({
+        ...values,
+      }, null, 2));
       resetForm();
       navigate("/");
     },
@@ -49,7 +45,7 @@ export const Form = () => {
           onChange={handleChange}
           value={values.firstName}
         />
-        {errors.firstName && <p style={{ color: "red" }}>{errors.firstName}</p>}
+        {errors.firstName && <p style={{color: "red"}}>{errors.firstName}</p>}
         <Label htmlFor={"lastName"}>Фамилия</Label>
         <Input
           name={"lastName"}
@@ -58,7 +54,7 @@ export const Form = () => {
           onChange={handleChange}
           value={values.lastName}
         />
-        {errors.lastName && <p style={{ color: "red" }}>{errors.lastName}</p>}
+        {errors.lastName && <p style={{color: "red"}}>{errors.lastName}</p>}
         <Label htmlFor={"email"}>Email</Label>
         <Input
           name={"email"}
@@ -67,7 +63,7 @@ export const Form = () => {
           onChange={handleChange}
           value={values.email}
         />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        {errors.email && <p style={{color: "red"}}>{errors.email}</p>}
         <Label htmlFor={"phone"}>Телефон</Label>
         <Input
           name={"phone"}
@@ -76,7 +72,7 @@ export const Form = () => {
           onChange={handleChange}
           value={values.phone}
         />
-        {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
+        {errors.phone && <p style={{color: "red"}}>{errors.phone}</p>}
         <FormikButton type={"submit"}>Отправить</FormikButton>
       </form>
     </FormContainer>

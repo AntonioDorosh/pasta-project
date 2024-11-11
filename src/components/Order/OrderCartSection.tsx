@@ -41,7 +41,9 @@ export const OrderCartSection = () => {
                   {`${offers.size} ${offers.numericSize} см, ${type} тесто`}
                 </Typography>
                 <Typography color={"#A1A1A1"}>
-                  {ingredients.map((ingredient) => `+ ${ingredient.name}`)}
+                  {ingredients
+                    .map((ingredient) => `+ ${ingredient.name}`)
+                    .join(", ")}
                 </Typography>
               </Flex>
               <Flex

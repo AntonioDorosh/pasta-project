@@ -1,8 +1,8 @@
 import axios from "axios";
-import { ProductDtoResponse } from "@/shared/types/products";
-import { ProductParams } from "@/shared/types/productParams";
-import { createQuery } from "@/utils";
-import { CartItemDto, CartItemDtoResponse } from "@/shared/types/cart";
+import {ProductDtoResponse} from "@/shared/types/products";
+import {ProductParams} from "@/shared/types/productParams";
+import {createQuery} from "@/utils";
+import {CartItemDto, CartItemDtoResponse} from "@/shared/types/cart";
 
 const baseURL = "http://localhost:3001";
 
@@ -26,7 +26,7 @@ export const dataService = {
   },
 
   updateQuantity: (id: string | number, quantity: number) => {
-    return productApi.patch(`/cart/${id}`, { quantity });
+    return productApi.patch(`/cart/${id}`, {quantity});
   },
 
   removeFromCart: (id: string) => {

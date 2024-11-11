@@ -1,5 +1,5 @@
-import { px2vw } from "@/utils";
-import { createGlobalStyle } from "styled-components";
+import {px2vw} from "@/utils";
+import {createGlobalStyle} from "styled-components";
 
 export const Global = createGlobalStyle`
     *, *::before, *::after {
@@ -31,5 +31,7 @@ export const Global = createGlobalStyle`
 
     a {
         text-decoration: none;
+        color: inherit;
     }
+
 `;

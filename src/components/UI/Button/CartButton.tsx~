@@ -15,7 +15,7 @@ export const CartButton = ({ isOpenCart, setIsOpenCart }: CartButtonProps) => {
   const { cart } = useFetchCart();
 
   return (
-    <Flex>
+    <Flex flex={1} justifyContent={"flex-end"}>
       {!cart?.length ? (
         <Button
           width={"50px"}

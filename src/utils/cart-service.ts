@@ -1,5 +1,5 @@
-import { CartItemDto } from "@/shared/types/cart";
-import { TIngredients, TOffers } from "@/shared/types/products";
+import {CartItemDto} from "@/shared/types/cart";
+import {TIngredients, TOffers} from "@/shared/types/products";
 
 type CalculatePriceWithIngredientProps = {
   offers: TOffers[];
@@ -27,11 +27,11 @@ class CartService {
   }
 
   calculatePriceWithIngredients({
-    offers,
-    selectedIngredients,
-    selectedSize,
-    ingredients,
-  }: CalculatePriceWithIngredientProps) {
+                                  offers,
+                                  selectedIngredients,
+                                  selectedSize,
+                                  ingredients,
+                                }: CalculatePriceWithIngredientProps) {
     const basePrice = offers[selectedSize].price;
     const ingredientsPrice = selectedIngredients.reduce((acc, ingredientId) => {
       const ingredient = ingredients.find(

@@ -1,9 +1,9 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { TIngredients } from "@/shared/types/products";
-import { formatCurrency, px2vw, remCalc } from "@/utils";
+import {TIngredients} from "@/shared/types/products";
+import {formatCurrency, px2vw, remCalc} from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import { Button } from "@/components/UI/Button/Button";
+import {Button} from "@/components/UI/Button/Button";
 import checked from "@/assets/images/check-icon.svg";
 
 type IngredientsProps = {
@@ -13,17 +13,14 @@ type IngredientsProps = {
 };
 
 export const Ingredients = ({
-  ingredients,
-  selectedIngredient,
-  setSelectedIngredient,
-}: IngredientsProps) => {
+                              ingredients,
+                              selectedIngredient,
+                              setSelectedIngredient,
+                            }: IngredientsProps) => {
+
   const onClickSelectedIngredientHandler = (ingredientId: number) => {
-    setSelectedIngredient((prevState) =>
-      prevState.includes(ingredientId)
-        ? prevState.filter((id) => id !== ingredientId)
-        : [...prevState, ingredientId],
-    );
-  };
+    setSelectedIngredient((prevIngredient) => prevIngredient.includes(ingredientId) ? prevIngredient.filter((id) => id !== ingredientId) : [...prevIngredient, ingredientId])
+  }
 
   return (
     <Flex gap={px2vw(10)} maxHeight={"193px"} marginBottom={px2vw(30)}>
@@ -39,7 +36,7 @@ export const Ingredients = ({
             onClickSelectedIngredientHandler(ingredient.ingredientId)
           }
         >
-          <img src={ingredient.imageSrc} alt={ingredient.name} />
+          <img src={ingredient.imageSrc} alt={ingredient.name}/>
           <Typography
             fontSize={remCalc(12)}
             textAlign={"center"}

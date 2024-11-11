@@ -26,7 +26,7 @@ export const Sort = ({ sort, setSort }: SortProps) => {
 
   return (
     <Flex background={"#FAFAFA"} borderRadius={"15px"}>
-      <Flex alignItems={"center"} padding={"16px 22px"} gap={px2vw(10)}>
+      <Flex alignItems={"center"} padding={px2vw(15)} gap={px2vw(10)}>
         <img src={sortSvg} alt={"sort-arrows"} width={"16px"} height={"16px"} />
         <SelectStyled
           value={`${sort.field}_${sort.order}`}

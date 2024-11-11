@@ -1,13 +1,7 @@
 import React, { ReactNode } from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 
-export const ModalWrapper = ({
-  children,
-  onClose,
-}: {
-  children: ReactNode;
-  onClose: () => void;
-}) => {
+export const ModalWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <Flex
       position={"fixed"}
@@ -20,7 +14,6 @@ export const ModalWrapper = ({
       display={"flex"}
       alignItems={"center"}
       justifyContent={"center"}
-      onClick={onClose}
     >
       {children}
     </Flex>
