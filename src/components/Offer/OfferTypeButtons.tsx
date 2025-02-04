@@ -11,12 +11,7 @@ type OfferTypeButtonsProps = {
   isSmallSizeSelected: boolean;
 };
 
-export const OfferTypeButtons = ({
-                                   types,
-                                   selectedType,
-                                   onSelectType,
-                                   isSmallSizeSelected,
-                                 }: OfferTypeButtonsProps) => {
+export const OfferTypeButtons = ({types, selectedType, onSelectType, isSmallSizeSelected,}: OfferTypeButtonsProps) => {
   return (
     <Flex
       background={"rgb(243,243, 247)"}

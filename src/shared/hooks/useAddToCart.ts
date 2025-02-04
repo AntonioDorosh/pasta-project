@@ -1,8 +1,8 @@
-import { dataService } from "@/shared/api/data-service";
-import { CartItemDto } from "@/shared/types/cart";
-import { useMutation } from "@tanstack/react-query";
-import { TIngredients, TOffers } from "@/shared/types/products";
-import { PRODUCT_TYPE, queryClient } from "@/shared/utils";
+import {dataService} from "@/shared/api/data-service";
+import {CartItemDto} from "@/shared/types/cart";
+import {useMutation} from "@tanstack/react-query";
+import {TIngredients, TOffers} from "@/shared/types/products";
+import {PRODUCT_TYPE, queryClient} from "@/shared/utils";
 
 type UseAddItemToCartProps = {
   cart: CartItemDto[] | undefined;
@@ -21,7 +21,7 @@ type UseAddItemToCartProps = {
  * @return -фильтрует массив ингредиентов, исключая любые значения, которые являются undefined или null.
  */
 
-const validIngredients = (ingredients: TIngredients[]): TIngredients[] =>
+const filterValidIngredients = (ingredients: TIngredients[]): TIngredients[] =>
   ingredients.filter(Boolean);
 
 /**
@@ -51,7 +51,7 @@ const getSelectedIngredients = (
  * @return - находит существующий продукт в корзине
  */
 
-const findExistingProduct = (
+const findExistingProductInCart = (
   cart: CartItemDto[] | undefined,
   id: number,
   selectedOffer: TOffers,
@@ -66,22 +66,22 @@ const findExistingProduct = (
       JSON.stringify(item.ingredients) === JSON.stringify(selectedIngredients),
   );
 
-const addToCart = ({
-  cart,
-  ingredients,
-  selectedIngredient,
-  selectedType,
-  selectedOffer,
-  id,
-  imageSrc,
-  title,
-}: UseAddItemToCartProps) => {
-  const selectedIngredients = getSelectedIngredients(
+const addToCart = (params: UseAddItemToCartProps) => {
+  const {
+    cart,
+    ingredients,
     selectedIngredient,
-    validIngredients(ingredients),
-  );
+    selectedType,
+    selectedOffer,
+    id,
+    imageSrc,
+    title,
+  } = params;
 
-  const existingProduct = findExistingProduct(
+  const validIngredientsList = filterValidIngredients(ingredients);
+  const selectedIngredients = getSelectedIngredients(selectedIngredient, validIngredientsList);
+
+  const existingProduct = findExistingProductInCart(
     cart,
     id,
     selectedOffer,
@@ -90,7 +90,7 @@ const addToCart = ({
   );
 
   if (existingProduct) {
-    const { id: productId = 0, quantity } = existingProduct;
+    const {id: productId = 0, quantity} = existingProduct;
     const newQuantity = quantity + 1;
 
     return dataService.updateQuantity(productId, newQuantity);
@@ -114,9 +114,9 @@ const addToCart = ({
 };
 
 export const useAddToCart = () => {
-  const { mutate: addToCartMutation } = useMutation({
+  const {mutate: addToCartMutation} = useMutation({
     mutationFn: addToCart,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
+    onSuccess: () => queryClient.invalidateQueries({queryKey: ["cart"]}),
   });
 
   return addToCartMutation;

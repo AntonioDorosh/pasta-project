@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 
 export const ProductItem = (props: ProductDto) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const {title, imageSrc, description, basePrice, id} = props;
+  const {title, imageSrc, description, price, id} = props;
 
   return (
     <>
@@ -45,7 +45,7 @@ export const ProductItem = (props: ProductDto) => {
           justifyContent={"space-between"}
         >
           <Typography fontSize={remCalc(18)} fontWeight={800}>
-            от {formatCurrency(basePrice)}
+            от {formatCurrency(price)}
           </Typography>
           <Button $variant={"add"} $size={"primary"}>
             <Typography

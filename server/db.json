@@ -290,64 +290,6 @@
           "price": 79
         }
       ]
-    },
-    {
-      "id": "6",
-      "title": "Сырный цыпленок",
-      "price": 385,
-      "description": "Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок",
-      "imageSrc": "/images/item-6.png",
-      "category": 3,
-      "types": [
-        0,
-        1
-      ],
-      "offers": [
-        {
-          "productId": 66,
-          "discount": 10,
-          "price": 300,
-          "size": "Маленькая",
-          "numericSize": 25,
-          "weight": 300
-        },
-        {
-          "productId": 67,
-          "discount": 20,
-          "price": 400,
-          "size": "Средняя",
-          "numericSize": 30,
-          "weight": 500
-        },
-        {
-          "productId": 68,
-          "discount": 30,
-          "price": 500,
-          "size": "Большая",
-          "numericSize": 35,
-          "weight": 700
-        }
-      ],
-      "ingredients": [
-        {
-          "ingredientId": 1,
-          "name": "Сырный бортик",
-          "imageSrc": "/images/cheese.png",
-          "price": 179
-        },
-        {
-          "ingredientId": 2,
-          "name": "Сливочная моцарелла",
-          "imageSrc": "/images/mozzarella.png",
-          "price": 79
-        },
-        {
-          "ingredientId": 3,
-          "name": "Сыры чеддер и пармезан",
-          "imageSrc": "/images/cheddar.png",
-          "price": 79
-        }
-      ]
     }
   ]
 }

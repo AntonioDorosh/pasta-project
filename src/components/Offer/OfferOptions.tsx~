@@ -17,9 +17,13 @@ type OfferOptionsProps = {
 
 const SMALL_SIZE_LABEL = "Маленькая";
 
-export const OfferOptions = ({offers, types, selectedOptions, setSelectedOptions,}: OfferOptionsProps) => {
-
-  const {size: selectedSize, type: selectedType} = selectedOptions;
+export const OfferOptions = ({
+                               offers,
+                               types,
+                               selectedOptions,
+                               setSelectedOptions,
+                             }: OfferOptionsProps) => {
+  const {size: selectedSize, type: selectedType} = selectedOptions
 
   const isSmallSizeSelected = useMemo(() => {
     return offers[selectedSize].size === SMALL_SIZE_LABEL;

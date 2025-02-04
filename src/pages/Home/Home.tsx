@@ -1,16 +1,16 @@
-import React, { useDeferredValue, useState } from "react";
-import { Container } from "@/components/Layouts/Container/Container";
-import { Header } from "@/components/Layouts/Header/Header";
-import { Categories } from "@/components/UI/Categories/Categories";
-import { ProductList } from "@/components/Product/ProductList";
-import { useFetchProducts } from "@/shared/hooks/useFetchProducts";
-import { ModalCart } from "@/components/UI/Modal/ModalCart";
-import { SearchBar } from "@/components/UI/SearchBar/SearchBar";
-import { CartButton } from "@/components/UI/Button/CartButton";
-import { CurrentCategory } from "@/components/CurrentCategory/CurrentCategory";
-import { SortProperty } from "@/shared/types/sort";
+import React, {useDeferredValue, useState} from "react";
+import {Container} from "@/components/Layouts/Container/Container";
+import {Header} from "@/components/Layouts/Header/Header";
+import {Categories} from "@/components/UI/Categories/Categories";
+import {ProductList} from "@/components/Product/ProductList";
+import {useFetchProducts} from "@/shared/hooks/useFetchProducts";
+import {ModalCart} from "@/components/UI/Modal/ModalCart";
+import {SearchBar} from "@/components/UI/SearchBar/SearchBar";
+import {CartButton} from "@/components/UI/Button/CartButton";
+import {CurrentCategory} from "@/components/CurrentCategory/CurrentCategory";
+import {SortProperty} from "@/shared/types/sort";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { Sort } from "@/components/UI/Sort/Sort";
+import {Sort} from "@/components/UI/Sort/Sort";
 
 export const Home = () => {
   const [sort, setSort] = useState<SortProperty>({
@@ -22,7 +22,7 @@ export const Home = () => {
   const [isOpenCart, setIsOpenCart] = useState(false);
   const searchProductDeferred = useDeferredValue(searchProduct);
 
-  const { products } = useFetchProducts({
+  const {products} = useFetchProducts({
     category: selectedCategory,
     searchTerm: searchProductDeferred,
     sortBy: {
@@ -44,18 +44,18 @@ export const Home = () => {
           searchProductDeferred={searchProductDeferred}
           setSearchProduct={setSearchProduct}
         />
-        <CartButton isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart} />
+        <CartButton isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart}/>
       </Header>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
-        <CurrentCategory selectedCategory={selectedCategory} />
-        <Sort sort={sort} setSort={setSort} />
+        <CurrentCategory selectedCategory={selectedCategory} products={products}/>
+        <Sort sort={sort} setSort={setSort}/>
       </Flex>
 
       <Categories
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <ProductList products={products} />
+      <ProductList products={products}/>
     </Container>
   );
 };

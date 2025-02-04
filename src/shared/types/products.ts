@@ -15,7 +15,7 @@ export type TIngredients = {
 export type ProductDto = {
   id: string;
   title: string;
-  basePrice: number;
+  price: number;
   description: string;
   imageSrc: string;
   category: number;

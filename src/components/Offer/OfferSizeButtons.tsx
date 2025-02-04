@@ -10,11 +10,7 @@ type OfferSizeButtonsProps = {
   onSelectedSize: (sizeIndex: number) => void;
 };
 
-export const OfferSizeButton = ({
-                                  offers,
-                                  onSelectedSize,
-                                  selectedSize,
-                                }: OfferSizeButtonsProps) => {
+export const OfferSizeButton = ({offers, onSelectedSize, selectedSize,}: OfferSizeButtonsProps) => {
   return (
     <Flex
       background={"rgb(243,243, 247)"}
