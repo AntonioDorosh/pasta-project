@@ -5,16 +5,14 @@ import Typography from "@/shared/styles/styled-components/Typography/Typography"
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {useUpdateQuantity} from "@/shared/hooks/useUpdateQuantity";
 
-export const QuantityControl = ({
-                                  quantity,
-                                  id,
-                                  children,
-                                }: {
+export const QuantityControl = (props: {
   quantity: number;
   id?: string | undefined;
   children?: ReactNode;
 }) => {
+  const {id, quantity, children} = props;
   const updateQuantity = useUpdateQuantity();
+
   const handleQuantityChange = (delta: number) => {
     updateQuantity({
       id: id!,

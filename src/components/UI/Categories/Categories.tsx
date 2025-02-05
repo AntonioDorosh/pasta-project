@@ -13,6 +13,7 @@ export const Categories = ({selectedCategory, setSelectedCategory}: CategoriesPr
   return (
     <>
       <Flex
+        as={'nav'}
         display={"inline-flex"}
         gap={px2vw(10)}
         background={"#FAFAFA"}

@@ -17,7 +17,8 @@ type OfferOptionsProps = {
 
 const SMALL_SIZE_LABEL = "Маленькая";
 
-export const OfferOptions = ({offers, types, selectedOptions, setSelectedOptions,}: OfferOptionsProps) => {
+export const OfferOptions = (props: OfferOptionsProps) => {
+  const {offers, setSelectedOptions, selectedOptions, types} = props;
 
   const {size: selectedSize, type: selectedType} = selectedOptions;
 

@@ -2,7 +2,7 @@ import React from "react";
 import {FormContainer, FormikButton, Input, Label, SectionTitle,} from "@/components/UI/Form/Form.styled";
 import {useFormik} from "formik";
 import {SignupScheme} from "@/shared/utils";
-import {useNavigate} from "react-router-dom";
+import {useSubmitForm} from "@/shared/hooks/useSubmitForm";
 
 export type FormikValues = {
   firstName: string;
@@ -19,17 +19,15 @@ const initialFormikValues: FormikValues = {
 };
 
 export const Form = () => {
-  const navigate = useNavigate();
+  const {isPending, submitFormMutation} = useSubmitForm()
 
   const {resetForm, handleChange, errors, values, handleSubmit} = useFormik({
     initialValues: initialFormikValues,
     validationSchema: SignupScheme,
     onSubmit: (values) => {
-      alert(JSON.stringify({
-        ...values,
-      }, null, 2));
-      resetForm();
-      navigate("/");
+      submitFormMutation(values)
+
+      resetForm()
     },
   });
 
@@ -73,7 +71,9 @@ export const Form = () => {
           value={values.phone}
         />
         {errors.phone && <p style={{color: "red"}}>{errors.phone}</p>}
-        <FormikButton type={"submit"}>Отправить</FormikButton>
+        <FormikButton type={"submit"} disabled={isPending}>{
+          isPending ? "Отправка..." : "Отправить"
+        }</FormikButton>
       </form>
     </FormContainer>
   );

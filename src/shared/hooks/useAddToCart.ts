@@ -5,7 +5,7 @@ import {TIngredients, TOffers} from "@/shared/types/products";
 import {PRODUCT_TYPE, queryClient} from "@/shared/utils";
 
 type UseAddItemToCartProps = {
-  cart: CartItemDto[] | undefined;
+  cartItems: CartItemDto[] | undefined;
   id: number;
   title: string;
   imageSrc: string;
@@ -59,16 +59,16 @@ const findExistingProductInCart = (
   selectedIngredients: TIngredients[],
 ): CartItemDto | undefined =>
   cart?.find(
-    (item) =>
-      item.offers.productId === id &&
-      item.offers.size === selectedOffer.size &&
-      item.type === PRODUCT_TYPE[selectedType] &&
-      JSON.stringify(item.ingredients) === JSON.stringify(selectedIngredients),
+    ({offers, type, ingredients}) =>
+      offers.productId === id &&
+      offers.size === selectedOffer.size &&
+      type === PRODUCT_TYPE[selectedType] &&
+      JSON.stringify(ingredients) === JSON.stringify(selectedIngredients),
   );
 
 const addToCart = (params: UseAddItemToCartProps) => {
   const {
-    cart,
+    cartItems,
     ingredients,
     selectedIngredient,
     selectedType,
@@ -82,7 +82,7 @@ const addToCart = (params: UseAddItemToCartProps) => {
   const selectedIngredients = getSelectedIngredients(selectedIngredient, validIngredientsList);
 
   const existingProduct = findExistingProductInCart(
-    cart,
+    cartItems,
     id,
     selectedOffer,
     selectedType,

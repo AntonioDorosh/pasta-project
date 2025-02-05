@@ -12,11 +12,8 @@ type IngredientsProps = {
   setSelectedIngredient: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-export const Ingredients = ({
-                              ingredients,
-                              selectedIngredient,
-                              setSelectedIngredient,
-                            }: IngredientsProps) => {
+export const Ingredients = (props: IngredientsProps) => {
+  const {selectedIngredient, setSelectedIngredient, ingredients} = props;
 
   const onClickSelectedIngredientHandler = (ingredientId: number) => {
     setSelectedIngredient((prevIngredient) => prevIngredient.includes(ingredientId) ? prevIngredient.filter((id) => id !== ingredientId) : [...prevIngredient, ingredientId])

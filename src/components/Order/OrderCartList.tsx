@@ -9,9 +9,8 @@ import {useRemoveFromCart} from "@/shared/hooks/useRemoveFromCart";
 
 type OrderCartListProps = CartItemDto
 
-export const OrderCartList = ({
-                                offers, imageSrc, title, ingredients, price, quantity, type, id
-                              }: OrderCartListProps) => {
+export const OrderCartList = (props: OrderCartListProps) => {
+  const {id, imageSrc, quantity, type, ingredients, price, offers, title} = props;
 
   const removeFromCart = useRemoveFromCart();
   return (

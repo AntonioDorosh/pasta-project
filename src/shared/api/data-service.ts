@@ -3,6 +3,7 @@ import {ProductDtoResponse} from "@/shared/types/products";
 import {ProductParams} from "@/shared/types/productParams";
 import {createQuery} from "@/utils";
 import {CartItemDto, CartItemDtoResponse} from "@/shared/types/cart";
+import {TOrderData} from "@/shared/types/TOrderData";
 
 const baseURL = "http://localhost:3001";
 
@@ -31,5 +32,9 @@ export const dataService = {
 
   removeFromCart: (id: string) => {
     return productApi.delete(`/cart/${id}`);
+  },
+
+  submitOrder: (orderData: TOrderData) => {
+    return productApi.post('/orders', orderData)
   },
 };

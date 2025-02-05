@@ -1,4 +1,4 @@
-import { TSort } from "@/shared/types/sort";
+import {TSort} from "@/shared/types/sort";
 
 export type ProductParams = {
   searchTerm?: string;

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { ProductDto } from "@/shared/types/products";
-import { useFetchCart } from "@/shared/hooks/useFetchCart";
-import { useAddToCart } from "@/shared/hooks/useAddToCart";
-import { cartService } from "@/utils/cart-service";
-import { ModalWrapper } from "@/components/UI/Modal/ModalWrapper";
-import { useOutsideClick } from "@/shared/hooks/useOutsideClick";
+import React, {useState} from "react";
+import {ProductDto} from "@/shared/types/products";
+import {useFetchCart} from "@/shared/hooks/useFetchCart";
+import {useAddToCart} from "@/shared/hooks/useAddToCart";
+import {cartService} from "@/utils/cart-service";
+import {ModalWrapper} from "@/components/UI/Modal/ModalWrapper";
+import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import { formatCurrency, getProductDetails, px2vw, remCalc } from "@/utils";
-import { Button } from "@/components/UI/Button/Button";
-import { OfferOptions } from "@/components/Offer/OfferOptions";
-import { Ingredients } from "@/components/UI/Ingredients/Ingredients";
+import {formatCurrency, getProductDetails, px2vw, remCalc} from "@/utils";
+import {Button} from "@/components/UI/Button/Button";
+import {OfferOptions} from "@/components/Offer/OfferOptions";
+import {Ingredients} from "@/components/UI/Ingredients/Ingredients";
 
 type SelectedOptionsProps = {
   size: number;
@@ -23,32 +23,33 @@ interface ProductModalProps extends ProductDto {
 }
 
 export const ModalProduct = ({
-  isOpenModal,
-  onClose,
-  ...rest
-}: ProductModalProps) => {
+                               isOpenModal,
+                               onClose,
+                               ...rest
+                             }: ProductModalProps) => {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptionsProps>({
     size: 0,
     type: 0,
   });
 
   const [selectedIngredient, setSelectedIngredient] = useState<number[]>([]);
-  const { title, imageSrc, offers, types, ingredients, id } = rest;
+  const {title, imageSrc, offers, types, ingredients, id} = rest;
+  const {type, size} = selectedOptions;
 
-  const { cart } = useFetchCart();
+  const {cart: cartItems} = useFetchCart();
   const addToCart = useAddToCart();
   const modalRef = useOutsideClick(isOpenModal, onClose);
 
   const addToCartHandler = () =>
     addToCart({
       imageSrc,
-      cart,
+      cartItems,
       ingredients,
-      selectedType: selectedOptions.type,
+      selectedType: type,
       title,
       id: Number(id),
       selectedIngredient,
-      selectedOffer: offers[selectedOptions.size],
+      selectedOffer: offers[size],
     });
 
   if (!isOpenModal) return null;
@@ -57,7 +58,7 @@ export const ModalProduct = ({
     <ModalWrapper>
       <Flex background={"#FFFFFF"} ref={modalRef} borderRadius={"30px"}>
         <Flex justifyContent={"center"} alignItems={"center"} flexBasis={"50%"}>
-          <img src={imageSrc} alt={title} />
+          <img src={imageSrc} alt={title}/>
         </Flex>
         <Flex
           flexDirection={"column"}
@@ -80,7 +81,7 @@ export const ModalProduct = ({
               selectedOptions.type,
             )}
           </Typography>
-          <Button $variant={"close"} onClick={onClose} />
+          <Button $variant={"close"} onClick={onClose}/>
           <OfferOptions
             offers={offers}
             selectedOptions={selectedOptions}
@@ -104,7 +105,7 @@ export const ModalProduct = ({
             {formatCurrency(
               cartService.calculatePriceWithIngredients({
                 offers,
-                selectedSize: selectedOptions.size,
+                selectedSize: size,
                 ingredients,
                 selectedIngredients: selectedIngredient,
               }),
