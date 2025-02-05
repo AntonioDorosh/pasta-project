@@ -12,8 +12,6 @@ export const ProductDetails = () => {
   })
   const product = products?.find((product) => product.id === id)
 
-  console.log(product)
-
   return (
     <Container>
       <Header/>

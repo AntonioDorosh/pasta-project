@@ -18,7 +18,6 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
   const modalRef = useOutsideClick(isOpenCart, onClose);
   const {cart} = useFetchCart();
 
-  console.log('товары в корзине', cart)
 
   return (
     <Flex

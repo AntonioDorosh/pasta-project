@@ -31,6 +31,8 @@ export const Home = () => {
     },
   });
 
+  console.log('продукты', products)
+
   const hasProductInCategory = products?.filter(({category}) => category === selectedCategory)
 
   return (
