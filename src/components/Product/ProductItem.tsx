@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import {ProductDto} from "@/shared/types/products";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {formatCurrency, px2vw, remCalc} from "@/utils";
+import {COLORS, formatCurrency, px2vw, remCalc} from "@/utils";
 import {Button} from "@/components/UI/Button/Button";
 import {ModalProduct} from "@/components/UI/Modal/ModalProduct";
 import {Link} from "react-router-dom";
 
-export const ProductItem = (props: ProductDto) => {
+type ProductItemsProps = ProductDto;
+
+export const ProductItem = (props: ProductItemsProps) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const {title, imageSrc, description, price, id} = props;
 
@@ -24,7 +26,7 @@ export const ProductItem = (props: ProductDto) => {
         <Flex
           as={"img"}
           borderRadius={"15px"}
-          background={`#fff7ee url(${imageSrc}) no-repeat center`}
+          background={`${COLORS.lightGray} url(${imageSrc}) no-repeat center`}
           padding={"120px"}
           marginBottom={px2vw(15)}
           onClick={() => setIsOpenModal(true)}
@@ -35,7 +37,7 @@ export const ProductItem = (props: ProductDto) => {
           </Typography>
         </Link>
 
-        <Typography as={"h3"} color={"#B1B1B1"} fontSize={remCalc(14)}>
+        <Typography as={"h3"} color={COLORS.graySecondary} fontSize={remCalc(14)}>
           {description}
         </Typography>
         <Flex

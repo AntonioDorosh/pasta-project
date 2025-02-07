@@ -1,7 +1,7 @@
 import React from 'react';
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {formatCurrency} from "@/utils";
+import {COLORS, formatCurrency} from "@/utils";
 import {QuantityControl} from "@/components/QuantityControl/QuantityControl";
 import {Button} from "@/components/UI/Button/Button";
 import {CartItemDto} from "@/shared/types/cart";
@@ -19,10 +19,10 @@ export const OrderCartList = (props: OrderCartListProps) => {
         <img width={"65px"} src={imageSrc} alt={title}/>
         <Flex flexDirection={"column"} maxWidth={"300px"}>
           <Typography fontWeight={700}>{title}</Typography>
-          <Typography color={"#A1A1A1"}>
+          <Typography color={COLORS.graySecondary}>
             {`${offers.size} ${offers.numericSize} см, ${type} тесто`}
           </Typography>
-          <Typography color={"#A1A1A1"}>
+          <Typography color={COLORS.graySecondary}>
             {ingredients
               .map((ingredient) => `+ ${ingredient.name}`)
               .join(", ")}

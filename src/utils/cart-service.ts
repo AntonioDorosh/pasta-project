@@ -26,12 +26,8 @@ class CartService {
     );
   }
 
-  calculatePriceWithIngredients({
-                                  offers,
-                                  selectedIngredients,
-                                  selectedSize,
-                                  ingredients,
-                                }: CalculatePriceWithIngredientProps) {
+  calculatePriceWithIngredients(props: CalculatePriceWithIngredientProps) {
+    const {offers, selectedIngredients, selectedSize, ingredients} = props;
     const basePrice = offers[selectedSize].price;
     const ingredientsPrice = selectedIngredients.reduce((acc, ingredientId) => {
       const ingredient = ingredients.find(

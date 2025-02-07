@@ -1,7 +1,7 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {PRODUCT_CATEGORIES} from "@/shared/utils";
-import {px2vw} from "@/utils";
+import {COLORS, px2vw} from "@/utils";
 import {Button} from "@/components/UI/Button/Button";
 
 type CategoriesProps = {
@@ -16,7 +16,7 @@ export const Categories = ({selectedCategory, setSelectedCategory}: CategoriesPr
         as={'nav'}
         display={"inline-flex"}
         gap={px2vw(10)}
-        background={"#FAFAFA"}
+        background={COLORS.white}
         borderRadius={"15px"}
         marginBottom={px2vw(66)}
       >

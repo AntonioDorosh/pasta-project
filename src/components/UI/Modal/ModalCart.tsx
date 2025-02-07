@@ -3,7 +3,7 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import {useFetchCart} from "@/shared/hooks/useFetchCart";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {px2vw} from "@/utils";
+import {COLORS, px2vw} from "@/utils";
 import {Button} from "@/components/UI/Button/Button";
 import {EmptyCart} from "@/components/EmptyCart/EmptyCart";
 import {ModalCartItem} from "@/components/UI/Modal/ModalCartItem";
@@ -17,7 +17,6 @@ type CartModalProps = {
 export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
   const modalRef = useOutsideClick(isOpenCart, onClose);
   const {cart} = useFetchCart();
-
 
   return (
     <Flex
@@ -38,7 +37,7 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
         right={0}
         width={"400px"}
         height={"100vh"}
-        background={"#f4f1ee"}
+        background={COLORS.lightGray}
         zIndex={1000}
         ref={modalRef}
       >

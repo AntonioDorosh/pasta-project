@@ -7,10 +7,7 @@ import Typography from "@/shared/styles/styled-components/Typography/Typography"
 export const CurrentCategory = ({selectedCategory}: {
   selectedCategory: number;
 }) => {
-  const currentCategory =
-    selectedCategory === 0
-      ? "Все"
-      : `${PRODUCT_CATEGORIES[selectedCategory]} пиццы`;
+  const currentCategory = selectedCategory === 0 ? "Все" : `${PRODUCT_CATEGORIES[selectedCategory]} пиццы`;
 
   return (
     <Flex marginBottom={px2vw(20)}>

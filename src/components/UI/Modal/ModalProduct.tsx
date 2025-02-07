@@ -7,7 +7,7 @@ import {ModalWrapper} from "@/components/UI/Modal/ModalWrapper";
 import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import {formatCurrency, getProductDetails, px2vw, remCalc} from "@/utils";
+import {COLORS, formatCurrency, getProductDetails, px2vw, remCalc} from "@/utils";
 import {Button} from "@/components/UI/Button/Button";
 import {OfferOptions} from "@/components/Offer/OfferOptions";
 import {Ingredients} from "@/components/UI/Ingredients/Ingredients";
@@ -34,7 +34,14 @@ export const ModalProduct = ({
 
   const [selectedIngredient, setSelectedIngredient] = useState<number[]>([]);
   const {title, imageSrc, offers, types, ingredients, id} = rest;
-  const {type, size} = selectedOptions;
+  const {type: selectedType, size: selectedSize} = selectedOptions;
+  const showCurrencyDetails = formatCurrency(cartService.calculatePriceWithIngredients({
+    offers,
+    selectedSize,
+    ingredients,
+    selectedIngredients: selectedIngredient,
+  }))
+  const showProductOptions = getProductDetails(offers, selectedSize, selectedType);
 
   const {cart: cartItems} = useFetchCart();
   const addToCart = useAddToCart();
@@ -45,26 +52,25 @@ export const ModalProduct = ({
       imageSrc,
       cartItems,
       ingredients,
-      selectedType: type,
+      selectedType,
       title,
       id: Number(id),
       selectedIngredient,
-      selectedOffer: offers[size],
+      selectedOffer: offers[selectedSize],
     });
 
   if (!isOpenModal) return null;
 
   return (
     <ModalWrapper>
-      <Flex background={"#FFFFFF"} ref={modalRef} borderRadius={"30px"}>
+      <Flex background={COLORS.white} ref={modalRef} borderRadius={"30px"} minWidth={'1000px'}>
         <Flex justifyContent={"center"} alignItems={"center"} flexBasis={"50%"}>
           <img src={imageSrc} alt={title}/>
         </Flex>
         <Flex
           flexDirection={"column"}
-          flexBasis={"50%"}
           padding={30}
-          background={"#F4F1EE"}
+          background={COLORS.lightGray}
           position={"relative"}
         >
           <Typography fontSize={remCalc(24)} fontWeight={800}>
@@ -72,14 +78,10 @@ export const ModalProduct = ({
           </Typography>
           <Typography
             fontSize={remCalc(14)}
-            color={"#777777"}
+            color={COLORS.gray}
             marginBottom={px2vw(20)}
           >
-            {getProductDetails(
-              offers,
-              selectedOptions.size,
-              selectedOptions.type,
-            )}
+            {showProductOptions}
           </Typography>
           <Button $variant={"close"} onClick={onClose}/>
           <OfferOptions
@@ -102,14 +104,7 @@ export const ModalProduct = ({
           />
           <Button $variant={"add"} onClick={addToCartHandler}>
             Добавить в корзину{" "}
-            {formatCurrency(
-              cartService.calculatePriceWithIngredients({
-                offers,
-                selectedSize: size,
-                ingredients,
-                selectedIngredients: selectedIngredient,
-              }),
-            )}
+            {showCurrencyDetails}
           </Button>
         </Flex>
       </Flex>
