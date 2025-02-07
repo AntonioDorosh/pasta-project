@@ -46,9 +46,8 @@ export const Form = () => {
       <form onSubmit={handleSubmit}>
         {formFields.map((field) => (
           <FormField key={field.name} name={field.name} label={field.label} type={field.type}
-                     onChange={handleChange} value={values[field.name]}/>
+                     onChange={handleChange} value={values[field.name]} error={errors[field.name]}/>
         ))}
-        {errors.phone && <p style={{color: "red"}}>{errors.phone}</p>}
         <FormikButton type={"submit"} disabled={isPending}>{
           isPending ? "Отправка..." : "Отправить"
         }</FormikButton>

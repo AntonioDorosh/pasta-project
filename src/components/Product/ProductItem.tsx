@@ -5,7 +5,6 @@ import Typography from "@/shared/styles/styled-components/Typography/Typography"
 import {COLORS, formatCurrency, px2vw, remCalc} from "@/utils";
 import {Button} from "@/components/UI/Button/Button";
 import {ModalProduct} from "@/components/UI/Modal/ModalProduct";
-import {Link} from "react-router-dom";
 
 type ProductItemsProps = ProductDto;
 
@@ -31,11 +30,9 @@ export const ProductItem = (props: ProductItemsProps) => {
           marginBottom={px2vw(15)}
           onClick={() => setIsOpenModal(true)}
         />
-        <Link to={`/products/${id}`}>
-          <Typography fontSize={remCalc(22)} fontWeight={800}>
-            {title}
-          </Typography>
-        </Link>
+        <Typography fontSize={remCalc(22)} fontWeight={800}>
+          {title}
+        </Typography>
 
         <Typography as={"h3"} color={COLORS.graySecondary} fontSize={remCalc(14)}>
           {description}

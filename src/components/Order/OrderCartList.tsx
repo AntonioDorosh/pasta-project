@@ -13,6 +13,7 @@ export const OrderCartList = (props: OrderCartListProps) => {
   const {id, imageSrc, quantity, type, ingredients, price, offers, title} = props;
 
   const removeFromCart = useRemoveFromCart();
+
   return (
     <>
       <Flex key={id} alignItems={"center"} minWidth={"762px"} gap={20}>

@@ -1,6 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {Label} from "@/components/UI/Form/Form.styled";
-import {Input} from "@/components/UI/Input/Input";
+import {ErrorMessage, FormInput, Label} from "@/components/UI/Form/Form.styled";
 
 type FormFieldProps = {
   name: string;
@@ -15,14 +14,14 @@ export const FormField = ({name, type, onChange, error, label, value}: FormField
   return (
     <>
       <Label htmlFor={name}>{label}</Label>
-      <Input
+      <FormInput
         name={name}
         id={name}
         type={type}
         onChange={onChange}
         value={value}
       />
-      {error && <p style={{color: "red"}}>{error}</p>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </>
   );
 };

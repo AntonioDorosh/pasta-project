@@ -1,6 +1,91 @@
 {
-  "orders": [],
-  "cart": [],
+  "orders": [
+    {
+      "firstName": "dasdas",
+      "lastName": "dsadas",
+      "email": "mrMichael077@proton.me",
+      "phone": "+380967115071",
+      "cartItems": {
+        "data": [
+          {
+            "title": "Сырный цыпленок",
+            "imageSrc": "/images/item-1.png",
+            "price": 300,
+            "offers": {
+              "productId": 1,
+              "size": "Маленькая",
+              "price": 300,
+              "weight": 300,
+              "numericSize": 25
+            },
+            "type": "Традиционное",
+            "ingredients": [],
+            "quantity": 1,
+            "id": 1
+          }
+        ],
+        "status": 200,
+        "statusText": "OK",
+        "headers": {
+          "cache-control": "no-cache",
+          "content-length": "353",
+          "content-type": "application/json; charset=utf-8",
+          "expires": "-1",
+          "pragma": "no-cache"
+        },
+        "config": {
+          "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+          },
+          "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+          ],
+          "transformRequest": [
+            null
+          ],
+          "transformResponse": [
+            null
+          ],
+          "timeout": 0,
+          "xsrfCookieName": "XSRF-TOKEN",
+          "xsrfHeaderName": "X-XSRF-TOKEN",
+          "maxContentLength": -1,
+          "maxBodyLength": -1,
+          "env": {},
+          "headers": {
+            "Accept": "application/json, text/plain, */*"
+          },
+          "baseURL": "http://localhost:3001",
+          "method": "get",
+          "url": "/cart"
+        },
+        "request": {}
+      },
+      "id": 1
+    }
+  ],
+  "cart": [
+    {
+      "title": "Сырный цыпленок",
+      "imageSrc": "/images/item-1.png",
+      "price": 300,
+      "offers": {
+        "productId": 1,
+        "size": "Маленькая",
+        "price": 300,
+        "weight": 300,
+        "numericSize": 25
+      },
+      "type": "Традиционное",
+      "ingredients": [],
+      "quantity": 1,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "id": "1",
