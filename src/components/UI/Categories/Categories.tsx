@@ -1,8 +1,8 @@
 import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import {PRODUCT_CATEGORIES} from "@/shared/utils";
-import {COLORS, px2vw} from "@/utils";
-import {Button} from "@/components/UI/Button/Button";
+import {px2vw} from "@/utils";
+import {Button} from "@/components/UI/Buttons/Button/Button";
+import {COLORS, PRODUCT_CATEGORIES} from "@/constants/constants";
 
 type CategoriesProps = {
   selectedCategory: number;

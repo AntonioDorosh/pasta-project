@@ -13,7 +13,7 @@ export type TIngredients = {
   price: number;
 };
 export type ProductDto = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   description: string;

@@ -1,4 +1,4 @@
-import { TIngredients } from "@/shared/types/products";
+import {TIngredients} from "@/shared/types/products";
 
 type TOffers = {
   productId: number;
@@ -10,7 +10,7 @@ type TOffers = {
 };
 
 export type CartItemDto = {
-  id?: string;
+  id: number;
   title: string;
   price: number;
   description?: string;
@@ -20,5 +20,7 @@ export type CartItemDto = {
   offers: TOffers;
   quantity: number;
 };
+
+export type CartItemDtoWithoutId = Omit<CartItemDto, 'id'>
 
 export type CartItemDtoResponse = CartItemDto[] | undefined;

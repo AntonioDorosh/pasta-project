@@ -1,5 +1,5 @@
-import { TOffers } from "@/shared/types/products";
-import { PRODUCT_TYPE } from "@/shared/utils";
+import {TOffers} from "@/shared/types/products";
+import {PRODUCT_TYPE} from "@/constants/constants";
 
 export const getProductDetails = (
   offers: TOffers[],

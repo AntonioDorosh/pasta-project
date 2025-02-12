@@ -26,7 +26,7 @@ export const dataService = {
     return productApi.post("/cart", product);
   },
 
-  updateQuantity: (id: number, quantity: number) => {
+  updateQuantity: (id: string | number, quantity: number) => {
     return productApi.patch(`/cart/${id}`, {quantity});
   },
 

@@ -35,7 +35,7 @@ class CartService {
     return findCurrentItem ? this.calculatePriceItem(findCurrentItem) : 0;
   }
 
-  calculatePriceWithIngredients(props: CalculatePriceWithIngredientProps) {
+  calculateWithIngredients(props: CalculatePriceWithIngredientProps) {
     const {offers, selectedSize, selectedIngredients, ingredients} = props;
     const basePrice = offers[selectedSize].price;
     const ingredientsPrice = selectedIngredients.reduce((acc, ingredientId) => {

@@ -3,7 +3,7 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {TIngredients} from "@/shared/types/products";
 import {formatCurrency, px2vw, remCalc} from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {Button} from "@/components/UI/Button/Button";
+import {Button} from "@/components/UI/Buttons/Button/Button";
 import checked from "@/assets/images/check-icon.svg";
 
 type IngredientsProps = {

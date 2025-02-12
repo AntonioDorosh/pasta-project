@@ -1,9 +1,9 @@
 import React from "react";
 import {FormContainer, FormikButton, SectionTitle,} from "@/components/UI/Form/Form.styled";
 import {useFormik} from "formik";
-import {SignupScheme} from "@/shared/utils";
 import {useSubmitForm} from "@/shared/hooks/useSubmitForm";
 import {FormField} from "@/components/UI/FormField/FormField";
+import {SignupScheme} from "@/constants/constants";
 
 export type FormikValues = {
   firstName: string;

@@ -1,13 +1,13 @@
 import React, {ReactNode} from "react";
 import {px2vw} from "@/utils";
-import {Button} from "@/components/UI/Button/Button";
+import {Button} from "@/components/UI/Buttons/Button/Button";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {useUpdateQuantity} from "@/shared/hooks/useUpdateQuantity";
 
 export const QuantityControl = (props: {
   quantity: number;
-  id?: string | undefined;
+  id: number;
   children?: ReactNode;
 }) => {
   const {id, quantity, children} = props;
@@ -15,7 +15,7 @@ export const QuantityControl = (props: {
 
   const handleQuantityChange = (delta: number) => {
     updateQuantity({
-      id: id!,
+      id: id,
       quantity: quantity + delta
     })
   }

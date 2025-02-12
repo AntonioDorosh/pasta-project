@@ -1,8 +1,8 @@
 import React from "react";
 import {px2vw, remCalc} from "@/utils";
-import {PRODUCT_CATEGORIES} from "@/shared/utils";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
+import {PRODUCT_CATEGORIES} from "@/constants/constants";
 
 export const CurrentCategory = ({selectedCategory}: {
   selectedCategory: number;

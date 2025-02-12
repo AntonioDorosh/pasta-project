@@ -1,9 +1,10 @@
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import emptyCart from "@/assets/images/empty-cart.svg";
-import {COLORS, px2vw} from "@/utils";
+import {px2vw} from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import {Link} from "react-router-dom";
-import {Button} from "@/components/UI/Button/Button";
+import {Button} from "@/components/UI/Buttons/Button/Button";
+import {COLORS} from "@/constants/constants";
 
 type EmptyCartProps = {
   onClose?: () => void;
