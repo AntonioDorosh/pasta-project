@@ -10,7 +10,7 @@ import {cartService} from "@/utils/cart-service";
 
 export const ModalCartSummary = () => {
   const {cart} = useFetchCart();
-  const cartWithTaxes = cartService.calculateWithTax(cart);
+  const cartWithDelivery = cartService.calculateWithDelivery(cart);
 
   return (
     <>
@@ -40,7 +40,7 @@ export const ModalCartSummary = () => {
             margin={"0 10px"}
           />
           <Typography fontWeight={800}>
-            {formatCurrency(cartWithTaxes)}
+            {formatCurrency(cartWithDelivery)}
           </Typography>
         </Flex>
         <Link to={"/cart"}>

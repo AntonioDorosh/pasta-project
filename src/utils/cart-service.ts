@@ -8,24 +8,23 @@ type CalculatePriceWithIngredientProps = {
   ingredients: TIngredients[];
 };
 
-let initialValue = 0;
 
 class CartService {
   private calculatePriceItem(item: CartItemDto): number {
-    const {offers, price, quantity} = item;
+    const {offers, price, quantity, ingredients} = item;
 
-    const offerPrice = offers.price || price;
+    const basePrice = offers.price || price;
     const qnt = quantity || 0;
-    const ingredientsPrice = item.ingredients.reduce((acc, ingredientValue) => acc + (ingredientValue.price || 0), initialValue);
+    const ingredientsPrice = ingredients.reduce((acc, {price}) => acc + (price || 0), 0);
 
-    return (offerPrice + ingredientsPrice) * qnt
+    return (basePrice + ingredientsPrice) * qnt
   }
 
   calculateTotalPrice(cart: CartItemDto[] | undefined) {
     return (
       cart?.reduce((acc, currentValue) => {
         return acc + this.calculatePriceItem(currentValue)
-      }, initialValue) || 0
+      }, 0) || 0
     )
   }
 
@@ -42,22 +41,25 @@ class CartService {
       const ingredient = ingredients.find((i) => i.ingredientId === ingredientId)
 
       return acc + (ingredient?.price || 0)
-    }, initialValue);
+    }, 0);
 
     return basePrice + ingredientsPrice
   }
 
-  calculateTotalPriceWithDiscount(cart: CartItemDto[] | undefined) {
+  private calculateAdditionalCost(cart: CartItemDto[] | undefined, multiplier: number): number {
+    return cart?.reduce((acc, {offers, price, quantity}) => {
+      const itemPrice = offers.discount ? price * (1 - offers.discount / 100) : price;
 
-    return cart?.reduce((acc, currentValue) => {
-      const {offers, price, quantity} = currentValue;
+      return acc + itemPrice * quantity * multiplier
+    }, 0) || 0
+  }
 
-      const itemPrice = offers.discount
-        ? price - price * offers.discount / 100
-        : price;
+  calculateWithDelivery(cart: CartItemDto[] | undefined): number {
+    return this.calculateAdditionalCost(cart, 0.05);
+  }
 
-      return acc + itemPrice * quantity * 0.05
-    }, initialValue)
+  calculateWithTax(cart: CartItemDto[] | undefined) {
+    return this.calculateAdditionalCost(cart, 0.013)
   }
 }
 

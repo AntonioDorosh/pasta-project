@@ -16,34 +16,32 @@ export const OrderCartList = (props: OrderCartListProps) => {
   const removeFromCart = useRemoveFromCart();
 
   return (
-    <>
-      <Flex key={id} alignItems={"center"} minWidth={"762px"} gap={20}>
-        <img width={"65px"} src={imageSrc} alt={title}/>
-        <Flex flexDirection={"column"} maxWidth={"300px"}>
-          <Typography fontWeight={700}>{title}</Typography>
-          <Typography color={COLORS.graySecondary}>
-            {`${offers.size} ${offers.numericSize} см, ${type} тесто`}
-          </Typography>
-          <Typography color={COLORS.graySecondary}>
-            {ingredients
-              .map((ingredient) => `+ ${ingredient.name}`)
-              .join(", ")}
-          </Typography>
-        </Flex>
-        <Flex
-          flex={1}
-          justifyContent={"flex-end"}
-          alignItems={"center"}
-          gap={30}
-        >
-          <Typography fontWeight={800}>
-            {formatCurrency(price)}
-          </Typography>
-          <QuantityControl quantity={quantity} id={id}/>
-          <Button onClick={() => removeFromCart(id)}>X</Button>
-        </Flex>
+    <Flex key={id} alignItems={"center"} minWidth={"762px"} gap={20}>
+      <img width={"65px"} src={imageSrc} alt={title}/>
+      <Flex flexDirection={"column"} maxWidth={"300px"}>
+        <Typography fontWeight={700}>{title}</Typography>
+        <Typography color={COLORS.graySecondary}>
+          {`${offers.size} ${offers.numericSize} см, ${type} тесто`}
+        </Typography>
+        <Typography color={COLORS.graySecondary}>
+          {ingredients
+            .map((ingredient) => `+ ${ingredient.name}`)
+            .join(", ")}
+        </Typography>
       </Flex>
-    </>
+      <Flex
+        flex={1}
+        justifyContent={"flex-end"}
+        alignItems={"center"}
+        gap={30}
+      >
+        <Typography fontWeight={800}>
+          {formatCurrency(price)}
+        </Typography>
+        <QuantityControl quantity={quantity} id={id}/>
+        <Button onClick={() => removeFromCart(id)}>X</Button>
+      </Flex>
+    </Flex>
   );
 };
 

@@ -7,9 +7,13 @@ import percentIcon from "@/assets/images/percent.svg";
 import deliveryIcon from "@/assets/images/delivery.svg";
 import {SummarySection} from "@/pages/Order/Order.styled";
 import {useFetchCart} from "@/shared/hooks/useFetchCart";
+import {cartService} from "@/utils/cart-service";
 
 export const OrderSummarySection = () => {
   const {cart} = useFetchCart();
+  const totalPrice = cartService.calculateTotalPrice(cart);
+  const cartPriceWithDelivery = cartService.calculateWithDelivery(cart);
+  const cartPriceWithTax = cartService.calculateWithTax(cart);
 
   return (
     <SummarySection>
@@ -21,21 +25,21 @@ export const OrderSummarySection = () => {
           <img src={boxIcon} alt="box-icon"/>
           <Typography marginLeft={px2vw(15)}>
             Стоимость товаров:{" "}
-            {formatCurrency(123)}
+            {formatCurrency(totalPrice)}
           </Typography>
         </Flex>
         <Flex>
           <img src={percentIcon} alt="percent-icon"/>
           <Typography marginLeft={px2vw(15)}>
             Налог:{" "}
-            {formatCurrency(123)}
+            {formatCurrency(cartPriceWithTax)}
           </Typography>
         </Flex>
         <Flex>
           <img src={deliveryIcon} alt="delivery-icon"/>
           <Typography as={"p"} marginLeft={px2vw(15)}>
             Доставка:{" "}
-            {formatCurrency(123)}
+            {formatCurrency(cartPriceWithDelivery)}
           </Typography>
         </Flex>
       </Flex>

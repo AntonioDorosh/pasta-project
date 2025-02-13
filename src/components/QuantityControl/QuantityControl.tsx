@@ -13,12 +13,7 @@ export const QuantityControl = (props: {
   const {id, quantity, children} = props;
   const updateQuantity = useUpdateQuantity();
 
-  const handleQuantityChange = (delta: number) => {
-    updateQuantity({
-      id: id,
-      quantity: quantity + delta
-    })
-  }
+  const handleQuantityChange = (delta: number) => updateQuantity({id, quantity: quantity + delta});
 
   return (
     <Flex alignItems={"center"} gap={px2vw(10)}>

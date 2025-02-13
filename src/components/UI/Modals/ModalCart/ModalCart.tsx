@@ -3,7 +3,7 @@ import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import {useFetchCart} from "@/shared/hooks/useFetchCart";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {px2vw} from "@/utils";
+import {pluralize, px2vw} from "@/utils";
 import {Button} from "@/components/UI/Buttons/Button/Button";
 import {EmptyCart} from "@/components/EmptyCart/EmptyCart";
 import {ModalCartItem} from "@/components/UI/Modals/ModalCartItem/ModalCartItem";
@@ -18,8 +18,7 @@ type CartModalProps = {
 export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
   const modalRef = useOutsideClick(isOpenCart, onClose);
   const {cart} = useFetchCart();
-
-  console.log(cart)
+  const cartTextPluralize = `В корзине ${cart?.length} ${pluralize(cart?.length, ['товар', 'товара', 'товаров'])}`;
 
   return (
     <Flex
@@ -50,8 +49,7 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
           <>
             <Flex justifyContent={"space-between"} padding={px2vw(20)}>
               <Typography>
-                В корзине {cart?.length}{" "}
-                {cart?.length === 1 ? "товар" : "товара"}
+                {cartTextPluralize}
               </Typography>
               <Button $variant={"close"} onClick={onClose}/>
             </Flex>

@@ -2,7 +2,7 @@ import {dataService} from "@/shared/api/data-service";
 import {CartItemDto} from "@/shared/types/cart";
 import {useMutation} from "@tanstack/react-query";
 import {TIngredients, TOffers} from "@/shared/types/products";
-import {PRODUCT_TYPE} from "@/constants/constants";
+import {PRODUCT_TYPE, QUERY_KEY_CART} from "@/constants/constants";
 import {queryClient} from "@/index";
 
 type UseAddItemToCartProps = {
@@ -49,7 +49,7 @@ const findExistingProductInCart = (
   selectedIngredients: TIngredients[],
 ): CartItemDto | undefined =>
   cart?.find(
-    ({offers, type, ingredients, id}) =>
+    ({offers, type, ingredients}) =>
       offers.productId === selectedOffer.productId &&
       offers.size === selectedOffer.size &&
       type === PRODUCT_TYPE[selectedType] &&
@@ -103,7 +103,7 @@ const addToCart = (params: UseAddItemToCartProps) => {
 export const useAddToCart = () => {
   const {mutate: addToCartMutation} = useMutation({
     mutationFn: addToCart,
-    onSuccess: () => queryClient.invalidateQueries({queryKey: ["cart"]}),
+    onSuccess: () => queryClient.invalidateQueries({queryKey: [QUERY_KEY_CART]}),
   });
 
   return addToCartMutation;

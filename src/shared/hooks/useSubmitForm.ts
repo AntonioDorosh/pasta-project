@@ -4,9 +4,10 @@ import {dataService} from "@/shared/api/data-service";
 import {useMutation} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 import {queryClient} from "@/index";
+import {QUERY_KEY_CART} from "@/constants/constants";
 
 export const handlerSubmitForm = (values: FormikValues) => {
-  const cartItems = queryClient.getQueryData(['cart']) as CartItemDto[];
+  const cartItems = queryClient.getQueryData([QUERY_KEY_CART]) as CartItemDto[];
 
   return dataService.submitOrder({
     ...values,
@@ -20,7 +21,7 @@ export const useSubmitForm = () => {
   const {mutate: submitFormMutation, isPending} = useMutation({
     mutationFn: (values: FormikValues) => handlerSubmitForm(values),
     onSuccess: () => {
-      queryClient.setQueryData(['cart'], [])
+      queryClient.setQueryData([QUERY_KEY_CART], [])
 
       navigate('/')
     },

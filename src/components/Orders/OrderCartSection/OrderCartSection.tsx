@@ -10,15 +10,13 @@ export const OrderCartSection = () => {
   const {cart} = useFetchCart();
 
   return (
-    <>
-      <CartSection>
-        <Flex marginBottom={px2vw(20)} justifyContent={"space-between"}>
-          <Typography fontSize={remCalc(24)} fontWeight={700}>
-            1. Корзина
-          </Typography>
-        </Flex>
-        {cart?.map((cartItem) => <OrderCartList key={cartItem.id} {...cartItem}/>)}
-      </CartSection>
-    </>
+    <CartSection>
+      <Flex marginBottom={px2vw(20)} justifyContent={"space-between"}>
+        <Typography fontSize={remCalc(24)} fontWeight={700}>
+          1. Корзина
+        </Typography>
+      </Flex>
+      {cart?.map((cartItem) => <OrderCartList key={cartItem.id} {...cartItem}/>)}
+    </CartSection>
   );
 };

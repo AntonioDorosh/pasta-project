@@ -1,6 +1,9 @@
 import {object, string} from "yup";
 import {sortOptions, TSort} from "@/shared/types/sort";
 
+export const QUERY_KEY_PRODUCT = 'products';
+export const QUERY_KEY_CART = 'cart'
+
 export const COLORS = {
   primary: '#FE5F00',
   white: '#FFFFFF',
@@ -35,3 +38,5 @@ export const SORT_LIST: TSort[] = [
   {name: "По названию (ASC)", sortProperty: sortOptions[3]},
   {name: "По названию (DESC)", sortProperty: sortOptions[4]},
 ];
+
+

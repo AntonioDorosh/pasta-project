@@ -17,8 +17,6 @@ export const ModalCartItem = (cartItem: ModalCartItemsProps) => {
   const productDetails = `${size} ${numericSize} см, ${type?.toLowerCase()} тесто`;
   const ingredientsDetails = ingredients.map((ingredient) => `+ ${ingredient.name}`).join(", ");
 
-  console.log(cart)
-
   return (
     <>
       <Flex background={COLORS.white} padding={20} marginBottom={"20px"}>
