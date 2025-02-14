@@ -1,5 +1,5 @@
 import {useMutation} from "@tanstack/react-query";
-import {dataService} from "@/shared/api/data-service";
+import {dataService} from "@/shared/services/api/data-service";
 import {queryClient} from "@/index";
 import {QUERY_KEY_CART} from "@/constants/constants";
 

@@ -1,6 +1,6 @@
 import {ChangeEvent, InputHTMLAttributes} from "react";
 
-export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
   placeholder?: string;
   value: string;

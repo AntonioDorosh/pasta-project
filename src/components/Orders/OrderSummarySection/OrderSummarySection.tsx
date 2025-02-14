@@ -6,8 +6,8 @@ import boxIcon from "@/assets/images/box.svg";
 import percentIcon from "@/assets/images/percent.svg";
 import deliveryIcon from "@/assets/images/delivery.svg";
 import {SummarySection} from "@/pages/Order/Order.styled";
-import {useFetchCart} from "@/shared/hooks/useFetchCart";
-import {cartService} from "@/utils/cart-service";
+import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
+import {cartService} from "@/shared/services/cart/cart-service";
 
 export const OrderSummarySection = () => {
   const {cart} = useFetchCart();

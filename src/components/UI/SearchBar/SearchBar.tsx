@@ -10,7 +10,7 @@ export const SearchBar = ({
                             searchProductDeferred,
                             setSearchProduct,
                           }: SearchBarProps) => {
-  const handleSearch = ({target}: ChangeEvent<HTMLInputElement>) => setSearchProduct(target.value)
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => setSearchProduct(event.target.value)
 
   return (
     <Input

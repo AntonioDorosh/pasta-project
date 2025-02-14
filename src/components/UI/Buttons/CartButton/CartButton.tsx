@@ -3,7 +3,7 @@ import {Button} from "@/components/UI/Buttons/Button/Button";
 import cartLogo from "@/assets/images/cart-icon.svg";
 import whiteCartLogo from "@/assets/images/cart.svg";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {useFetchCart} from "@/shared/hooks/useFetchCart";
+import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 
 type CartButtonProps = {

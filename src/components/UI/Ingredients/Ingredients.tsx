@@ -19,12 +19,11 @@ export const Ingredients = (props: IngredientsProps) => {
     setSelectedIngredient((prevIngredient) => prevIngredient.includes(ingredientId) ? prevIngredient.filter((id) => id !== ingredientId) : [...prevIngredient, ingredientId])
   }
 
-  const isActiveHandler = (ingredientId: number) => selectedIngredient.includes(ingredientId)
-
   return (
     <Flex gap={px2vw(10)} minHeight={"193px"} marginBottom={px2vw(30)}>
       {ingredients.map((ingredient, index) => {
         const {ingredientId, imageSrc, name, price} = ingredient;
+        const isActive = selectedIngredient.includes(ingredientId)
 
         return (
           <Button
@@ -33,7 +32,7 @@ export const Ingredients = (props: IngredientsProps) => {
             }}
             key={index}
             $variant={"ingredients"}
-            $isActive={isActiveHandler(ingredientId)}
+            $isActive={isActive}
             onClick={() =>
               onClickSelectedIngredientHandler(ingredientId)
             }
@@ -49,18 +48,17 @@ export const Ingredients = (props: IngredientsProps) => {
             <Typography fontWeight={700} marginTop={"auto"}>
               {formatCurrency(price)}
             </Typography>
-            {isActiveHandler(ingredientId) && (
-              <Flex
-                position={"absolute"}
-                top={"5px"}
-                right={"5px"}
-                width={"20px"}
-                height={"20px"}
-                backgroundImage={`url(${checked})`}
-                backgroundSize={"contain"}
-                backgroundRepeat={"no-repeat"}
-              />
-            )}
+            {isActive && <Flex
+							position={"absolute"}
+							top={"5px"}
+							right={"5px"}
+							width={"20px"}
+							height={"20px"}
+							backgroundImage={`url(${checked})`}
+							backgroundSize={"contain"}
+							backgroundRepeat={"no-repeat"}
+						/>
+            }
           </Button>
         )
       })}

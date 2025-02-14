@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {ProductDto} from "@/shared/types/products";
-import {useFetchCart} from "@/shared/hooks/useFetchCart";
-import {useAddToCart} from "@/shared/hooks/useAddToCart";
+import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
+import {useAddToCart} from "@/shared/hooks/cart/useAddToCart";
 import {ModalWrapper} from "@/components/UI/Modals/ModalWrapper/ModalWrapper";
 import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
@@ -11,7 +11,7 @@ import {Button} from "@/components/UI/Buttons/Button/Button";
 import {OfferOptions} from "@/components/Offers/OfferOptions";
 import {Ingredients} from "@/components/UI/Ingredients/Ingredients";
 import {COLORS} from "@/constants/constants";
-import {cartService} from "@/utils/cart-service";
+import {cartService} from "@/shared/services/cart/cart-service";
 
 type SelectedOptionsProps = {
   size: number;

@@ -5,7 +5,7 @@ import {formatCurrency} from "@/utils";
 import {QuantityControl} from "@/components/QuantityControl/QuantityControl";
 import {Button} from "@/components/UI/Buttons/Button/Button";
 import {CartItemDto} from "@/shared/types/cart";
-import {useRemoveFromCart} from "@/shared/hooks/useRemoveFromCart";
+import {useRemoveFromCart} from "@/shared/hooks/cart/useRemoveFromCart";
 import {COLORS} from "@/constants/constants";
 
 type OrderCartListProps = CartItemDto

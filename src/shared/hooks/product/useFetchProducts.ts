@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {dataService} from "@/shared/api/data-service";
+import {dataService} from "@/shared/services/api/data-service";
 import {ProductParams} from "@/shared/types/productParams";
 import {QUERY_KEY_PRODUCT} from "@/constants/constants";
 

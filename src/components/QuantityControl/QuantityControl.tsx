@@ -3,7 +3,7 @@ import {px2vw} from "@/utils";
 import {Button} from "@/components/UI/Buttons/Button/Button";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
-import {useUpdateQuantity} from "@/shared/hooks/useUpdateQuantity";
+import {useUpdateQuantity} from "@/shared/hooks/quantity/useUpdateQuantity";
 
 export const QuantityControl = (props: {
   quantity: number;

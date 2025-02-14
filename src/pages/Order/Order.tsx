@@ -3,7 +3,7 @@ import {Header} from "@/components/Layouts/Header/Header";
 import {Container} from "@/components/Layouts/Container/Container";
 import {EmptyCart} from "@/components/EmptyCart/EmptyCart";
 import {FormSection, Layout} from "@/pages/Order/Order.styled";
-import {useFetchCart} from "@/shared/hooks/useFetchCart";
+import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
 import {Form} from "@/components/UI/Form/Form";
 import {OrderCartSection, OrderSummarySection} from "src/components/Orders";
 

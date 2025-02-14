@@ -3,7 +3,7 @@ import {Container} from "@/components/Layouts/Container/Container";
 import {Header} from "@/components/Layouts/Header/Header";
 import {Categories} from "@/components/UI/Categories/Categories";
 import {ProductList} from "@/components/Products/ProductList/ProductList";
-import {useFetchProducts} from "@/shared/hooks/product/useFetchProducts";
+import {useFetchProducts} from "@/shared/hooks/useFetchProducts";
 import {ModalCart} from "@/components/UI/Modals/ModalCart/ModalCart";
 import {SearchBar} from "@/components/UI/SearchBar/SearchBar";
 import {CartButton} from "@/components/UI/Buttons/CartButton/CartButton";

@@ -1,7 +1,7 @@
 import React from "react";
 import {FormContainer, FormikButton, SectionTitle,} from "@/components/UI/Form/Form.styled";
 import {useFormik} from "formik";
-import {useSubmitForm} from "@/shared/hooks/useSubmitForm";
+import {useSubmitForm} from "@/shared/hooks/form/useSubmitForm";
 import {FormField} from "@/components/UI/FormField/FormField";
 import {SignupScheme} from "@/constants/constants";
 

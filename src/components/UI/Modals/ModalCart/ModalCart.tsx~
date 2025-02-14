@@ -51,16 +51,14 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
         zIndex={1000}
         ref={modalRef}
       >
-        {!cart?.length ? <EmptyCart $minHeight={'100vh'} onClose={onClose}/> :
-          <>
-            <Flex justifyContent={"space-between"} padding={px2vw(20)}>
-              <Typography>{cartTextPluralize}</Typography>
-              <Button $variant={"close"} onClick={onClose}/>
-            </Flex>
-            {cartItems}
-            <ModalCartSummary/>
-          </>
-        }
+        {!cart?.length ? <EmptyCart $minHeight={'100vh'} onClose={onClose}/> : <>
+          <Flex justifyContent={"space-between"} padding={px2vw(20)}>
+            <Typography>{cartTextPluralize}</Typography>
+            <Button $variant={"close"} onClick={onClose}/>
+          </Flex>
+          {cartItems}
+          <ModalCartSummary/>
+        </>}
       </Flex>
     </Flex>
   );

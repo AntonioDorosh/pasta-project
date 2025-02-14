@@ -1,4 +1,4 @@
-import {dataService} from "@/shared/api/data-service";
+import {dataService} from "@/shared/services/api/data-service";
 import {CartItemDto} from "@/shared/types/cart";
 import {useMutation} from "@tanstack/react-query";
 import {TIngredients, TOffers} from "@/shared/types/products";

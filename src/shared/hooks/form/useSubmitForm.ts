@@ -1,6 +1,6 @@
 import {CartItemDto} from "@/shared/types/cart";
 import {FormikValues} from "@/components/UI/Form/Form";
-import {dataService} from "@/shared/api/data-service";
+import {dataService} from "@/shared/services/api/data-service";
 import {useMutation} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 import {queryClient} from "@/index";
