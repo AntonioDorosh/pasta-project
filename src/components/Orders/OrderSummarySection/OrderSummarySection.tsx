@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import {formatCurrency, px2vw} from "@/utils";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
@@ -6,11 +6,14 @@ import boxIcon from "@/assets/images/box.svg";
 import percentIcon from "@/assets/images/percent.svg";
 import deliveryIcon from "@/assets/images/delivery.svg";
 import {SummarySection} from "@/pages/Order/Order.styled";
-import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
 import {cartService} from "@/shared/services/cart/cart-service";
+import {CartItemDto} from "@/shared/types/cart";
 
-export const OrderSummarySection = () => {
-  const {cart} = useFetchCart();
+type OrderSummarySectionProps = {
+  cart: CartItemDto[] | undefined;
+}
+
+export const OrderSummarySection: FC<OrderSummarySectionProps> = ({cart}) => {
   const totalPrice = cartService.calculateTotalPrice(cart);
   const cartPriceWithDelivery = cartService.calculateWithDelivery(cart);
   const cartPriceWithTax = cartService.calculateWithTax(cart);

@@ -1,13 +1,16 @@
-import React from "react";
+import React, {FC} from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {px2vw, remCalc} from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
 import {CartSection} from "@/pages/Order/Order.styled";
-import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
 import {OrderCartList} from "@/components/Orders/OrderCartList/OrderCartList";
+import {CartItemDto} from "@/shared/types/cart";
 
-export const OrderCartSection = () => {
-  const {cart} = useFetchCart();
+type OrderCartSectionProps = {
+  cart: CartItemDto[] | undefined;
+}
+
+export const OrderCartSection: FC<OrderCartSectionProps> = ({cart}) => {
 
   return (
     <CartSection>
@@ -16,7 +19,7 @@ export const OrderCartSection = () => {
           1. Корзина
         </Typography>
       </Flex>
-      {cart?.map((cartItem) => <OrderCartList key={cartItem.id} {...cartItem}/>)}
+      {cart?.map((cartItem) => <OrderCartList key={cartItem.id} cart={cart} {...cartItem}/>)}
     </CartSection>
   );
 };

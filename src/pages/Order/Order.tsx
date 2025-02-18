@@ -17,8 +17,8 @@ export const Order = () => {
         <EmptyCart $minHeight={"50vh"}/>
       ) : (
         <Layout>
-          <OrderCartSection/>
-          <OrderSummarySection/>
+          <OrderCartSection cart={cart}/>
+          <OrderSummarySection cart={cart}/>
           <FormSection>
             <Form/>
           </FormSection>

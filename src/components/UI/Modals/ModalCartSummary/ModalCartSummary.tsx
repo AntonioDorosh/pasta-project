@@ -2,14 +2,17 @@ import React from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {formatCurrency, px2vw} from "@/utils";
 import Typography from "@/shared/styles/styled-components/Typography/Typography";
-import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
 import {Link} from "react-router-dom";
 import arrowIcon from "@/assets/images/arrow.svg";
 import {COLORS} from "@/constants/constants";
 import {cartService} from "@/shared/services/cart/cart-service";
+import {CartItemDto} from "@/shared/types/cart";
 
-export const ModalCartSummary = () => {
-  const {cart} = useFetchCart();
+type ModalCartSummaryProps = {
+  cart: CartItemDto[] | undefined;
+}
+
+export const ModalCartSummary = ({cart}: ModalCartSummaryProps) => {
   const cartWithTaxes = cartService.calculateWithTax(cart);
 
   return (

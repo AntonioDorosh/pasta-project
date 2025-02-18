@@ -7,11 +7,14 @@ import {Button} from "@/components/UI/Buttons/Button/Button";
 import {CartItemDto} from "@/shared/types/cart";
 import {useRemoveFromCart} from "@/shared/hooks/cart/useRemoveFromCart";
 import {COLORS} from "@/constants/constants";
+import {cartService} from "@/shared/services/cart/cart-service";
 
-type OrderCartListProps = CartItemDto
+type OrderCartListProps = & CartItemDto & {
+  cart: CartItemDto[] | undefined
+}
 
 export const OrderCartList = (props: OrderCartListProps) => {
-  const {id, imageSrc, quantity, type, ingredients, price, offers, title} = props;
+  const {id, imageSrc, quantity, type, ingredients, offers, title, cart} = props;
 
   const removeFromCart = useRemoveFromCart();
 
@@ -36,7 +39,7 @@ export const OrderCartList = (props: OrderCartListProps) => {
         gap={30}
       >
         <Typography fontWeight={800}>
-          {formatCurrency(price)}
+          {formatCurrency(cartService.calculateCurrentPrice(cart, id))}
         </Typography>
         <QuantityControl quantity={quantity} id={id}/>
         <Button onClick={() => removeFromCart(id)}>X</Button>

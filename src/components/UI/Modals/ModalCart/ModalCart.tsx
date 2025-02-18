@@ -23,7 +23,7 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
     return (
       <>
         {cart?.map((cartItem) => (
-          <ModalCartItem key={cartItem.id} {...cartItem} />))}
+          <ModalCartItem key={cartItem.id} cart={cart} {...cartItem} />))}
       </>
     )
   }, [cart])
@@ -58,7 +58,7 @@ export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
               <Button $variant={"close"} onClick={onClose}/>
             </Flex>
             {cartItems}
-            <ModalCartSummary/>
+            <ModalCartSummary cart={cart}/>
           </>
         }
       </Flex>
