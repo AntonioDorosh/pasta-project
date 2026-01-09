@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useMemo, useRef} from "react";
 import Flex from "@/shared/styles/styled-components/Flex/Flex";
 import {useOutsideClick} from "@/shared/hooks/useOutsideClick";
 import {useFetchCart} from "@/shared/hooks/cart/useFetchCart";
@@ -16,7 +16,10 @@ type CartModalProps = {
 };
 
 export const ModalCart = ({isOpenCart, onClose}: CartModalProps) => {
-  const modalRef = useOutsideClick(isOpenCart, onClose);
+
+  const modalRef = useRef<HTMLDivElement | null>(null)
+
+  useOutsideClick(modalRef, onClose)
   const {cart} = useFetchCart();
   const cartTextPluralize = `В корзине ${cart?.length} ${pluralize(cart?.length, ['товар', 'товара', 'товаров'])}`;
   const cartItems = useMemo(() => {
