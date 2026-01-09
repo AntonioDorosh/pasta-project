@@ -28,7 +28,7 @@ export const OrderCartList = (props: OrderCartListProps) => {
         </Typography>
         <Typography color={COLORS.graySecondary}>
           {ingredients
-            .map((ingredient) => `+ ${ingredient.name}`)
+            .map(({name}) => `+ ${name}`)
             .join(", ")}
         </Typography>
       </Flex>

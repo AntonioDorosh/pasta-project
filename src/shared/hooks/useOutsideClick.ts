@@ -1,24 +1,20 @@
-import { useEffect, useRef } from "react";
+import {useEffect, useCallback, RefObject} from 'react';
 
-export const useOutsideClick = (isOpenModal: boolean, onClose: () => void) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  const handleCloseModalOutSide = (event: MouseEvent) => {
-    if (
-      isOpenModal &&
-      modalRef.current &&
-      !modalRef.current.contains(event.target as Node)
-    ) {
-      onClose();
+export const useOutsideClick = (ref: RefObject<HTMLElement>, callback: () => void) => {
+  
+  // 1. Оборачиваем логику в useCallback
+  const handleCloseModalOutSide = useCallback((event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      callback();
     }
-  };
-
+  }, [ref, callback]); // Зависимости функции
+  
   useEffect(() => {
-    document.addEventListener("mousedown", handleCloseModalOutSide);
-
-    return () =>
-      document.removeEventListener("mousedown", handleCloseModalOutSide);
-  }, [isOpenModal]);
-
-  return modalRef;
+    document.addEventListener('mousedown', handleCloseModalOutSide);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleCloseModalOutSide);
+    };
+    // 2. Теперь безопасно добавляем функцию в массив зависимостей
+  }, [handleCloseModalOutSide]);
 };
